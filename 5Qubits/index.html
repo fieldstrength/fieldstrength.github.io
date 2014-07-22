@@ -1,0 +1,1086 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<style type="text/css">
+body{
+	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-size:12px;
+	color:#333333;
+	line-height:150%;
+	text-align:justify;
+}
+
+.hh3{
+	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-size:11px
+	color:#000000;
+	font-weight:bold;
+	border-bottom: 1px solid #333333;
+}
+
+.Note1{
+	color:888888;
+	font-size:9pt;
+	line-height:normal;
+}
+
+.bb{ 
+	color:#12475f;
+	font-weight:bold;
+	line-height:normal;
+}
+
+.bb1{ 
+	color:#12475f;
+	font-weight:bold;
+	line-height:normal;
+}
+
+.bb2{ 
+	color:#12475f;
+	font-weight:bold;
+	line-height: 150%;
+}
+
+a:link, a:visited, a:active{ font-weight:bold; color:#111111; border-bottom: 1px solid #80d0f4; text-decoration:none; }
+a:hover{font-weight:bold; color:#666666; border-bottom: 1px solid #F0ED20; text-decoration:none; }
+
+.ack{
+	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-size:11px;
+	color:#BBBBBB;
+	text-align:justify;
+}
+
+.ack a:link, .ack a:visited, .ack a:active{ font-weight:normal; color:#DDDDDD; border-bottom: 1px solid #80d0f4; text-decoration:none; }
+.ack a:hover{font-weight:normal; color:#FFFFFF; border-bottom: 1px solid #F0ED20; text-decoration:none; }
+
+.c1{
+	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-size:12px;
+	color:#333333;
+	width:900px;
+	margin: 0 auto;
+}
+
+.header1{
+	border:1px solid #000000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	color:#FFFFFF
+	background-color:#000000;
+}
+
+.header2{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#FFFFFF
+	background-color:#666666;
+	font-weight:bold;
+}
+
+.bgheader{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+td.ent{
+	border:1px solid #000000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#555;
+	font-weight:bold;
+}
+.b1{
+	border: 1px solid #000000;
+}
+
+</style>
+
+
+<script type="text/javascript">
+
+function imgpreload () {
+
+	preimg = new Image(); 
+	urlData = new Array();
+	wstr = new String();
+
+	urlData[0] = "img/blank-box.gif";
+
+	for(var v=1; v<105; v++) {
+		wstr = "P";
+		if(v<10) { wstr += "0"; }
+		if(v<100) { wstr += "0"; }
+		wstr += v.toString();
+		wstr = "img/" + wstr + "over.gif";
+		urlData[v] = wstr;
+	}
+	
+	for(var v=1; v<40; v++) {
+		wstr = "B";
+		if(v<10) { wstr += "0"; }
+		wstr += v.toString();
+		wstr = "img/" + wstr + "over.gif";
+		urlData[v+104] = wstr;
+	}
+	
+	for(var v=1; v<144; v++) {
+		preimg = urlData[v];
+	}
+}
+
+	function togBG() {
+       if(document.getElementById("BGVisible").style.display == 'block') {
+          document.getElementById("BGVisible").style.display = 'none';
+		  document.getElementById("BGHidden").style.display = 'block';
+		}
+       else {
+          document.getElementById("BGVisible").style.display = 'block';
+		  document.getElementById("BGHidden").style.display = 'none';
+		}
+    }
+	
+	function togOverview() {
+       if(document.getElementById("overviewVisible").style.display == 'block') {
+          document.getElementById("overviewVisible").style.display = 'none';
+		  document.getElementById("overviewHidden").style.display = 'block';
+		}
+       else {
+          document.getElementById("overviewVisible").style.display = 'block';
+		  document.getElementById("overviewHidden").style.display = 'none';
+		}
+    }
+	
+	function togInDepth() {
+       if(document.getElementById("indepthVisible").style.display == 'block') {
+          document.getElementById("indepthVisible").style.display = 'none';
+		  document.getElementById("indepthHidden").style.display = 'block';
+		}
+       else {
+          document.getElementById("indepthVisible").style.display = 'block';
+		  document.getElementById("indepthHidden").style.display = 'none';
+		}
+    }
+	
+	function togForm() {
+       if(document.getElementById("formVisible").style.display == 'block') {
+          document.getElementById("formVisible").style.display = 'none';
+		  document.getElementById("formHidden").style.display = 'block';
+		}
+       else {
+          document.getElementById("formVisible").style.display = 'block';
+		  document.getElementById("formHidden").style.display = 'none';
+		}
+    }
+	
+	function togBKS() {
+       if(document.getElementById("bksVisible").style.display == 'block') {
+          document.getElementById("bksVisible").style.display = 'none';
+		  document.getElementById("bksHidden").style.display = 'block';
+		}
+       else {
+          document.getElementById("bksVisible").style.display = 'block';
+		  document.getElementById("bksHidden").style.display = 'none';
+		}
+    }
+	
+	function togSum() {
+       if(document.getElementById("summaryVisible").style.display == 'block') {
+          document.getElementById("summaryVisible").style.display = 'none';
+		  document.getElementById("summaryHidden").style.display = 'block';
+		}
+       else {
+          document.getElementById("summaryVisible").style.display = 'block';
+		  document.getElementById("summaryHidden").style.display = 'none';
+		}
+    }
+	
+	function jover(id) {
+		var w = document.getElementById(id);
+		w.style.color = '#000'; <!-- 33487f -->
+		
+	}
+	
+	function jout(id) {
+		var w = document.getElementById(id);
+		w.style.color = '#528898'; <!-- 5c7786 -->
+		
+	}
+
+</script>
+
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<!-- background-color:#eff5f8; -->
+<body style="margin:0px;" onload="javascript:imgpreload()">
+
+<script type="text/javascript" src="statedata3.js">
+</script>
+
+
+	<div class="c1">
+    	<table width="900" border="0" cellpadding="0" cellspacing="0">
+            <tr><td height="62"><img src="img/Bell-title-1.jpg" /></td></tr>
+            <tr><td height="23"><img src="img/Bell-title-2.jpg" /></td></tr>
+            <tr><td><table cellpadding="22" bgcolor="#292929" style="line-height:normal; text-align:justify; color:#FFFFFF"><tr><td>This javascript application illustrates the proofs of Bell's theorem that arise from a set of measurements performed on five qubits. In summary, it allows a user to select sets of states only if they correspond to consistent (non-orthogonal) measurement results. The theorem is seen most directly from the fact that it is never possible to choose a state from every row, i.e. one for each of the seven measurements considered. By applying the results to distant measurements on entangled sets of qubits, we can conclude that a hidden variable theory can only succeed if it is nonlocally dependent on data from multiple spacelike-separated regions, in violation of the principle of causality.</td></tr></table></td></tr>
+        </table>
+        <br />
+        
+	<div id="firstrow" style="width:900px; height:218px; padding:0; position:relative; top:0px; left:0px;">
+	<div id="obstable" style="position:absolute; top:0px; left:0px;">
+                    <table cellpadding="0" cellspacing="0">
+                        <tr><td colspan="11" height="22" align="center" class="header1" bgcolor="#000000"><font color="#FFFFFF">Observables Table</font></td></tr>
+                        <tr><td height="10"></td></tr>
+                        <tr>
+                            <td><img src="img/blank-arrow.gif" alt="" border="0" id="O1bit" /></td>
+                            <td><img src="img/O1.gif" alt="O1" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O1S1" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O1S2" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O1S3" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O1S4" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O1S5" border="0" /></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/blank-arrow.gif" alt="" border="0" id="O2bit" /></td>
+                            <td><img src="img/O2.gif" alt="O2" border="0" /></td>
+                            <td><img src="img/sx.gif" id="O2S1" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O2S2" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O2S3" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O2S4" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O2S5" border="0" /></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/blank-arrow.gif" alt="" border="0" id="O3bit" /></td>
+                            <td><img src="img/O3.gif" alt="O3" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O3S1" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sx.gif" id="O3S2" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O3S3" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O3S4" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O3S5" border="0" /></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/blank-arrow.gif" alt="" border="0" id="O4bit" /></td>
+                            <td><img src="img/O4.gif" alt="O4" border="0" /></td>
+                            <td><img src="img/id.gif" id="O4S1" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O4S2" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sx.gif" id="O4S3" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O4S4" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O4S5" border="0" /></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/blank-arrow.gif" alt="" border="0" id="O5bit" /></td>
+                            <td><img src="img/O5.gif" alt="O5" border="0" /></td>
+                            <td><img src="img/id.gif" id="O5S1" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O5S2" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O5S3" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sx.gif" id="O5S4" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O5S5" border="0" /></td>
+                        </tr>
+                        <tr>
+                            <td><img src="img/blank-arrow.gif" alt="" border="0" id="O6bit" /></td>
+                            <td><img src="img/O6.gif" alt="O6" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O6S1" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O6S2" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/id.gif" id="O6S3" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sz.gif" id="O6S4" border="0" /></td>
+                            <td><img src="img/otimes.gif" alt="otimes" border="0" /></td>
+                            <td><img src="img/sx.gif" id="O6S5" border="0" /></td>
+                        </tr>
+
+    					<tr>
+                        	<td height="22" colspan="11" height="22" align="center" class="ent">[ Entangled Basis ]</td>
+                        </tr>
+					</table>
+				</div>
+<!-- begin auto-generated html-->
+<div id="statestable" style="position:absolute; top:0px; right:0px;">
+<table width="514" cellpadding="0" cellspacing="0">
+	<tr><td height="22" align="center" class="header1" bgcolor="#000000"><font color="#FFFFFF">Corresponding Basis States (Projectors)</font></td></tr>
+    <tr><td height="8"></td></tr></table>
+    <div class="b1">
+    <table width="512" cellpadding="0" cellspacing="0">
+    <tr>
+		<td onmouseover="stateOver(1);" onmouseout="stateOut(1);" onclick="setOrtho(1);"><img id="P001" src="img/P001.gif" border="0" alt="P001" /></td>
+		<td onmouseover="stateOver(2);" onmouseout="stateOut(2);" onclick="setOrtho(2);"><img id="P002" src="img/P002.gif" border="0" alt="P002" /></td>
+		<td onmouseover="stateOver(3);" onmouseout="stateOut(3);" onclick="setOrtho(3);"><img id="P003" src="img/P003.gif" border="0" alt="P003" /></td>
+		<td onmouseover="stateOver(4);" onmouseout="stateOut(4);" onclick="setOrtho(4);"><img id="P004" src="img/P004.gif" border="0" alt="P004" /></td>
+		<td onmouseover="stateOver(5);" onmouseout="stateOut(5);" onclick="setOrtho(5);"><img id="P005" src="img/P005.gif" border="0" alt="P005" /></td>
+		<td onmouseover="stateOver(6);" onmouseout="stateOut(6);" onclick="setOrtho(6);"><img id="P006" src="img/P006.gif" border="0" alt="P006" /></td>
+		<td onmouseover="stateOver(7);" onmouseout="stateOut(7);" onclick="setOrtho(7);"><img id="P007" src="img/P007.gif" border="0" alt="P007" /></td>
+		<td onmouseover="stateOver(8);" onmouseout="stateOut(8);" onclick="setOrtho(8);"><img id="P008" src="img/P008.gif" border="0" alt="P008" /></td>
+		<td onmouseover="stateOver(9);" onmouseout="stateOut(9);" onclick="setOrtho(9);"><img id="P009" src="img/P009.gif" border="0" alt="P009" /></td>
+		<td onmouseover="stateOver(10);" onmouseout="stateOut(10);" onclick="setOrtho(10);"><img id="P010" src="img/P010.gif" border="0" alt="P010" /></td>
+		<td onmouseover="stateOver(11);" onmouseout="stateOut(11);" onclick="setOrtho(11);"><img id="P011" src="img/P011.gif" border="0" alt="P011" /></td>
+		<td onmouseover="stateOver(12);" onmouseout="stateOut(12);" onclick="setOrtho(12);"><img id="P012" src="img/P012.gif" border="0" alt="P012" /></td>
+		<td onmouseover="stateOver(13);" onmouseout="stateOut(13);" onclick="setOrtho(13);"><img id="P013" src="img/P013.gif" border="0" alt="P013" /></td>
+		<td onmouseover="stateOver(14);" onmouseout="stateOut(14);" onclick="setOrtho(14);"><img id="P014" src="img/P014.gif" border="0" alt="P014" /></td>
+		<td onmouseover="stateOver(15);" onmouseout="stateOut(15);" onclick="setOrtho(15);"><img id="P015" src="img/P015.gif" border="0" alt="P015" /></td>
+		<td onmouseover="stateOver(16);" onmouseout="stateOut(16);" onclick="setOrtho(16);"><img id="P016" src="img/P016.gif" border="0" alt="P016" /></td>
+		<td onmouseover="stateOver(17);" onmouseout="stateOut(17);" onclick="setOrtho(17);"><img id="P017" src="img/P017.gif" border="0" alt="P017" /></td>
+		<td onmouseover="stateOver(18);" onmouseout="stateOut(18);" onclick="setOrtho(18);"><img id="P018" src="img/P018.gif" border="0" alt="P018" /></td>
+		<td onmouseover="stateOver(19);" onmouseout="stateOut(19);" onclick="setOrtho(19);"><img id="P019" src="img/P019.gif" border="0" alt="P019" /></td>
+		<td onmouseover="stateOver(20);" onmouseout="stateOut(20);" onclick="setOrtho(20);"><img id="P020" src="img/P020.gif" border="0" alt="P020" /></td>
+		<td onmouseover="stateOver(21);" onmouseout="stateOut(21);" onclick="setOrtho(21);"><img id="P021" src="img/P021.gif" border="0" alt="P021" /></td>
+		<td onmouseover="stateOver(22);" onmouseout="stateOut(22);" onclick="setOrtho(22);"><img id="P022" src="img/P022.gif" border="0" alt="P022" /></td>
+		<td onmouseover="stateOver(23);" onmouseout="stateOut(23);" onclick="setOrtho(23);"><img id="P023" src="img/P023.gif" border="0" alt="P023" /></td>
+		<td onmouseover="stateOver(24);" onmouseout="stateOut(24);" onclick="setOrtho(24);"><img id="P024" src="img/P024.gif" border="0" alt="P024" /></td>
+		<td onmouseover="stateOver(25);" onmouseout="stateOut(25);" onclick="setOrtho(25);"><img id="P025" src="img/P025.gif" border="0" alt="P025" /></td>
+		<td onmouseover="stateOver(26);" onmouseout="stateOut(26);" onclick="setOrtho(26);"><img id="P026" src="img/P026.gif" border="0" alt="P026" /></td>
+		<td onmouseover="stateOver(27);" onmouseout="stateOut(27);" onclick="setOrtho(27);"><img id="P027" src="img/P027.gif" border="0" alt="P027" /></td>
+		<td onmouseover="stateOver(28);" onmouseout="stateOut(28);" onclick="setOrtho(28);"><img id="P028" src="img/P028.gif" border="0" alt="P028" /></td>
+		<td onmouseover="stateOver(29);" onmouseout="stateOut(29);" onclick="setOrtho(29);"><img id="P029" src="img/P029.gif" border="0" alt="P029" /></td>
+		<td onmouseover="stateOver(30);" onmouseout="stateOut(30);" onclick="setOrtho(30);"><img id="P030" src="img/P030.gif" border="0" alt="P030" /></td>
+		<td onmouseover="stateOver(31);" onmouseout="stateOut(31);" onclick="setOrtho(31);"><img id="P031" src="img/P031.gif" border="0" alt="P031" /></td>
+		<td onmouseover="stateOver(32);" onmouseout="stateOut(32);" onclick="setOrtho(32);"><img id="P032" src="img/P032.gif" border="0" alt="P032" /></td>
+	</tr>
+	<tr>
+		<td onmouseover="stateOver(33);" onmouseout="stateOut(33);" onclick="setOrtho(33);"><img id="P033" src="img/P033.gif" border="0" alt="P033" /></td>
+		<td onmouseover="stateOver(34);" onmouseout="stateOut(34);" onclick="setOrtho(34);"><img id="P034" src="img/P034.gif" border="0" alt="P034" /></td>
+		<td onmouseover="stateOver(35);" onmouseout="stateOut(35);" onclick="setOrtho(35);"><img id="P035" src="img/P035.gif" border="0" alt="P035" /></td>
+		<td onmouseover="stateOver(36);" onmouseout="stateOut(36);" onclick="setOrtho(36);"><img id="P036" src="img/P036.gif" border="0" alt="P036" /></td>
+		<td onmouseover="stateOver(37);" onmouseout="stateOut(37);" onclick="setOrtho(37);"><img id="P037" src="img/P037.gif" border="0" alt="P037" /></td>
+		<td onmouseover="stateOver(38);" onmouseout="stateOut(38);" onclick="setOrtho(38);"><img id="P038" src="img/P038.gif" border="0" alt="P038" /></td>
+		<td onmouseover="stateOver(39);" onmouseout="stateOut(39);" onclick="setOrtho(39);"><img id="P039" src="img/P039.gif" border="0" alt="P039" /></td>
+		<td onmouseover="stateOver(40);" onmouseout="stateOut(40);" onclick="setOrtho(40);"><img id="P040" src="img/P040.gif" border="0" alt="P040" /></td>
+		<td><img src="img/blank-TL.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-T.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-TR.gif" border="0" alt="no state" /></td>
+	</tr>
+	<tr>
+		<td onmouseover="stateOver(41);" onmouseout="stateOut(41);" onclick="setOrtho(41);"><img id="P041" src="img/P041.gif" border="0" alt="P041" /></td>
+		<td onmouseover="stateOver(42);" onmouseout="stateOut(42);" onclick="setOrtho(42);"><img id="P042" src="img/P042.gif" border="0" alt="P042" /></td>
+		<td onmouseover="stateOver(43);" onmouseout="stateOut(43);" onclick="setOrtho(43);"><img id="P043" src="img/P043.gif" border="0" alt="P043" /></td>
+		<td onmouseover="stateOver(44);" onmouseout="stateOut(44);" onclick="setOrtho(44);"><img id="P044" src="img/P044.gif" border="0" alt="P044" /></td>
+		<td onmouseover="stateOver(45);" onmouseout="stateOut(45);" onclick="setOrtho(45);"><img id="P045" src="img/P045.gif" border="0" alt="P045" /></td>
+		<td onmouseover="stateOver(46);" onmouseout="stateOut(46);" onclick="setOrtho(46);"><img id="P046" src="img/P046.gif" border="0" alt="P046" /></td>
+		<td onmouseover="stateOver(47);" onmouseout="stateOut(47);" onclick="setOrtho(47);"><img id="P047" src="img/P047.gif" border="0" alt="P047" /></td>
+		<td onmouseover="stateOver(48);" onmouseout="stateOut(48);" onclick="setOrtho(48);"><img id="P048" src="img/P048.gif" border="0" alt="P048" /></td>
+		<td><img src="img/blank-L.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-R.gif" border="0" alt="no state" /></td>
+	</tr>
+	<tr>
+		<td onmouseover="stateOver(49);" onmouseout="stateOut(49);" onclick="setOrtho(49);"><img id="P049" src="img/P049.gif" border="0" alt="P049" /></td>
+		<td onmouseover="stateOver(50);" onmouseout="stateOut(50);" onclick="setOrtho(50);"><img id="P050" src="img/P050.gif" border="0" alt="P050" /></td>
+		<td onmouseover="stateOver(51);" onmouseout="stateOut(51);" onclick="setOrtho(51);"><img id="P051" src="img/P051.gif" border="0" alt="P051" /></td>
+		<td onmouseover="stateOver(52);" onmouseout="stateOut(52);" onclick="setOrtho(52);"><img id="P052" src="img/P052.gif" border="0" alt="P052" /></td>
+		<td onmouseover="stateOver(53);" onmouseout="stateOut(53);" onclick="setOrtho(53);"><img id="P053" src="img/P053.gif" border="0" alt="P053" /></td>
+		<td onmouseover="stateOver(54);" onmouseout="stateOut(54);" onclick="setOrtho(54);"><img id="P054" src="img/P054.gif" border="0" alt="P054" /></td>
+		<td onmouseover="stateOver(55);" onmouseout="stateOut(55);" onclick="setOrtho(55);"><img id="P055" src="img/P055.gif" border="0" alt="P055" /></td>
+		<td onmouseover="stateOver(56);" onmouseout="stateOut(56);" onclick="setOrtho(56);"><img id="P056" src="img/P056.gif" border="0" alt="P056" /></td>
+		<td><img src="img/blank-L.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-R.gif" border="0" alt="no state" /></td>
+	</tr>
+	<tr>
+		<td onmouseover="stateOver(57);" onmouseout="stateOut(57);" onclick="setOrtho(57);"><img id="P057" src="img/P057.gif" border="0" alt="P057" /></td>
+		<td onmouseover="stateOver(58);" onmouseout="stateOut(58);" onclick="setOrtho(58);"><img id="P058" src="img/P058.gif" border="0" alt="P058" /></td>
+		<td onmouseover="stateOver(59);" onmouseout="stateOut(59);" onclick="setOrtho(59);"><img id="P059" src="img/P059.gif" border="0" alt="P059" /></td>
+		<td onmouseover="stateOver(60);" onmouseout="stateOut(60);" onclick="setOrtho(60);"><img id="P060" src="img/P060.gif" border="0" alt="P060" /></td>
+		<td onmouseover="stateOver(61);" onmouseout="stateOut(61);" onclick="setOrtho(61);"><img id="P061" src="img/P061.gif" border="0" alt="P061" /></td>
+		<td onmouseover="stateOver(62);" onmouseout="stateOut(62);" onclick="setOrtho(62);"><img id="P062" src="img/P062.gif" border="0" alt="P062" /></td>
+		<td onmouseover="stateOver(63);" onmouseout="stateOut(63);" onclick="setOrtho(63);"><img id="P063" src="img/P063.gif" border="0" alt="P063" /></td>
+		<td onmouseover="stateOver(64);" onmouseout="stateOut(64);" onclick="setOrtho(64);"><img id="P064" src="img/P064.gif" border="0" alt="P064" /></td>
+		<td><img src="img/blank-L.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-state.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-R.gif" border="0" alt="no state" /></td>
+	</tr>
+	<tr>
+		<td onmouseover="stateOver(65);" onmouseout="stateOut(65);" onclick="setOrtho(65);"><img id="P065" src="img/P065.gif" border="0" alt="P065" /></td>
+		<td onmouseover="stateOver(66);" onmouseout="stateOut(66);" onclick="setOrtho(66);"><img id="P066" src="img/P066.gif" border="0" alt="P066" /></td>
+		<td onmouseover="stateOver(67);" onmouseout="stateOut(67);" onclick="setOrtho(67);"><img id="P067" src="img/P067.gif" border="0" alt="P067" /></td>
+		<td onmouseover="stateOver(68);" onmouseout="stateOut(68);" onclick="setOrtho(68);"><img id="P068" src="img/P068.gif" border="0" alt="P068" /></td>
+		<td onmouseover="stateOver(69);" onmouseout="stateOut(69);" onclick="setOrtho(69);"><img id="P069" src="img/P069.gif" border="0" alt="P069" /></td>
+		<td onmouseover="stateOver(70);" onmouseout="stateOut(70);" onclick="setOrtho(70);"><img id="P070" src="img/P070.gif" border="0" alt="P070" /></td>
+		<td onmouseover="stateOver(71);" onmouseout="stateOut(71);" onclick="setOrtho(71);"><img id="P071" src="img/P071.gif" border="0" alt="P071" /></td>
+		<td onmouseover="stateOver(72);" onmouseout="stateOut(72);" onclick="setOrtho(72);"><img id="P072" src="img/P072.gif" border="0" alt="P072" /></td>
+		<td><img src="img/blank-BL.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-B.gif" border="0" alt="no state" /></td>
+		<td><img src="img/blank-BR.gif" border="0" alt="no state" /></td>
+	</tr>
+	<tr>
+		<td onmouseover="stateOver(73);" onmouseout="stateOut(73);" onclick="setOrtho(73);"><img id="P073" src="img/P073.gif" border="0" alt="P073" /></td>
+		<td onmouseover="stateOver(74);" onmouseout="stateOut(74);" onclick="setOrtho(74);"><img id="P074" src="img/P074.gif" border="0" alt="P074" /></td>
+		<td onmouseover="stateOver(75);" onmouseout="stateOut(75);" onclick="setOrtho(75);"><img id="P075" src="img/P075.gif" border="0" alt="P075" /></td>
+		<td onmouseover="stateOver(76);" onmouseout="stateOut(76);" onclick="setOrtho(76);"><img id="P076" src="img/P076.gif" border="0" alt="P076" /></td>
+		<td onmouseover="stateOver(77);" onmouseout="stateOut(77);" onclick="setOrtho(77);"><img id="P077" src="img/P077.gif" border="0" alt="P077" /></td>
+		<td onmouseover="stateOver(78);" onmouseout="stateOut(78);" onclick="setOrtho(78);"><img id="P078" src="img/P078.gif" border="0" alt="P078" /></td>
+		<td onmouseover="stateOver(79);" onmouseout="stateOut(79);" onclick="setOrtho(79);"><img id="P079" src="img/P079.gif" border="0" alt="P079" /></td>
+		<td onmouseover="stateOver(80);" onmouseout="stateOut(80);" onclick="setOrtho(80);"><img id="P080" src="img/P080.gif" border="0" alt="P080" /></td>
+		<td onmouseover="stateOver(81);" onmouseout="stateOut(81);" onclick="setOrtho(81);"><img id="P081" src="img/P081.gif" border="0" alt="P081" /></td>
+		<td onmouseover="stateOver(82);" onmouseout="stateOut(82);" onclick="setOrtho(82);"><img id="P082" src="img/P082.gif" border="0" alt="P082" /></td>
+		<td onmouseover="stateOver(83);" onmouseout="stateOut(83);" onclick="setOrtho(83);"><img id="P083" src="img/P083.gif" border="0" alt="P083" /></td>
+		<td onmouseover="stateOver(84);" onmouseout="stateOut(84);" onclick="setOrtho(84);"><img id="P084" src="img/P084.gif" border="0" alt="P084" /></td>
+		<td onmouseover="stateOver(85);" onmouseout="stateOut(85);" onclick="setOrtho(85);"><img id="P085" src="img/P085.gif" border="0" alt="P085" /></td>
+		<td onmouseover="stateOver(86);" onmouseout="stateOut(86);" onclick="setOrtho(86);"><img id="P086" src="img/P086.gif" border="0" alt="P086" /></td>
+		<td onmouseover="stateOver(87);" onmouseout="stateOut(87);" onclick="setOrtho(87);"><img id="P087" src="img/P087.gif" border="0" alt="P087" /></td>
+		<td onmouseover="stateOver(88);" onmouseout="stateOut(88);" onclick="setOrtho(88);"><img id="P088" src="img/P088.gif" border="0" alt="P088" /></td>
+		<td onmouseover="stateOver(89);" onmouseout="stateOut(89);" onclick="setOrtho(89);"><img id="P089" src="img/P089.gif" border="0" alt="P089" /></td>
+		<td onmouseover="stateOver(90);" onmouseout="stateOut(90);" onclick="setOrtho(90);"><img id="P090" src="img/P090.gif" border="0" alt="P090" /></td>
+		<td onmouseover="stateOver(91);" onmouseout="stateOut(91);" onclick="setOrtho(91);"><img id="P091" src="img/P091.gif" border="0" alt="P091" /></td>
+		<td onmouseover="stateOver(92);" onmouseout="stateOut(92);" onclick="setOrtho(92);"><img id="P092" src="img/P092.gif" border="0" alt="P092" /></td>
+		<td onmouseover="stateOver(93);" onmouseout="stateOut(93);" onclick="setOrtho(93);"><img id="P093" src="img/P093.gif" border="0" alt="P093" /></td>
+		<td onmouseover="stateOver(94);" onmouseout="stateOut(94);" onclick="setOrtho(94);"><img id="P094" src="img/P094.gif" border="0" alt="P094" /></td>
+		<td onmouseover="stateOver(95);" onmouseout="stateOut(95);" onclick="setOrtho(95);"><img id="P095" src="img/P095.gif" border="0" alt="P095" /></td>
+		<td onmouseover="stateOver(96);" onmouseout="stateOut(96);" onclick="setOrtho(96);"><img id="P096" src="img/P096.gif" border="0" alt="P096" /></td>
+		<td onmouseover="stateOver(97);" onmouseout="stateOut(97);" onclick="setOrtho(97);"><img id="P097" src="img/P097.gif" border="0" alt="P097" /></td>
+		<td onmouseover="stateOver(98);" onmouseout="stateOut(98);" onclick="setOrtho(98);"><img id="P098" src="img/P098.gif" border="0" alt="P098" /></td>
+		<td onmouseover="stateOver(99);" onmouseout="stateOut(99);" onclick="setOrtho(99);"><img id="P099" src="img/P099.gif" border="0" alt="P099" /></td>
+		<td onmouseover="stateOver(100);" onmouseout="stateOut(100);" onclick="setOrtho(100);"><img id="P100" src="img/P100.gif" border="0" alt="P100" /></td>
+		<td onmouseover="stateOver(101);" onmouseout="stateOut(101);" onclick="setOrtho(101);"><img id="P101" src="img/P101.gif" border="0" alt="P101" /></td>
+		<td onmouseover="stateOver(102);" onmouseout="stateOut(102);" onclick="setOrtho(102);"><img id="P102" src="img/P102.gif" border="0" alt="P102" /></td>
+		<td onmouseover="stateOver(103);" onmouseout="stateOut(103);" onclick="setOrtho(103);"><img id="P103" src="img/P103.gif" border="0" alt="P103" /></td>
+		<td onmouseover="stateOver(104);" onmouseout="stateOut(104);" onclick="setOrtho(104);"><img id="P104" src="img/P104.gif" border="0" alt="P104" /></td>
+	</tr>
+    <tr>
+    </tr>
+</table>
+</div>
+</div>
+</div>
+
+<!-- end auto-generated html-->
+
+<div id="secondrow" style="width:900px; height:260px; padding:0px; position:relative; top:4px; left:0px;">
+<div id="pentagon" class="b1" style="position:absolute; top:0px; left:0px;">
+	<!-- ImageReady Slices (pentagon.psd) --> 
+<table cellpadding="0" cellspacing="0" width="218">
+<tr><td colspan="32" height="22" align="center" class="header1" bgcolor="#000000"><font color="#FFFFFF">Spin Correspondence Map</font></td></tr>
+</table>
+<table id="map" width="218" border="0" cellpadding="0" cellspacing="0"> 
+	<tr> 
+		<td colspan="19"> 
+			<img src="img/map/pentagon_01.gif" width="217" height="25" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="25" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="9" rowspan="2"> 
+			<img src="img/map/pentagon_02.gif" width="101" height="27" alt="" /></td> 
+		<td> 
+			<img src="img/map/p11.gif" width="17" height="18" alt="" id="p11" /></td> 
+		<td colspan="9" rowspan="2"> 
+			<img src="img/map/pentagon_04.gif" width="99" height="27" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="18" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td rowspan="8"> 
+			<img src="img/map/pentagon_05.gif" width="17" height="122" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="9" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="6" rowspan="2"> 
+			<img src="img/map/pentagon_06.gif" width="65" height="27" alt="" /></td> 
+		<td colspan="2"> 
+			<img src="img/map/p53.gif" width="17" height="17" alt="" id="p53" /></td> 
+		<td rowspan="9"> 
+			<img src="img/map/pentagon_08.gif" width="19" height="152" alt="" /></td> 
+		<td rowspan="9"> 
+			<img src="img/map/pentagon_09.gif" width="19" height="152" alt="" /></td> 
+		<td colspan="2"> 
+			<img src="img/map/p23.gif" width="18" height="17" alt="" id="p23" /></td> 
+		<td colspan="6" rowspan="2"> 
+			<img src="img/map/pentagon_11.gif" width="62" height="27" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="17" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="2" rowspan="6"> 
+			<img src="img/map/pentagon_12.gif" width="17" height="96" alt="" /></td> 
+		<td colspan="2" rowspan="6"> 
+			<img src="img/map/pentagon_13.gif" width="18" height="96" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="10" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td rowspan="7"> 
+			<img src="img/map/pentagon_14.gif" width="29" height="125" alt="" /></td> 
+		<td colspan="2"> 
+			<img src="img/map/p41.gif" width="16" height="16" alt="" id="p41" /></td> 
+		<td colspan="3" rowspan="2"> 
+			<img src="img/map/pentagon_16.gif" width="20" height="43" alt="" /></td> 
+		<td colspan="3" rowspan="2"> 
+			<img src="img/map/pentagon_17.gif" width="19" height="43" alt="" /></td> 
+		<td colspan="2"> 
+			<img src="img/map/p31.gif" width="17" height="16" alt="" id="p31" /></td> 
+		<td rowspan="7"> 
+			<img src="img/map/pentagon_19.gif" width="26" height="125" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="16" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="2"> 
+			<img src="img/map/pentagon_20.gif" width="16" height="27" alt="" /></td> 
+		<td colspan="2"> 
+			<img src="img/map/pentagon_21.gif" width="17" height="27" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="27" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td rowspan="5"> 
+			<img src="img/map/pentagon_22.gif" width="14" height="82" alt="" /></td> 
+		<td colspan="3"> 
+			<img src="img/map/p33.gif" width="15" height="15" alt="" id="p33" /></td> 
+		<td rowspan="3"> 
+			<img src="img/map/pentagon_24.gif" width="7" height="43" alt="" /></td> 
+		<td rowspan="3"> 
+			<img src="img/map/pentagon_25.gif" width="5" height="43" alt="" /></td> 
+		<td colspan="3" rowspan="2"> 
+			<img src="img/map/p43.gif" width="17" height="17" alt="" id="p43" /></td> 
+		<td rowspan="5"> 
+			<img src="img/map/pentagon_27.gif" width="14" height="82" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="15" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="3" rowspan="2"> 
+			<img src="img/map/pentagon_28.gif" width="15" height="28" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="2" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="3"> 
+			<img src="img/map/pentagon_29.gif" width="17" height="26" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="26" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="2" rowspan="2"> 
+			<img src="img/map/pentagon_30.gif" width="13" height="39" alt="" /></td> 
+		<td colspan="3"> 
+			<img src="img/map/p21.gif" width="16" height="15" alt="" id="p21" /></td> 
+		<td rowspan="2"> 
+			<img src="img/map/pentagon_32.gif" width="10" height="39" alt="" /></td> 
+		<td> 
+			<img src="img/map/p13.gif" width="17" height="15" alt="" id="p13" /></td> 
+		<td rowspan="2"> 
+			<img src="img/map/pentagon_34.gif" width="9" height="39" alt="" /></td> 
+		<td colspan="3"> 
+			<img src="img/map/p51.gif" width="16" height="15" alt="" id="p51" /></td> 
+		<td colspan="2" rowspan="2"> 
+			<img src="img/map/pentagon_36.gif" width="15" height="39" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="15" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td colspan="3"> 
+			<img src="img/map/pentagon_37.gif" width="16" height="24" alt="" /></td> 
+		<td> 
+			<img src="img/map/pentagon_38.gif" width="17" height="24" alt="" /></td> 
+		<td colspan="3"> 
+			<img src="img/map/pentagon_39.gif" width="16" height="24" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="1" height="24" alt="" /></td> 
+	</tr> 
+	<tr> 
+		<td> 
+			<img src="img/map/spacer.gif" width="29" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="14" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="11" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="7" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="7" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="10" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="19" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="17" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="19" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="9" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="9" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="5" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="12" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="3" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="14" height="1" alt="" /></td> 
+		<td> 
+			<img src="img/map/spacer.gif" width="26" height="1" alt="" /></td> 
+		<td></td> 
+	</tr> 
+</table> 
+<!-- End ImageReady Slices --> 
+</div>
+
+
+<div id="comps" style="position:absolute; top:0px; right:0px;">
+<table cellpadding="0" cellspacing="2">
+<tr><td colspan="32" height="22" align="center" class="header1" bgcolor="#000000"><font color="#FFFFFF">State / Projector Component Expansion</font></td></tr>
+<tr><td height="4"></td></tr>
+<tr>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA01" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA02" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA03" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA04" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA05" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA06" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA07" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA08" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA09" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA10" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA11" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA12" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA13" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA14" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA15" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA16" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA17" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA18" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA19" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA20" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA21" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA22" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA23" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA24" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA25" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA26" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA27" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA28" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA29" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA30" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA31" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compA32" /></td>
+</tr>
+<tr>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB01" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB02" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB03" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB04" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB05" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB06" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB07" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB08" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB09" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB10" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB11" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB12" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB13" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB14" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB15" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB16" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB17" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB18" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB19" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB20" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB21" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB22" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB23" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB24" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB25" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB26" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB27" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB28" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB29" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB30" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB31" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compB32" /></td>
+</tr>
+<tr>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC01" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC02" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC03" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC04" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC05" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC06" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC07" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC08" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC09" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC10" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC11" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC12" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC13" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC14" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC15" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC16" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC17" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC18" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC19" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC20" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC21" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC22" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC23" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC24" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC25" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC26" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC27" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC28" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC29" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC30" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC31" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compC32" /></td>
+</tr>
+<tr>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD01" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD02" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD03" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD04" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD05" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD06" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD07" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD08" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD09" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD10" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD11" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD12" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD13" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD14" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD15" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD16" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD17" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD18" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD19" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD20" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD21" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD22" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD23" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD24" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD25" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD26" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD27" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD28" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD29" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD30" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD31" /></td>
+	<td><img src="img/blank-comp.gif" alt="" border="0" id="compD32" /></td>
+</tr>
+</table>
+</div>
+
+<div id="bases" style="position:absolute; top:122px; right:0px;">
+<table cellpadding="1" cellspacing="1">
+<tr><td width="638" height="22" align="center" class="header1" bgcolor="#000000" colspan="2"><font color="#FFFFFF">Full Basis List by Rank Breakdown</font>&nbsp;&nbsp; <font color="#666666">(rank-1's, rank-4's)</font></td></tr>
+<tr><td height="2"></td></tr>
+<tr>
+	<td height="15px" width="95" style="background-color:#666666; border:1px solid #FFFFFF;" align="center" valign="middle"><font size="-2" color="#FFFFFF"><b>Type (32, 0)</b></font></td>
+    <td height="15px" style="background-color:#d0d0d0; border:1px solid #FFFFFF;" align="left" valign="middle">
+    <img src="img/B01.gif" id="B01" style="border:1px #d0d0d0;" onmouseover="basisOver(1);" onmouseout="basisOut(1)" />
+    <img src="img/B02.gif" id="B02" style="border:1px #BBBBBB;" onmouseover="basisOver(2);" onmouseout="basisOut(2)" />
+    <img src="img/B03.gif" id="B03" style="border:1px #BBBBBB;" onmouseover="basisOver(3);" onmouseout="basisOut(3)" />
+    <img src="img/B04.gif" id="B04" style="border:1px #BBBBBB;" onmouseover="basisOver(4);" onmouseout="basisOut(4)" />
+    
+    </td>
+</tr>
+<tr>
+	<td height="30px" width="95" style="background-color:#666666; border:1px solid #FFFFFF;" align="center" valign="middle"><font size="-2" color="#FFFFFF"><b>Type (16, 4)</b></font></td>
+    <td height="30px" style="background-color:#d0d0d0; border:1px solid #FFFFFF;" align="left" valign="middle">
+    <img src="img/B05.gif" id="B05" style="border:1px #d0d0d0;" onmouseover="basisOver(5);" onmouseout="basisOut(5)" />
+    <img src="img/B06.gif" id="B06" style="border:1px #BBBBBB;" onmouseover="basisOver(6);" onmouseout="basisOut(6)" />
+    <img src="img/B07.gif" id="B07" style="border:1px #BBBBBB;" onmouseover="basisOver(7);" onmouseout="basisOut(7)" />
+    <img src="img/B08.gif" id="B08" style="border:1px #BBBBBB;" onmouseover="basisOver(8);" onmouseout="basisOut(8)" />
+    <img src="img/B09.gif" id="B09" style="border:1px #BBBBBB;" onmouseover="basisOver(9);" onmouseout="basisOut(9)" />
+    <img src="img/B10.gif" id="B10" style="border:1px #BBBBBB;" onmouseover="basisOver(10);" onmouseout="basisOut(10)" />
+    <img src="img/B11.gif" id="B11" style="border:1px #BBBBBB;" onmouseover="basisOver(11);" onmouseout="basisOut(11)" />
+    <img src="img/B12.gif" id="B12" style="border:1px #BBBBBB;" onmouseover="basisOver(12);" onmouseout="basisOut(12)" />
+    <img src="img/B13.gif" id="B13" style="border:1px #BBBBBB;" onmouseover="basisOver(13);" onmouseout="basisOut(13)" />
+    <img src="img/B14.gif" id="B14" style="border:1px #BBBBBB;" onmouseover="basisOver(14);" onmouseout="basisOut(14)" /><br />
+    <img src="img/B15.gif" id="B15" style="border:1px #BBBBBB;" onmouseover="basisOver(15);" onmouseout="basisOut(15)" />
+    <img src="img/B16.gif" id="B16" style="border:1px #BBBBBB;" onmouseover="basisOver(16);" onmouseout="basisOut(16)" />
+    <img src="img/B17.gif" id="B17" style="border:1px #BBBBBB;" onmouseover="basisOver(17);" onmouseout="basisOut(17)" />
+    <img src="img/B18.gif" id="B18" style="border:1px #BBBBBB;" onmouseover="basisOver(18);" onmouseout="basisOut(18)" />
+    <img src="img/B19.gif" id="B19" style="border:1px #BBBBBB;" onmouseover="basisOver(19);" onmouseout="basisOut(19)" />
+    <img src="img/B20.gif" id="B20" style="border:1px #BBBBBB;" onmouseover="basisOver(20);" onmouseout="basisOut(20)" />
+    <img src="img/B21.gif" id="B21" style="border:1px #BBBBBB;" onmouseover="basisOver(21);" onmouseout="basisOut(21)" />
+    <img src="img/B22.gif" id="B22" style="border:1px #BBBBBB;" onmouseover="basisOver(22);" onmouseout="basisOut(22)" />
+    <img src="img/B23.gif" id="B23" style="border:1px #BBBBBB;" onmouseover="basisOver(23);" onmouseout="basisOut(23)" />
+    <img src="img/B24.gif" id="B24" style="border:1px #BBBBBB;" onmouseover="basisOver(24);" onmouseout="basisOut(24)" />
+    </td>
+</tr>
+<tr>
+	<td height="30px" width="95" style="background-color:#666666; border:1px solid #FFFFFF;" align="center" valign="middle"><font size="-2" color="#FFFFFF"><b>Type (0, 8)</b></font></td>
+    <td height="30px" style="background-color:#d0d0d0; border:1px solid #FFFFFF;" align="left" valign="middle">
+    <img src="img/B25.gif" id="B25" style="border:1px #d0d0d0;" onmouseover="basisOver(25);" onmouseout="basisOut(25)" />
+    <img src="img/B26.gif" id="B26" style="border:1px #BBBBBB;" onmouseover="basisOver(26);" onmouseout="basisOut(26)" />
+    <img src="img/B27.gif" id="B27" style="border:1px #BBBBBB;" onmouseover="basisOver(27);" onmouseout="basisOut(27)" />
+    <img src="img/B28.gif" id="B28" style="border:1px #BBBBBB;" onmouseover="basisOver(28);" onmouseout="basisOut(28)" />
+    <img src="img/B29.gif" id="B29" style="border:1px #BBBBBB;" onmouseover="basisOver(29);" onmouseout="basisOut(29)" />
+    <img src="img/B30.gif" id="B30" style="border:1px #BBBBBB;" onmouseover="basisOver(30);" onmouseout="basisOut(30)" />
+    <img src="img/B31.gif" id="B31" style="border:1px #BBBBBB;" onmouseover="basisOver(31);" onmouseout="basisOut(31)" />
+    <img src="img/B32.gif" id="B32" style="border:1px #BBBBBB;" onmouseover="basisOver(32);" onmouseout="basisOut(32)" />
+    <img src="img/B33.gif" id="B33" style="border:1px #BBBBBB;" onmouseover="basisOver(33);" onmouseout="basisOut(33)" />
+    <img src="img/B34.gif" id="B34" style="border:1px #BBBBBB;" onmouseover="basisOver(34);" onmouseout="basisOut(34)" /><br />
+    <img src="img/B35.gif" id="B35" style="border:1px #BBBBBB;" onmouseover="basisOver(35);" onmouseout="basisOut(35)" />
+    <img src="img/B36.gif" id="B36" style="border:1px #BBBBBB;" onmouseover="basisOver(36);" onmouseout="basisOut(36)" />
+    <img src="img/B37.gif" id="B37" style="border:1px #BBBBBB;" onmouseover="basisOver(37);" onmouseout="basisOut(37)" />
+    <img src="img/B38.gif" id="B38" style="border:1px #BBBBBB;" onmouseover="basisOver(38);" onmouseout="basisOut(38)" />
+    <img src="img/B39.gif" id="B39" style="border:1px #BBBBBB;" onmouseover="basisOver(39);" onmouseout="basisOut(39)" />
+    </td>
+</tr>
+
+</table><br />
+
+</div>
+</div>
+<br />
+
+<table id="overviewVisible" style="border:1px solid #000000; display:block;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togOverview();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Show</span></font><font color="#666666"> / Hide ]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overview</font></td></tr>
+<tr><td style="padding-left: 40px; padding-right:40px; padding-bottom:25px; padding-top:20px;">
+
+<span class="header1" style="background-color:#000000"><font color="#FFFFFF">&nbsp;Summary of user control:&nbsp;</font></span><br /><br />
+
+        
+        
+<div style="margin-left:30px; margin-right:30px; margin-top:0px; margin-bottom:0px;">        
+        <span class="bb1">&bull; Hover your cursor over any numbered state box (top-right table) to see its key properties including spin orientations, 32-D expansion and basis membership*. All measurements yield either <img src="img/upp.gif" /> (+1) or <img src="img/downn.gif" /> (-1).<br /><br /> 
+        
+         &bull; Clicking on any state <i>selects</i> it and disables any others that are orthogonal to it, signifying that these disallowed states can never be observed to coexist with the current selection(s). The orthogonality conditions can be explored by making multiple selections and seeing how the remaining options become more constrained with every choice. Click on any disabled region to reset the selections.<br /><br />
+         
+         &bull; The box symbolizing a particular basis is highlighted if one of its member-states has been selected. A red X is drawn over any whose members have <i>all</i> been prohibited by orthogonality, violating the completeness relation for that basis. These completeness conditions impose even greater constraints when imposed together with the orthogonalities.<br /><br />
+         
+         &bull; Hoving over any basis box highlights the membership of that basis, furnishing its definition.</span> <br /><br /></div>
+         
+
+<a href="http://plato.stanford.edu/entries/bell-theorem/" target="_blank">Bell's theorem</a> was the first of a series of no-go theorems ruling out <i>local realism</i> as an interpretation of quantum mechanics. It means that any attempt to describe QM as arising from a deeper classical (deterministic) theory would require superluminal influences, placing it in significant tension with relativity. The result is most well-known in the context of its original formulation, the <a href="http://en.wikipedia.org/wiki/Bell%27s_theorem#Bell_inequalities" target="_blank">Bell inequalities</a>, expressing a limit on the statistical correlation between distant particles described by any local, deterministic theory. Over a wide class of experiments, these inequalities have been consistently violated and the quantum predictions have been consistently upheld. A lesser-known but arguably more important formulation is found in the <a href="http://plato.stanford.edu/entries/kochen-specker/" target="_blank">Kochen-Specker theorem</a>, or Bell-Kochen-Specker (BKS) theorem, which does not rely on inequalities but rather on sets of firm rules that are imposed by QM and are so far universally confirmed by experiment. Consequently, they reveal the result in a much more stark way. This program illustrates one such example of a BKS-type proof of Bell's theorem using five qubits.<br /><br />
+
+The basic building blocks of this BKS proof scheme are the six observables \(\hat{O}_1\) through \(\hat{O}_6\), defined as tensor products of Pauli spin operators (\(\sigma_x, \sigma_z\)) and 2-by-2 identity operators (\(\mathbb{I}\)). From these, and from the single-qubit Pauli operators themselves, we construct <i>seven sets of commuting observables</i>, or seven allowed ways to measure the system. These seven allowed measurements correspond to the seven rows of the top tables. The conspicuously missing last entry in the seventh row of the Observables Table plays a special role. This <i>entangled basis</i> corresponds to the simultaneous measurement of all six \(\hat{O}_i\), and thus the resulting eigenstates cannot be described in terms individual qubit spins but only in terms of their correlations, that is, of their \(\hat{O}_i\) eigenvalues. As will be shown in detail, it is a tension between this entangled basis and the other measurements that leads to the contradictions at the heart of the theorem.<br /><br />
+
+In the following sections I will first explain the most straightforward way of obtaining the BKS theorem: the <i>observables proof</i>. I will then describe the simple but vital logical step for turning these BKS theorem proofs into proofs of the much stronger Bell's theorem. It will also be shown that every observables proof is necessarily a restriction of a more extensive structure called a <i>states proof</i>. <!--Finally, since these no-go theorems touch upon some of the deepest and most central issues in physics, the last section will describe in broad strokes the significance of these results and current state of play regarding these questions. Such a discussion must be subjective, but is also crucial to putting the theorems in their proper context. The bottom line seems to be that we simply live in a quantum mechanical world. These findings, both formal and especially experimental, leave very little room to evade this conclusion.--><br /><br />
+         
+         <span style="line-height:normal;"><font color="#12475f">*</font><font size="-4" color="#777777">For simplicity, I will sometimes use the word &quot;state&quot; to refer to any projector. In addition to rank-1 projectors, or normal states, this system also uses rank-4 projectors which specify the system to within a four-dimensional (two-bit) subspace. For the present purposes the word &quot;state&quot; is accurate enough. A similar remark applies to the &quot;bases&quot; that include these rank-4 projectors.</font></span>
+         
+</td></tr></table>
+
+
+<table id="overviewHidden" style="border:1px solid #000000; display:none;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togOverview();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Show / </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Hide</span></font> <font color="#666666">]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Overview</font></td></tr>
+</table><br />
+
+
+
+
+<table id="indepthVisible" style="border:1px solid #000000; display:block;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togInDepth();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Show</span></font><font color="#666666"> / Hide ]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The Observables Proof</font></td></tr>
+<tr><td style="padding-left: 40px; padding-right:40px; padding-bottom:25px; padding-top:15px;">We first consider a single observer preparing to measure a system of five quantum bits. This observer chooses one of seven allowed (commuting) sets of simultaneous measurements. These seven sets of measurements correspond to the seven rows of the two tables at the top of the page. Six of these contain one of the multi-bit observables \(\hat{O}_i\)  together with each of its constituent single-bit observables. The seventh is the simultaneous measurement of all the \(\hat{O}_i\). For definiteness I will call these seven choices of measurement sets \(M_1\) through \(M_7\) and list them below.
+
+$$ M_1 \equiv \{ \hat{O}_1 \ , \ \hat{\sigma}_{1z} \ , \ \hat{\sigma}_{2z} \ , \ \hat{\sigma}_{3z} \ , \ \hat{\sigma}_{4z} \ , \ \hat{\sigma}_{5z} \}$$
+$$ M_2 \equiv \{ \hat{O}_2 \ , \ \hat{\sigma}_{1x} \ , \ \hat{\sigma}_{2z} \ , \ \hat{\sigma}_{5z} \}$$
+$$ M_3 \equiv \{ \hat{O}_3 \ , \ \hat{\sigma}_{1z} \ , \ \hat{\sigma}_{2x} \ , \ \hat{\sigma}_{3z} \}$$
+$$ M_4 \equiv \{ \hat{O}_4 \ , \ \hat{\sigma}_{2z} \ , \ \hat{\sigma}_{3x} \ , \ \hat{\sigma}_{4z} \}$$
+$$ M_5 \equiv \{ \hat{O}_5 \ , \ \hat{\sigma}_{3z} \ , \ \hat{\sigma}_{4x} \ , \ \hat{\sigma}_{5z} \}$$
+$$ M_6 \equiv \{ \hat{O}_6 \ , \ \hat{\sigma}_{1z} \ , \ \hat{\sigma}_{4z} \ , \ \hat{\sigma}_{5x} \}$$
+$$ M_7 \equiv \{ \hat{O}_1 \ , \ \hat{O}_2 \ , \ \hat{O}_3 \ , \ \hat{O}_4 \ , \ \hat{O}_5 \ , \ \hat{O}_6 \}$$
+
+Here we have adopted notation in which \(\hat{\sigma}_{jx}\) and \(\hat{\sigma}_{jz}\) refer to the standard Pauli operators \(\sigma_{x}\), \(\sigma_{x}\) acting in the \(j\)th qubit of the tensor product space, i.e. \(\hat{\sigma}_{2z}\equiv \mathbb{I}\otimes \sigma_z \otimes \mathbb{I}\otimes \mathbb{I}\otimes \mathbb{I} \).<br /><br />
+
+The astute reader may have already noticed the peculiarity in this construction that allows for the proof. Each of the measurement sets contains one extra bit of information that is fully dependent on the others, and thus does not add any additional knowledge. This one-bit redundancy reflects the fact that the product of all the operators in a set is proportional to the identity operator of the full Hilbert space. In the case of \(M_1\) through \(M_6\), the product is equal to \(\mathbb{I}\), and therefore the product of the resulting eigenvalues must be <b>1</b>. In the case of \(M_7\), the product of the operators is \(-\mathbb{I}\) and therefore the product of the measured eigenvalues in this set must be <b>-1</b>. The importance of constructing the sets with this redundancy is that it describes an experiment which establishes the rules governing the relationships among these quantities unambiguously. The rules just described are guaranteed to hold with probability 100%, because the results with the wrong number of minus signs correspond to orthogonal subspaces, and so projecting onto them gives zero. To summarize, the rules are:<br /><br />
+
+<div style="margin-left:30px; margin-right:30px; margin-top:0px; margin-bottom:0px;">        
+        <span class="bb"><u>Rule 1:</u> When measuring one of the sets \(M_1\) through \(M_6\), we are certain to obtain an <i>even</i> number of -1 results.<br /><br />
+<u>Rule 2:</u> When measuring set \(M_7\), we are certain to obtain an <i>odd</i> number of -1 results.<br /></span></div><br />
+
+Quantum mechanics asserts that these rules are sure to hold, but only in the context of the allowed simultaneous measurements. It is senseless to talk about definite rules relating non-commuting operators because these quantities cannot be simultaneously determined, even in principle. Consistent with this, the rules just derived cannot accommodate even a single hypothetical assignment of predetermined values to all the quantities. So to prove the BKS theorem, we now assume that all observables can be predetermined prior to measurement, and then show that this leads to a contradiction.<br /><br />
+
+Rule 1 says that the value of any \(\hat{O}_i\) is equal to the product of the values for each of its constituent Pauli operators. This means that the product of all the \(\hat{O}_i\) values must be equal to the product of all the values occurring in the right side of the Observables Table. However, looking at the columns of the Observables Table, we see that each of the two single-qubit Pauli operators occurs twice in the definitions, therefore any minus signs must occur in pairs, and so the product of all the \(\hat{O}_i\) values must be <b>+1</b>. However, Rule 2 asserts that the product of the \(\hat{O}_i\) values must be <b>-1</b> too, so we have arrived at the contradiction.<br /><br />
+
+If its initially confusing how this rather abstract argument connects to tangible physics, remember that it's exactly the role of this program to clarify the aspects of that connection. The double-occurence of the single-qubit Pauli spin operators in the definitions is obviously a critical element and the &quot;Spin Correspondence Map&quot; part of the program helps clarify what this means. Each of the sides of the pentagon in this figure symbolize one of the three-qubit observables (\(\hat{O}_2\) through \(\hat{O}_6\)). Each has two vertices that are shared with adjacent sides, symbolizing that sharing of two constituent \(\sigma_x\) operators. Similarly, the observable \(\hat{O}_1\) is composed of all \(\sigma_z\) operators, which lie in the center of the sides of the pentagon. Thus \(\hat{O}_1\) shares one constituent with each of the five other composite observables. The situation is summarized by the following guide:
+
+<center><img src="img/Spin-map.gif" border="0" /></center>
+
+If we suppose that a certain single-qubit Pauli observable has a particular value, then consistency requires that it have that same value no matter which set \(M_i\) it is measured in. For example, \(\sigma_{1x}\) may be measured in either \(M_3\) or \(M_6\). This gives rise to a complex network of consistency criteria among the outcomes of the various measurements. On its own, fixing an outcome for one \(M_i\) affects at least three others, reducing the total number of possibilities for each by one-half. We can see by using the program to specify various outcomes for the seven measurements that the number of remaining possibilities drops very rapidly due to the highly interrelated nature of the criteria. If we try to complete this process of selecting a result for each of the seven measurements, we will eventually end up with <i>all</i> the possibilities for some row ruled out. The observables proof shows that if the two rules given above are applied to all observables, then the product of all the \(\hat{O}_i\) values must be both <b>+1</b> and <b>-1</b>. We can check that if our maximal selection of outcomes in the States Table terminates by eliminating the seventh row, then the measured values indicated in the Observables Table will correspond to a <b>+1</b> product, violating Rule 2. On the other hand, if we create a maximal selection which includes a state from the seventh row, thereby eliminating one of the other rows, then we will see a <b>-1</b> product in violation of Rule 1. Obviously, ruling out all the possible outcomes for one of the allowed measurements is itself an inconsistency. Formally, we say it is a violation of the completeness relation for the basis in question. These are the other major consistency criteria constraining the results of outcomes, and by extension, any potential hidden variable theories. They will play a more prominent roll in the generalization of this proof discussed later. First, we will show how this result can be extended to prove Bell's theorem.
+
+
+</td></tr></table>
+
+
+<table id="indepthHidden" style="border:1px solid #000000; display:none;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togInDepth();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Show / </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Hide</span></font> <font color="#666666">]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The Observables Proof</font></td></tr>
+</table><br />
+
+
+<table id="bksVisible" style="border:1px solid #000000; display:block;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togBKS();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Show</span></font><font color="#666666"> / Hide ]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; From BKS to Bell's Theorem</font></td></tr>
+<tr><td style="padding-left: 40px; padding-right:40px; padding-bottom:25px; padding-top:15px;">In QM, the freedom to measure an observable simultaneously with any others that mutually commute doesn't have any effect on the statistics of the observables in question. For example the observable \(\sigma_{1z}\) occurs in both \(M_1\) and \(M_2\), and for any given initial state the probabilities of the possible outcomes are identical for either choice. In the context of attempts to devise a hidden variable theory, its not immediately obvious how to implement this principle. Even though there is no <i>discernible</i> effect on the statistics, we can not dismiss the possibility that the choice of measurement set effects the outcome in some way that does not manifest in the quantum statistics. There exists a possibility for a deterministic theory that is characterized not just by values for the observables, but also depends on the choice of commuting observables to measure. In the observables proof we assumed that this was not the case, and this assumption is called <i>noncontextuality</i>. It is a far weaker assumption than the nonlocal assumption of Bell's theorem, which rests on the inability to communicate faster than light. As we will now see, it is easy to rule out the contextual possibility and restore the full Bell's theorem based on the same set of observables. Like all proofs of Bell's theorem it is entanglement that allows this extension to take place.<br /><br />
+
+When two qubits are maximally entangled, the situation is generally summarized by saying they are either perfectly correlated or perfectly anti-correlated. A common example is of a source emitting two particles whose spins are perfectly anti-correlated due to conservation of angular momentum. For our purposes it is easiest and most pedagogically clear to use a perfectly correlated state, the so-called <i>Bell state</i>:
+
+$$ \left | B \right \rangle \equiv \frac{1}{\sqrt{2}}(\left| \uparrow \uparrow \right \rangle + \left| \downarrow \downarrow \right \rangle ) $$
+
+This ensures that if Alice and Bob both measure their spins along the same axis, they are certain to get the same results. Notice that if we wish to apply a BKS theorem like ours to the more common anti-correlated state, \((\left| \uparrow \downarrow \right \rangle + \left| \downarrow \uparrow \right \rangle )/\sqrt{2}\), this can easily be recast in terms of the Bell state by simply defining Bob's \(x\) and \(z\) axes opposite to Alices. Now imagine that we've created five pairs of qubits in this state, and we send the first of each pair to one observer (Alice) and the second of each pair to another observer (Bob), and we further assume that the two are separated by some very large distance. We now consider an expanded version of the previous experiment in which both experimenters are free to choose one of the seven measurements to perform on their set of five qubits.<br /><br />
+
+The all-important point here is that the correlation between the observables of Alice and Bob holds <i>even when they are measured within different sets of commuting observables</i>. So this type of experiment allows explicit demonstration of the noncontextuality of the observables, or to be more precise, it demonstrates the <i>local</i> noncontextuality. Taking into account this new result, the only remaining options for explaining QM in terms of a deterministic hidden variable theory are those which are in some way <i>nonlocal</i>. In other words the outcomes of each measurement would have to depend on data at <i>both</i> distant locations. This is Bell's theorem.<br /><br />
+
+This rule for the results of the distant measurements provides an extra way to utilize and interpret this program: The possible ways to select two different entries from the States Table are exactly the results that are possible when the distant observers are measuring different sets of observables.
+
+
+</td></tr></table>
+
+
+<table id="bksHidden" style="border:1px solid #000000; display:none;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togBKS();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Show / </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Hide</span></font> <font color="#666666">]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; From BKS to Bell's Theorem</font></td></tr>
+</table><br />
+
+
+<table id="formVisible" style="border:1px solid #000000; display:block;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togForm();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Show</span></font><font color="#666666"> / Hide ]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Generalization &amp; The States Proof</font></td></tr>
+<tr><td style="padding-left: 40px; padding-right:40px; padding-bottom:25px; padding-top:15px;">
+As mentioned before, the orthogonality relations aren't the only important conditions that results of any measurements must satisfy. Each of the seven sets of observables defines a particular basis which is both orthonormal and complete, and thus each basis also imposes a <i>completeness relation</i>. Using these, we can rephrase the proof utilizing the most general type of quantum mechanical measurement; the positive operator-valued measure (<a href="http://en.wikipedia.org/wiki/POVM" target="_blank">POVM</a>). This means asking the system a set of yes or no questions; <i>&quot;Are you in state __?&quot;</i>. For any state \(\left | \psi \right \rangle \), this question corresponds to the projection operator formed as the outer product  \(\left | \psi \right \rangle \left \langle \psi \right | \). It's easy to check that this is a hermitian operator with eigenvalues 0 and 1. For higher-rank projectors we can simply add together the projection operators for each dimension of the corresponding subspace.<br /><br />
+
+The states proof can be expressed by saying there is no way to assign a definite YES/NO result to each projector such that each basis contains exactly one YES. This follows immediately from the same logic as the observables proof. The fact that the bases are orthogonal immediately enforces both Rule 1 and Rule 2, manifesting here as the requirement that each POVM can yield <i>at most</i> one YES. In the observables proof we also assumed that every measurement produces an answer, which here is justified explicitly through the completeness conditions which constrain the POVM to <i>at least</i> one YES. <br /><br />
+
+To account for all the completeness relations, and also to make the states proof itself explicit, it is necessary to find all possible complete, orthogonal bases that can be formed from the eigenstates and eigenprojectors that are relevant for these measurements. This task that was the subject of original research done in pursuit of my undergraduate degree at WPI. A program was written to exhaustively find all the bases. There are 39 of them, and they're listed in the lower-right table of the program. The completeness requirement determines the way that projectors of various ranks can coexist in each basis, since the total dimensionality must agree with the dimensionality of the whole Hilbert space, which is 32. It turns out in this case that the bases come in three varieties, those with eight rank-4 projectors, those with four rank-4's and sixteen rank-1's, and those with 32 rank-1's or regular states. The definitions of any of these bases can be seen by hovering over the corresponding entry in the Basis Table.<br /><br />
+
+For the variation of this thought-experiment involving only two distant observers, the completeness relations do not affect which results are possible. However in analogous cases involving more than two observers they could come into play. Also, for anyone still wishing to formulate a nonlocal hidden variable theory, these relations provide additional constraints that must be contended with.
+</td></tr></table>
+
+
+<table id="formHidden" style="border:1px solid #000000; display:none;" cellspacing="0">
+<tr><td width="900" height="22" align="left" class="header2" bgcolor="#292929" onclick="togForm();" style="cursor:pointer;"><font color="#666666">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ Show / </font><font color="#CCCCCC"><span style="border-bottom:1px dotted #0070a2;">Hide</span></font> <font color="#666666">]</font><font color="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Formal Mechanism</font></td></tr>
+</table><br />
+</div>
+
+<table width="900" cellpadding="18" bgcolor="#292929" align="center" class="ack"><tr><td width="900"><center><b>Acknowledgements</b></center><br />It is important to emphasize the contribution of David DiVincenzo and Asher Peres who first <a href="http://arxiv.org/abs/quant-ph/9611011v1" target="_blank">discovered</a> this particularly beautiful system. I also owe a great deal of thanks to my advisor, Professor <a href="http://users.wpi.edu/~paravind/" target="_blank">Padmanabhan K. Aravind</a>, for patiently and skillfully guiding my learning in these matters and for the numerous remarkable insights hes contributed to this field. For rendering equations and similar content inline, this page uses <a href="http://www.mathjax.org/" target="_blank">MathJax</a>.</td></tr></table>
+
+</body>
+</html>
