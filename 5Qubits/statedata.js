@@ -328,9 +328,7 @@ function state(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
 	if(this.number<33) { this.obs = 1; } 
 	else { this.obs = 7; }
 	
-	this.component[0] = 0
-	this.component.append(arguments)
-	/*
+	
 	this.component[1] = x1;
 	this.component[2] = x2;
 	this.component[3] = x3;
@@ -363,7 +361,6 @@ function state(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15,
 	this.component[30] = x30;
 	this.component[31] = x31;
 	this.component[32] = x32;
-	*/
 
 	this.bases.push(0);	
 	
