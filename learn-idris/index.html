@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>BlackBrane - Lightning Intro to Functional Programming and Dependent Types with Idris</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">BlackBrane</a>
+            </div>
+            <div id="navigation">
+                <a href="../">Home</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../archive.html">Archive</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>Lightning Intro to Functional Programming and Dependent Types with Idris</h1>
+
+            <p>The purpose of this tutorial is to introduce the key concepts of functional programming and dependent type theory, convince you that these ideas can be powerful tools both for writing useful software and obtaining strong guarantees of its correctness, and to specifically demonstrate how to utilize these ideas with the <a href="idris-lang.org">Idris</a> programming language.</p>
+<p>While Idris has solid and ever-improving <a href="docs.idris-lang.org">official documentation</a>, it does not focus on explaining fundamental concepts, leaving a significant pedagogical gap for someone coming directly from a traditional programming background, without previous experience in functional programming. This work-in-progress tutorial is an attempt to bridge that gap.</p>
+<p>Let’s first introduce, in broad strokes, the meaning of these two main ideas we refer to in this title.</p>
+<h4 id="functional-programming">Functional Programming</h4>
+<p>Two different properties can be said to define a functional programming language, both of which apply to Idris. The more modest sense of the term is that functions are “first-class citizens” of the language. They’re one of the basic kinds of <em>values</em> that the language deals with, so there’s no absolute distinction between functions and other forms of data. A stronger sense of the term requires that the functions in our language are really bona-fide mathematical functions. In other words, <em>the output of a function depends only on the inputs.</em> This means that functions can neither refer to nor alter any external state. In contrast, many programming languages refer to as “functions” things which do not satisfy this definition, and could more correctly be called subroutines.</p>
+<p>This distinction is motivated by the fact that there are really two kinds of operations a computer program needs to do, and it can benefit us to treat them differently: Operations that interact with the world in some way, like reading data or writing a file, and pure functions that do the main work of transforming our data.</p>
+<h4 id="dependent-types">Dependent Types</h4>
+<p>Dependent types simply means that <em>types can depend upon values.</em> This rather innocuous looking statement leads to some rather profound consequences.</p>
+<h2 id="basic-data-declarations">Basic Data Declarations</h2>
+<p>We can define our own basic data types with a data declaration like the following.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Bool</span> <span class="fu">=</span> <span class="dt">True</span> <span class="fu">|</span> <span class="dt">False</span></code></pre>
+<p>We first give the name of our data type, then after the <code>=</code> sign we supply a list of <strong>data constructors</strong> separated by vertical bars. In this simple example the two data constructors, <code>True</code> and <code>False</code>, correspond directly to the two possible values of the data type.</p>
+<p>A more general situation is to follow each data constructor by other types of values that must be supplied. For example, the following data declaration might be used to represent two different types of users of a service: Registered users have an ID number and a String for their name, while unregistered users have only an ID number.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Visitor</span> <span class="fu">=</span> <span class="dt">Unregistered</span> <span class="dt">Int</span>
+             <span class="fu">|</span> <span class="dt">Registered</span> <span class="dt">Int</span> <span class="dt">String</span></code></pre>
+<p>These kinds of data declarations define what are called <a href="http://en.wikipedia.org/wiki/Algebraic_data_type">Algebraic data types</a>. The name refers to how, as we’ve seen, the data types can be combined in two different ways.</p>
+<h2 id="constants">Constants</h2>
+<p>In definitions for constants and functions, we begin by declaring the type using <code>:</code>, and then we assign the value with <code>=</code>. Here are some simple examples.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">mybool</span> <span class="ot">:</span> <span class="dt">Bool</span>
+mybool <span class="fu">=</span> <span class="dt">True</span>
+
+<span class="fu">mylist</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Integer</span>
+mylist <span class="fu">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]
+
+<span class="fu">mystring</span> <span class="ot">:</span> <span class="dt">String</span>
+mystring <span class="fu">=</span> <span class="st">&quot;we &lt;3 curry&quot;</span></code></pre>
+<p>Note that Idris enforces no capitalization requirements on any identifiers, but we usually follow the convention that names of data types and data constructors are capitalized while names of functions and constants start with a lowercase.</p>
+<h2 id="functions-i">Functions I</h2>
+<p>Function definitions will follow the same basic format that we used above. One major difference is that we’ll in general use more than one <code>=</code> to describe the function. Consider the following simple example.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- boolean NOT, a single-argument function</span>
+<span class="fu">not</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+not <span class="dt">True</span>  <span class="fu">=</span> <span class="dt">False</span>
+not <span class="dt">False</span> <span class="fu">=</span> <span class="dt">True</span></code></pre>
+<p>First, notice that we’ve used the <code>-&gt;</code> symbol to express the fact that the <code>not</code> function takes a Bool as input and produces a Bool as an output. This specification of the function’s input and output types is called the function’s <strong>signature.</strong> In the body, we used the most straightforward way to define a function, which is to write an equation for all possible input values. While this is the most conceptually straightforward way, it will become prohibitively tedious for most input types.</p>
+<p>A more powerful approach is to abstract over the possible input values by binding them to variables on the right-hand side. Check out this implementation of exclusive-or:</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- boolean XOR, a 2-argument function</span>
+<span class="fu">xor</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+xor <span class="dt">False</span> x <span class="fu">=</span> x
+xor <span class="dt">True</span>  x <span class="fu">=</span> not x</code></pre>
+<p>Binding one of our inputs to the variable <code>x</code> allowed us to express in 2 equations what otherwise would have taken 4 if we explicitly wrote out all the possible input values.</p>
+<p>This process of writing functions in terms of partly-explicit and partly-abstract data is called <strong>pattern matching.</strong> While it tends to take some getting used to, when you do it’s an incredibly powerful and elegant way of describing functions.</p>
+<p>One property of our last function that won’t always hold is that the patterns (of left-hand-side data) are mutually exclusive. When this isn’t the case, we’ll use the fact that Idris attempts to match the patterns in the order that we write them. One particular way we can do this is by using <code>_</code> which matches anything.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">isZero</span> <span class="ot">:</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+isZero <span class="dv">0</span> <span class="fu">=</span> <span class="dt">True</span>
+isZero <span class="fu">_</span> <span class="fu">=</span> <span class="dt">False</span></code></pre>
+<p>If we wrote these two lines in the opposite order, the function would always return <code>False</code> because <code>_</code> would “match” on any possible input and so the other pattern would never be tried.</p>
+<h4 id="infix-operators">Infix Operators</h4>
+<p>For another example, we could define two more standard boolean logical operators.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- specify the order of precedence when defining operators:</span>
+<span class="kw">infixl</span> <span class="dv">4</span> <span class="fu">&amp;&amp;</span>, <span class="fu">||</span>
+
+<span class="co">-- boolean AND</span>
+<span class="fu">(&amp;&amp;)</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+(<span class="fu">&amp;&amp;</span>) <span class="dt">True</span> <span class="dt">True</span> <span class="fu">=</span> <span class="dt">True</span>
+(<span class="fu">&amp;&amp;</span>) <span class="fu">_</span>    <span class="fu">_</span>    <span class="fu">=</span> <span class="dt">False</span>
+
+<span class="co">-- boolean OR</span>
+<span class="fu">(||)</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+(<span class="fu">||</span>) <span class="dt">False</span> <span class="dt">False</span> <span class="fu">=</span> <span class="dt">False</span>
+(<span class="fu">||</span>) <span class="fu">_</span>     <span class="fu">_</span>     <span class="fu">=</span> <span class="dt">True</span></code></pre>
+<p>Note that the first non-comment line of this code snippet is what’s called a <em>fixity declaration,</em> which we supply whenever we name a function with these special operator characters. Such a function is called an <em>infix operator</em> because they’re invoked by inserting the operator between the two inputs, as for example when we add <code>5 + 3</code>. The fixity declaration is needed because it clarifies which operators take precedence over which others; that’s what the ‘4’ in the above fixity declaration means. Operators with the highest precedence are evaluated first, from the maximum of 10 down to the minimum of 0. It also specifies whether evaluation proceeds from the right or the left, denoted by <code>infixr</code> and <code>infixl</code> respectively. This means, for example, that <code>x &amp;&amp; y &amp;&amp; z</code> evaluates the same way as <code>(x &amp;&amp; y) &amp;&amp; z</code>. In this particular case the distinction is irrelevant, but in general this is an ambiguity that needs to be fixed.</p>
+<p>Whenever we have an infix operator, we can use it like a regular (‘postfix’) function by wrapping it in parentheses. (In particular we need to do this when writing their type declarations, as in the above code.) For example these two ways of multiplying are equivalent:</p>
+<pre><code>Idris&gt; 5 * 2
+10 : Integer
+Idris&gt; (*) 5 2
+10 : Integer</code></pre>
+<p>Incidentally can also use a regular function in the infix position by wrapping it in backticks.</p>
+<pre><code>Idris&gt; xor True False
+True : Bool
+Idris&gt; True `xor` False
+True : Bool</code></pre>
+<p>By the way, you can always check the fixity declaration of any operator by looking it up at the REPL.</p>
+<pre><code>Idris&gt; :doc (+)
+(+) : Num a =&gt; a -&gt; a -&gt; a
+    
+    infixl 8</code></pre>
+<p>Here we see two features that will be discussed in more detail shortly. <code>(+)</code> doesn’t have a concrete type, the type is only specified in terms of a <strong>type variable</strong> <code>a</code>. The beginning of the signature, <code>Num a =&gt;</code> is a <strong>typeclass constraint</strong>. It says that the type variable <code>a</code> is restricted to be a member of the <code>Num</code> typeclass, because that’s the class for which <code>(+)</code> must be defined. If you want to see the rest of the information about <code>Num</code>, type in <code>:doc Num</code>.</p>
+<h4 id="currying-higher-order-functions">Currying &amp; Higher-order Functions</h4>
+<p>At this point it’s important to clarify a detail about function types that’s so far been glossed over. You might be wondering why we write the type signature of two-argument functions in the form <code>a -&gt; b -&gt; c</code>. After all, on first seeing it, this form almost doesn’t seem to distinguish between input and output types. It seems as though the type signature is defined in terms of just a binary type-level operator <code>-&gt;</code>.</p>
+<p>These observations are absolutely valid. Fundamentally, there are no multi-argument functions in Idris. When we write a type signature like <code>a -&gt; b -&gt; c</code> what it <em>really</em> means is <code>a -&gt; (b -&gt; c)</code>. In other words, the function that takes one argument <code>a</code> and returns <em>a function</em> from <code>b</code> to <code>c</code>. In particular this means that such functions are really <strong>higher-order functions</strong>, i.e. <em>functions that themselves either depend on or return other functions.</em> This is one of the most important concepts to understand when learning to program in Idris and many similar languages. Note that it fundamentally relies on the idea that functions are first-class values of the language that can be computed and returned like anything else.</p>
+<p>Representing multi-argument functions in this way is called <strong>currying</strong>, after Haskell Curry, and it has many virtues. One is conceptual simplicity: There is no need to have multi-argument functions as a <em>primitive</em> notion since we can easily represent them as higher-order, single-argument functions. A more practical benefit for the user is that any multi-argument functions we have automatically give us families of lower-order functions we can use by feeding it only some of the arguments it takes.</p>
+<p>Lets consult the REPL to verify I’m telling the truth.</p>
+<pre><code>Idris&gt; :t xor
+xor : Bool -&gt; Bool -&gt; Bool
+Idris&gt; :t xor False
+xor False : Bool -&gt; Bool</code></pre>
+<p>Indeed, when we supply one value to the 2-argument function, we get back a single-argument function. This is called <strong>partial application</strong>. It’s one of many benefits we’ll reap from treating functions as first-class language values.</p>
+<p>Currying also gives us added flexibility when <em>defining</em> functions. We can always use the standard approach of defining multi-argument functions directly by expressing their final output in terms of the input values. However we can also utilize the fact that multi-argument functions are curried to directly define them as higher-order functions. For example we could have alternatively defined our <code>xor</code> function as:</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- 2-argument function as a 1-argument higher-order function</span>
+<span class="fu">xor'</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+xor' <span class="dt">False</span> <span class="fu">=</span> id
+xor' <span class="dt">True</span>  <span class="fu">=</span> not</code></pre>
+<p>To emphasize the difference, in the first <code>xor</code> definition we introduced two arguments on the left-hand-side, so the expression on the right-hand-side needed to be a Bool. In this case we only introduce one value on the LHS, so in order to be consistent with the type signature, the expressions on the RHS need to be of type <code>Bool -&gt; Bool</code>. Here <code>id</code> is of course the identity function, which is defined for all types, and we’ve already described <code>not</code>.</p>
+<p>Overall, it’s much more common to define higher-order functions in the former way, but the possibility of this other approach can sometimes make things easier. More importantly purposes, it can be very helpful for understanding this critical concept to see at least see one example of this other approach.</p>
+<h2 id="functions-ii-the-finer-points-of-recursion">Functions II: the finer points of recursion</h2>
+<h4 id="natural-numbers">Natural Numbers</h4>
+<p>The natural numbers – integers starting from zero and counting up – are, as the name implies, an intuitively natural number system, and are a good place to begin examining how to describe numbers as data types. After all they’re the first form of numbers humans understood (sans zero), and they’re generally the first one we all learn about in school.</p>
+<p>The key property of the natural numbers we’re going to exploit is the fact that all of them can be described by only two data constructors. Zero <code>Z</code> and the <em>successor function</em> <code>S</code> whose interpretation is to increase the number by 1. Thus naturals are described by this remarkably simple definition:</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Nat</span> <span class="fu">=</span> <span class="dt">Z</span> <span class="fu">|</span> <span class="dt">S</span> <span class="dt">Nat</span>
+
+<span class="co">{-  0  ~  Z</span>
+<span class="co">    1  ~  S Z</span>
+<span class="co">    2  ~  S (S Z)</span>
+<span class="co">    3  ~  S (S (S Z)) ...  -}</span></code></pre>
+<p>Here we’ve also introduced the syntax for multi-line comments to show what the first few Nats look like in terms of these constructors. Simple as it is, this way of representing the naturals will be unfamiliar to many, so it may help to see them written explicitly. This form for the naturals is often called the <a href="https://en.wikipedia.org/wiki/Peano_axioms">Peano axioms</a>.</p>
+<p>Many will justifiably wonder why we should bother with such a system, given that encoding integers in any of the standard ways are certainly more efficient and intuitive. The first reason is conceptual and pedagocial: Nats are first of all <em>the simplest possible example</em> of an inductive datatype. Many other data types that we’ll encounter will involve this same general property of being defined by repeated application of a data constructor acting on that same data type. More to the point, defining operations like addition and multiplication are almost inevitably <strong>structurally recursive</strong> functions. This means they are defined in a recursive way, in direct correspondence to the recursive structure of the data on they operate. It is this property that we focus on now.</p>
+<p>Another reason, which we’ll take up further on, is this: Defining Nats in this recursive way makes them amenable to having <em>the properties of the functions on them formally proven.</em> This is where the dependent type system will really shine for us. Proofs are also first class data types in idris, and we’ll see this when we examine, for example, proofs of the commutative and associative properties of addition and multiplication.</p>
+<p>For now though, lets turn to our first example of a structurally recursive function: Addition.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">plus</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
+plus <span class="dt">Z</span>     m <span class="fu">=</span> m
+plus (<span class="dt">S</span> n) m <span class="fu">=</span> <span class="dt">S</span> (plus n m)</code></pre>
+<p>Here we see prototypical example of a common format to be repeated in many different contexts. Our data type has a <strong>base case</strong>, <code>Z</code>, for which we can define the answer directly, and we also must describe the <strong>step case</strong> which defines the answer at level <code>S n</code> in terms of the same function one level lower, at level <code>n</code>. This suffices to define addition for all natural numbers.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">mult</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
+mult <span class="dt">Z</span>     m <span class="fu">=</span> <span class="dt">Z</span>
+mult (<span class="dt">S</span> n) m <span class="fu">=</span> plus m (mult n m)</code></pre>
+<h4 id="lists">Lists</h4>
+<p>Lists are, of course, one of the most basic and ubiquitous data structures around. We’ve already seen an example of a list invoked in the usual way by square braces <code>[1,0,0,1]</code>, but as you may guess, this is only syntactic sugar. Lists are a proper idris data type so let’s see how they’re defined:</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">infixr</span> <span class="dv">7</span> <span class="ot">::</span>
+
+<span class="kw">data</span> <span class="dt">List</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> (<span class="ot">::</span>) a (<span class="dt">List</span> a)</code></pre>
+<p>There are a couple important things to notice about this definition. For one thing, while we’ve already seen infix operators used as functions, here we see they can be used as a data constructor as well (which, anyway, is a special kind of function). Another important element is that the declaration refers to an abstract type <code>a</code>, because we want to define lists for all possible types simultaneously. Notice that the left-hand side of the equation doesn’t just say ‘List’, it says ‘List a’. This means that ‘List’ by itself is not a type. To make a concrete type we must fill in the <code>a</code>, so for example <code>List Int</code> or <code>List String</code> are types, but <code>List</code> by itself is not, it is actually a function with signature <code>Type -&gt; Type</code>.</p>
+<p>As the declaration says, we can construct a list with either <code>Nil</code> which creates an empty list of any particular type, or with <code>(::)</code> which takes an element of type <code>a</code> on the left, and a list of <code>a</code>’s on the right, and returns back a new list with the first element appended to the front of the list.</p>
+<p>So an example of a fully-explicit list definition is the following:</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- [0,1,2]</span>
+<span class="fu">lst</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Integer</span>
+lst <span class="fu">=</span> <span class="dv">0</span> <span class="ot">::</span> <span class="dv">1</span> <span class="ot">::</span> <span class="dv">2</span> <span class="ot">::</span> <span class="dt">Nil</span></code></pre>
+<h4 id="vectors">Vectors</h4>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Vect</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span>
+  <span class="dt">Nil</span> <span class="ot">:</span> <span class="dt">Vect</span> <span class="dt">Z</span> a
+  <span class="fu">(::)</span> <span class="ot">:</span> (x <span class="ot">:</span> a) <span class="ot">-&gt;</span> (xs <span class="ot">:</span> <span class="dt">Vect</span> n a) <span class="ot">-&gt;</span> <span class="dt">Vect</span> (<span class="dt">S</span> n) a</code></pre>
+<h2 id="generalized-algebraic-data-types">Generalized Algebraic Data Types</h2>
+<p>To be continued…</p>
+        </div>
+        <div id="footer">
+            <div id="footerleft">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" border="0">
+                <img alt="Creative Commons License" src="../images/CC-BY-NC.png" /></a>
+            </div>
+            <div id="footerright">
+                Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
+            </div>
+        </div>
+    </body>
+</html>
