@@ -937,7 +937,7 @@ Elm.Destroid.Control.make = function (_elm) {
    });
    var gameUpdate = function (w) {
       return function ($) {
-         return applyCollisions(reflect(evolveAll(w)(gun(w)(flightControls(w)($)))));
+         return applyCollisions(reflect(evolveAll(w)(gun$(w)(flightControls(w)($)))));
       };
    };
    var deadUpdate = function (w) {
