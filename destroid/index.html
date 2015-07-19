@@ -750,22 +750,44 @@ Elm.Destroid.Control.make = function (_elm) {
                                ,$Destroid$Model.Dead(m.time)]],
       m);
    };
-   var distance$ = F2(function (g,
-   h) {
+   var checkBlink = function (m) {
       return function () {
-         var dy = g.y - h.y;
-         var dx = g.x - h.x;
-         return $Basics.sqrt(dx * dx + dy * dy);
+         var _v0 = m.blink;
+         switch (_v0.ctor)
+         {case "Just":
+            return _U.cmp(m.time,
+              _v0._0) > -1 ? _U.replace([["blink"
+                                         ,$Maybe.Nothing]],
+              m) : m;
+            case "Nothing": return m;}
+         _U.badCase($moduleName,
+         "between lines 290 and 292");
+      }();
+   };
+   var expiration = F2(function (t,
+   l) {
+      return function () {
+         switch (l.ctor)
+         {case "::":
+            return _U.cmp(l._0.t0 - t,
+              0) > 0 ? A2($List._op["::"],
+              l._0,
+              l._1) : A2(expiration,t,l._1);
+            case "[]":
+            return _L.fromArray([]);}
+         _U.badCase($moduleName,
+         "between lines 279 and 281");
       }();
    });
-   var checkDistance$ = F3(function (delta,
-   g,
-   h) {
-      return _U.cmp($Basics.abs(g.x - h.x),
-      delta) > 0 ? false : _U.cmp(A2(distance$,
-      g,
-      h),
-      delta) < 0;
+   var expireBullets = function (m) {
+      return _U.replace([["buls"
+                         ,A2(expiration,
+                         m.time - $Destroid$Params.bulletLife,
+                         m.buls)]],
+      m);
+   };
+   var Timed = F2(function (a,b) {
+      return _U.insert("t0",a,b);
    });
    var breakUp$ = function (ph) {
       return _L.fromArray([_U.replace([["vy"
@@ -784,8 +806,8 @@ Elm.Destroid.Control.make = function (_elm) {
    };
    var breakUp = function (a) {
       return function () {
-         var _v0 = a.sz;
-         switch (_v0.ctor)
+         var _v5 = a.sz;
+         switch (_v5.ctor)
          {case "Big":
             return breakUp$(_U.replace([["sz"
                                         ,$Destroid$Model.Medium]],
@@ -797,118 +819,26 @@ Elm.Destroid.Control.make = function (_elm) {
             case "Small":
             return _L.fromArray([]);}
          _U.badCase($moduleName,
-         "between lines 178 and 181");
+         "between lines 235 and 238");
       }();
    };
-   var astScale = function (a) {
+   var astSize = function (a) {
       return function () {
          switch (a.ctor)
          {case "Big":
-            return $Destroid$Params.astScaleBig;
+            return $Destroid$Params.astSizeBig;
             case "Medium":
-            return $Destroid$Params.astScaleMedium;
+            return $Destroid$Params.astSizeMedium;
             case "Small":
-            return $Destroid$Params.astScaleSmall;}
+            return $Destroid$Params.astSizeSmall;}
          _U.badCase($moduleName,
-         "between lines 165 and 168");
+         "between lines 222 and 225");
       }();
    };
    var filterN = function (f) {
       return $List.filter(function ($) {
          return $Basics.not(f($));
       });
-   };
-   var checkAst = F3(function (f,
-   a,
-   bs) {
-      return function () {
-         var r = f / astScale(a.sz);
-         return A2(filterN,
-         A2(checkDistance$,r,a),
-         bs);
-      }();
-   });
-   var checkAst_Bullet = F2(function (f,
-   _v2) {
-      return function () {
-         switch (_v2.ctor)
-         {case "_Tuple2":
-            return function () {
-                 var _v6 = {ctor: "_Tuple2"
-                           ,_0: _v2._0
-                           ,_1: _v2._1};
-                 switch (_v6.ctor)
-                 {case "_Tuple2":
-                    switch (_v6._0.ctor)
-                      {case "[]": switch (_v6._1.ctor)
-                           {case "[]":
-                              return {ctor: "_Tuple2"
-                                     ,_0: _L.fromArray([])
-                                     ,_1: _L.fromArray([])};}
-                           break;}
-                      switch (_v6._1.ctor)
-                      {case "[]":
-                         return {ctor: "_Tuple2"
-                                ,_0: _v6._0
-                                ,_1: _L.fromArray([])};}
-                      switch (_v6._0.ctor)
-                      {case "::": return function () {
-                              var lb$ = A3(checkAst,
-                              f,
-                              _v6._0._0,
-                              _v6._1);
-                              return function () {
-                                 var _v11 = _U.eq($List.length(_v6._1),
-                                 $List.length(lb$));
-                                 switch (_v11)
-                                 {case false:
-                                    return A2($Destroid$Utils._op["++^"],
-                                      breakUp(_v6._0._0),
-                                      A2(checkAst_Bullet,
-                                      f,
-                                      {ctor: "_Tuple2"
-                                      ,_0: _v6._0._1
-                                      ,_1: lb$}));
-                                    case true:
-                                    return A2($Destroid$Utils._op["::^"],
-                                      _v6._0._0,
-                                      A2(checkAst_Bullet,
-                                      f,
-                                      {ctor: "_Tuple2"
-                                      ,_0: _v6._0._1
-                                      ,_1: _v6._1}));}
-                                 _U.badCase($moduleName,
-                                 "between lines 205 and 207");
-                              }();
-                           }();
-                         case "[]":
-                         return {ctor: "_Tuple2"
-                                ,_0: _L.fromArray([])
-                                ,_1: _v6._1};}
-                      break;}
-                 _U.badCase($moduleName,
-                 "between lines 200 and 207");
-              }();}
-         _U.badCase($moduleName,
-         "between lines 200 and 207");
-      }();
-   });
-   var applyImpacts = function (m) {
-      return function () {
-         var $ = m.size,
-         w = $._0,
-         h = $._1;
-         var $ = A2(checkAst_Bullet,
-         h,
-         {ctor: "_Tuple2"
-         ,_0: m.ast
-         ,_1: m.buls}),
-         la = $._0,
-         lb = $._1;
-         return _U.replace([["ast",la]
-                           ,["buls",lb]],
-         m);
-      }();
    };
    var distance = F2(function (g,
    h) {
@@ -927,95 +857,206 @@ Elm.Destroid.Control.make = function (_elm) {
       h),
       delta) < 0;
    });
-   var applyCollisions = function (m) {
+   var shipBulImpacts = function (m) {
       return function () {
          var bullets = A2(filterN,
-         A2(checkDistance,3.0,m.me),
+         A2(checkDistance,
+         $Destroid$Params.shipHitR,
+         m.me),
          m.buls);
          var db = $List.length(m.buls) - $List.length(bullets);
-         return _U.replace([["buls"
-                            ,bullets]
-                           ,["life"
-                            ,m.life - 10 * $Destroid$Utils.toF(db)]],
+         return $Destroid$Utils.isNothing(m.blink) ? _U.replace([["buls"
+                                                                 ,bullets]
+                                                                ,["life"
+                                                                 ,m.life - 10 * $Destroid$Utils.toF(db)]
+                                                                ,["blink"
+                                                                 ,_U.eq(db,
+                                                                 0) ? $Maybe.Nothing : $Maybe.Just(m.time + $Destroid$Params.t_blink)]],
+         m) : m;
+      }();
+   };
+   var checkAst = F2(function (a,
+   bs) {
+      return A2(filterN,
+      A2(checkDistance,
+      astSize(a.sz),
+      a),
+      bs);
+   });
+   var checkAst_Bullet = function (_v7) {
+      return function () {
+         switch (_v7.ctor)
+         {case "_Tuple2":
+            return function () {
+                 var _v11 = {ctor: "_Tuple2"
+                            ,_0: _v7._0
+                            ,_1: _v7._1};
+                 switch (_v11.ctor)
+                 {case "_Tuple2":
+                    switch (_v11._0.ctor)
+                      {case "[]":
+                         switch (_v11._1.ctor)
+                           {case "[]":
+                              return {ctor: "_Tuple2"
+                                     ,_0: _L.fromArray([])
+                                     ,_1: _L.fromArray([])};}
+                           break;}
+                      switch (_v11._1.ctor)
+                      {case "[]":
+                         return {ctor: "_Tuple2"
+                                ,_0: _v11._0
+                                ,_1: _L.fromArray([])};}
+                      switch (_v11._0.ctor)
+                      {case "::": return function () {
+                              var lb$ = A2(checkAst,
+                              _v11._0._0,
+                              _v11._1);
+                              return function () {
+                                 var _v16 = _U.eq($List.length(_v11._1),
+                                 $List.length(lb$));
+                                 switch (_v16)
+                                 {case false:
+                                    return A2($Destroid$Utils._op["++^"],
+                                      breakUp(_v11._0._0),
+                                      checkAst_Bullet({ctor: "_Tuple2"
+                                                      ,_0: _v11._0._1
+                                                      ,_1: lb$}));
+                                    case true:
+                                    return A2($Destroid$Utils._op["::^"],
+                                      _v11._0._0,
+                                      checkAst_Bullet({ctor: "_Tuple2"
+                                                      ,_0: _v11._0._1
+                                                      ,_1: _v11._1}));}
+                                 _U.badCase($moduleName,
+                                 "between lines 250 and 252");
+                              }();
+                           }();
+                         case "[]":
+                         return {ctor: "_Tuple2"
+                                ,_0: _L.fromArray([])
+                                ,_1: _v11._1};}
+                      break;}
+                 _U.badCase($moduleName,
+                 "between lines 245 and 252");
+              }();}
+         _U.badCase($moduleName,
+         "between lines 245 and 252");
+      }();
+   };
+   var bullAstImpacts = function (m) {
+      return function () {
+         var $ = checkAst_Bullet({ctor: "_Tuple2"
+                                 ,_0: m.ast
+                                 ,_1: m.buls}),
+         la = $._0,
+         lb = $._1;
+         return _U.replace([["ast",la]
+                           ,["buls",lb]],
          m);
       }();
    };
-   var reflectY = F2(function (_v12,
+   var checkAstDistance = F2(function (ph,
+   a) {
+      return A3(checkDistance,
+      astSize(a.sz) + $Destroid$Params.shipHitR,
+      ph,
+      a);
+   });
+   var shipAstImpacts = function (m) {
+      return function () {
+         var _v17 = m.blink;
+         switch (_v17.ctor)
+         {case "Just": return m;
+            case "Nothing":
+            return A2($List.any,
+              checkAstDistance(m.me),
+              m.ast) ? _U.replace([["life"
+                                   ,m.life - 10]
+                                  ,["blink"
+                                   ,$Maybe.Just(m.time + $Destroid$Params.t_blink)]],
+              m) : m;}
+         _U.badCase($moduleName,
+         "between lines 266 and 271");
+      }();
+   };
+   var reflectY = F2(function (_v19,
    b) {
       return function () {
-         switch (_v12.ctor)
+         switch (_v19.ctor)
          {case "_Tuple2":
             return _U.cmp(b.y,
-              0 - _v12._1) < 0 ? _U.replace([["y"
-                                             ,b.y + _v12._1]],
+              -0.5 * _v19._1) < 0 ? _U.replace([["y"
+                                                ,b.y + _v19._1]],
               b) : _U.cmp(b.y,
-              _v12._1) > 0 ? _U.replace([["y"
-                                         ,b.y - _v12._1]],
+              0.5 * _v19._1) > 0 ? _U.replace([["y"
+                                               ,b.y - _v19._1]],
               b) : b;}
          _U.badCase($moduleName,
-         "between lines 129 and 131");
+         "between lines 183 and 185");
       }();
    });
-   var reflectX = F2(function (_v16,
+   var reflectX = F2(function (_v23,
    b) {
       return function () {
-         switch (_v16.ctor)
+         switch (_v23.ctor)
          {case "_Tuple2":
             return _U.cmp(b.x,
-              0 - _v16._0) < 0 ? _U.replace([["x"
-                                             ,b.x + _v16._0]],
+              -0.5 * _v23._0) < 0 ? _U.replace([["x"
+                                                ,b.x + _v23._0]],
               b) : _U.cmp(b.x,
-              _v16._0) > 0 ? _U.replace([["x"
-                                         ,b.x - _v16._0]],
+              0.5 * _v23._0) > 0 ? _U.replace([["x"
+                                               ,b.x - _v23._0]],
               b) : b;}
          _U.badCase($moduleName,
-         "between lines 122 and 124");
+         "between lines 176 and 178");
       }();
    });
    var reflect = function (m) {
       return function () {
-         var reflect$ = function (_v20) {
+         var reflect$ = function (_v27) {
             return function () {
-               switch (_v20.ctor)
+               switch (_v27.ctor)
                {case "_Tuple2":
                   return function ($) {
                        return reflectY({ctor: "_Tuple2"
-                                       ,_0: _v20._0
-                                       ,_1: _v20._1})(reflectX({ctor: "_Tuple2"
-                                                               ,_0: _v20._0
-                                                               ,_1: _v20._1})($));
+                                       ,_0: _v27._0
+                                       ,_1: _v27._1})(reflectX({ctor: "_Tuple2"
+                                                               ,_0: _v27._0
+                                                               ,_1: _v27._1})($));
                     };}
                _U.badCase($moduleName,
-               "on line 134, column 34 to 65");
+               "on line 188, column 34 to 65");
             }();
          };
          return _U.replace([["me"
-                            ,A2(reflect$,m.size,m.me)]
+                            ,A2(reflect$,
+                            $Destroid$Params.spaceSize,
+                            m.me)]
                            ,["buls"
                             ,A2($Destroid$Utils._op["<$>"],
-                            reflect$(m.size),
+                            reflect$($Destroid$Params.spaceSize),
                             m.buls)]
                            ,["ast"
                             ,A2($Destroid$Utils._op["<$>"],
-                            reflect$(m.size),
+                            reflect$($Destroid$Params.spaceSize),
                             m.ast)]],
          m);
       }();
    };
-   var evolve = F2(function (_v24,
+   var evolve = F2(function (_v31,
    ph) {
       return function () {
-         switch (_v24.ctor)
+         switch (_v31.ctor)
          {case "_Tuple2":
             return _U.replace([["x"
-                               ,ph.x + ph.vx * _v24._0 * $Destroid$Params.scaleV]
+                               ,ph.x + ph.vx * _v31._0 * $Destroid$Params.scaleV]
                               ,["y"
-                               ,ph.y + ph.vy * _v24._0 * $Destroid$Params.scaleV]
+                               ,ph.y + ph.vy * _v31._0 * $Destroid$Params.scaleV]
                               ,["r"
-                               ,ph.r + ph.vr * _v24._0 * $Destroid$Params.scaleR]],
+                               ,ph.r + ph.vr * _v31._0 * $Destroid$Params.scaleR]],
               ph);}
          _U.badCase($moduleName,
-         "between lines 113 and 115");
+         "between lines 167 and 169");
       }();
    });
    var evolveAll = F2(function (w,
@@ -1032,94 +1073,198 @@ Elm.Destroid.Control.make = function (_elm) {
                          m.ast)]],
       m);
    });
+   var b_i = 5;
    var shootFrom = function (ph) {
       return _U.replace([["vx"
                          ,ph.vx - $Destroid$Params.bulV * $Basics.sin(ph.r)]
                         ,["vy"
                          ,ph.vy + $Destroid$Params.bulV * $Basics.cos(ph.r)]
-                        ,["vr",0]],
+                        ,["vr",0]
+                        ,["x"
+                         ,ph.x - b_i * $Basics.sin(ph.r)]
+                        ,["y"
+                         ,ph.y + b_i * $Basics.cos(ph.r)]],
       ph);
    };
-   var gun$ = F2(function (_v28,
+   var gun$ = F2(function (_v35,
    m) {
       return function () {
-         switch (_v28.ctor)
+         switch (_v35.ctor)
          {case "_Tuple2":
-            return _v28._1.c.shoot ? _U.replace([["buls"
-                                                 ,A2($Basics._op["++"],
-                                                 m.buls,
-                                                 _L.fromArray([shootFrom(m.me)]))]],
-              m) : m;}
+            return function () {
+                 var b = shootFrom(m.me);
+                 return _v35._1.c.shoot ? _U.replace([["buls"
+                                                      ,A2($Basics._op["++"],
+                                                      m.buls,
+                                                      _L.fromArray([_U.insert("t0",
+                                                      m.time,
+                                                      b)]))]],
+                 m) : m;
+              }();}
          _U.badCase($moduleName,
-         "on line 97, column 20 to 87");
+         "between lines 145 and 146");
       }();
    });
-   var gun = F2(function (_v32,m) {
+   var gun = F2(function (_v39,m) {
       return function () {
-         switch (_v32.ctor)
+         switch (_v39.ctor)
          {case "_Tuple2":
-            return _v32._1.c.shoot && m.trigg ? _U.replace([["trigg"
-                                                            ,false]
-                                                           ,["buls"
-                                                            ,A2($Basics._op["++"],
-                                                            m.buls,
-                                                            _L.fromArray([shootFrom(m.me)]))]],
-              m) : _U.replace([["trigg"
-                               ,$Basics.not(_v32._1.c.shoot)]],
-              m);}
+            return function () {
+                 var b = shootFrom(m.me);
+                 return _v39._1.c.shoot && m.trigg ? _U.replace([["trigg"
+                                                                 ,false]
+                                                                ,["buls"
+                                                                 ,A2($Basics._op["++"],
+                                                                 m.buls,
+                                                                 _L.fromArray([_U.insert("t0",
+                                                                 m.time,
+                                                                 b)]))]],
+                 m) : _U.replace([["trigg"
+                                  ,$Basics.not(_v39._1.c.shoot)]],
+                 m);
+              }();}
          _U.badCase($moduleName,
-         "between lines 90 and 93");
+         "between lines 137 and 141");
       }();
    });
-   var flightControls = F2(function (_v36,
+   var flightControls = F2(function (_v43,
    m) {
       return function () {
-         switch (_v36.ctor)
+         switch (_v43.ctor)
          {case "_Tuple2":
             return function () {
                  var m$ = _U.replace([["f"
-                                      ,_v36._1.c.thrust]],
+                                      ,_v43._1.c.thrust]],
                  m);
                  var me = m.me;
-                 var me1 = _v36._1.c.thrust ? _U.replace([["vx"
-                                                          ,me.vx - $Basics.sin(me.r) * _v36._0]
+                 var me1 = _v43._1.c.thrust ? _U.replace([["vx"
+                                                          ,me.vx - $Basics.sin(me.r) * _v43._0]
                                                          ,["vy"
-                                                          ,me.vy + $Basics.cos(me.r) * _v36._0]],
+                                                          ,me.vy + $Basics.cos(me.r) * _v43._0]],
                  me) : me;
                  var me2 = function () {
-                    var _v40 = _v36._1.c.steer;
-                    switch (_v40.ctor)
+                    var _v47 = _v43._1.c.steer;
+                    switch (_v47.ctor)
                     {case "SCenter": return me1;
                        case "SLeft":
                        return _U.replace([["vr"
-                                          ,me1.vr + _v36._0]],
+                                          ,me1.vr + _v43._0]],
                          me1);
                        case "SRight":
                        return _U.replace([["vr"
-                                          ,me1.vr - _v36._0]],
+                                          ,me1.vr - _v43._0]],
                          me1);}
                     _U.badCase($moduleName,
-                    "between lines 80 and 84");
+                    "between lines 128 and 132");
                  }();
                  return _U.replace([["me",me2]],
                  m$);
               }();}
          _U.badCase($moduleName,
-         "between lines 74 and 84");
+         "between lines 122 and 132");
       }();
    });
    var gameUpdate = function (w) {
       return function ($) {
-         return checkDeath(applyImpacts(applyCollisions(reflect(evolveAll(w)(gun(w)(flightControls(w)($)))))));
+         return checkDeath(checkBlink(expireBullets(shipAstImpacts(bullAstImpacts(shipBulImpacts(reflect(evolveAll(w)(gun(w)(flightControls(w)($))))))))));
       };
+   };
+   var emit = function (m) {
+      return function () {
+         var _v48 = {ctor: "_Tuple2"
+                    ,_0: m.lvl.ls
+                    ,_1: m.lvl.ts};
+         switch (_v48.ctor)
+         {case "_Tuple2":
+            switch (_v48._0.ctor)
+              {case "::":
+                 switch (_v48._0._0.ctor)
+                   {case "_Tuple3":
+                      switch (_v48._1.ctor)
+                        {case "::": return function () {
+                                var aster$ = m.lvl.xi;
+                                var aster$$ = _U.insert("sz",
+                                _v48._0._0._2,
+                                aster$);
+                                var aster = _U.replace([["vx"
+                                                        ,(0 - _v48._0._0._1) * $Basics.sin(_v48._0._0._0)]
+                                                       ,["vy"
+                                                        ,_v48._0._0._1 * $Basics.cos(_v48._0._0._0)]],
+                                aster$$);
+                                var lev = m.lvl;
+                                return _U.cmp(m.time,
+                                _v48._1._0) > 0 ? _U.replace([["ast"
+                                                              ,A2($List._op["::"],
+                                                              aster,
+                                                              m.ast)]
+                                                             ,["lvl"
+                                                              ,_U.replace([["ls"
+                                                                           ,_v48._0._1]
+                                                                          ,["ts"
+                                                                           ,_v48._1._1]],
+                                                              lev)]],
+                                m) : m;
+                             }();}
+                        break;}
+                   break;}
+              break;}
+         return m;
+      }();
+   };
+   var checkIntroExpiration = function (m) {
+      return function () {
+         var _v58 = m.mode;
+         switch (_v58.ctor)
+         {case "LevelIntro":
+            return _U.cmp(m.time,
+              m.lvl.tf) > 0 ? _U.replace([["mode"
+                                          ,$Destroid$Model.Playing(_v58._0)]],
+              m) : m;}
+         return m;
+      }();
+   };
+   var levelIntroUpdate = function (w) {
+      return function ($) {
+         return emit(checkIntroExpiration(gameUpdate(w)($)));
+      };
+   };
+   var emitTimes = F2(function (t,
+   n) {
+      return A2($Destroid$Utils._op["<$>"],
+      function ($) {
+         return F2(function (x,y) {
+            return x + y;
+         })(t + $Destroid$Params.t_fade)(F2(function (x,
+         y) {
+            return x * y;
+         })($Destroid$Params.t_sep)($Destroid$Utils.toF($)));
+      },
+      _L.range(0,n));
+   });
+   var prepLevelIntro = function (m) {
+      return function () {
+         var lev = m.lvl;
+         return _U.replace([["mode"
+                            ,$Destroid$Model.LevelIntro(m.time)]
+                           ,["lvl"
+                            ,_U.replace([["ts"
+                                         ,A2(emitTimes,
+                                         m.time,
+                                         $List.length(lev.ls) - 1)]
+                                        ,["tf"
+                                         ,m.time + 2 * $Destroid$Params.t_fade + $Destroid$Utils.toF($List.length(lev.ls)) * $Destroid$Params.t_sep]],
+                            lev)]],
+         m);
+      }();
    };
    var transitionUpdate = F3(function (w,
    tf,
    m) {
-      return _U.cmp(m.time - tf,
-      0) > 0 ? _U.replace([["mode"
-                           ,$Destroid$Model.Playing]],
-      m) : m;
+      return function () {
+         var lev = m.lvl;
+         return _U.cmp(m.time - tf,
+         0) > 0 ? prepLevelIntro(m) : m;
+      }();
    });
    var setSize = F2(function (wld,
    m) {
@@ -1131,70 +1276,62 @@ Elm.Destroid.Control.make = function (_elm) {
          sh = $._1;
          var w$ = sh * $Destroid$Params.aspect;
          return function () {
-            var _v41 = A2($Basics.compare,
+            var _v60 = A2($Basics.compare,
             w$,
             sw);
-            switch (_v41.ctor)
+            switch (_v60.ctor)
             {case "EQ":
-               return _U.replace([["size"
-                                  ,{ctor: "_Tuple2"
-                                   ,_0: w$ * 0.8
-                                   ,_1: sh * 0.8}]],
+               return _U.replace([["screenScale"
+                                  ,$Destroid$Params.stageScale * w$ / $Destroid$Params.spaceW]],
                  m);
                case "GT":
-               return _U.replace([["size"
-                                  ,{ctor: "_Tuple2"
-                                   ,_0: sw * 0.8
-                                   ,_1: sw * 0.8 / $Destroid$Params.aspect}]],
+               return _U.replace([["screenScale"
+                                  ,$Destroid$Params.stageScale * sh / $Destroid$Params.spaceH]],
                  m);
                case "LT":
-               return _U.replace([["size"
-                                  ,{ctor: "_Tuple2"
-                                   ,_0: w$ * 0.8
-                                   ,_1: sh * 0.8}]],
+               return _U.replace([["screenScale"
+                                  ,$Destroid$Params.stageScale * w$ / $Destroid$Params.spaceW]],
                  m);}
             _U.badCase($moduleName,
-            "between lines 45 and 49");
+            "between lines 46 and 50");
          }();
       }();
    });
-   var titleUpdate = F2(function (_v42,
+   var titleUpdate = F2(function (_v61,
    m) {
       return function () {
-         switch (_v42.ctor)
+         switch (_v61.ctor)
          {case "_Tuple2":
-            return setSize(_v42._1)(function () {
-                 var _v46 = _v42._1.c.shoot;
-                 switch (_v46)
+            return setSize(_v61._1)(function () {
+                 var _v65 = _v61._1.c.shoot;
+                 switch (_v65)
                  {case false: return m;
                     case true:
                     return _U.replace([["mode"
                                        ,$Destroid$Model.Transition(m.time)]],
                       m);}
                  _U.badCase($moduleName,
-                 "between lines 35 and 37");
+                 "between lines 36 and 38");
               }());}
          _U.badCase($moduleName,
-         "between lines 35 and 37");
+         "between lines 36 and 38");
       }();
    });
-   var timeStep = F2(function (_v47,
+   var timeStep = F2(function (_v66,
    m) {
       return function () {
-         switch (_v47.ctor)
+         switch (_v66.ctor)
          {case "_Tuple2":
             return _U.replace([["time"
-                               ,m.time + _v47._0]
-                              ,["dt",_v47._0]],
+                               ,m.time + _v66._0]
+                              ,["dt",_v66._0]],
               m);}
          _U.badCase($moduleName,
-         "between lines 27 and 28");
+         "between lines 28 and 29");
       }();
    });
    var watcher = function (m) {
-      return _U.replace([["size"
-                         ,A2($Debug.watch,"Size",m.size)]
-                        ,["time"
+      return _U.replace([["time"
                          ,A2($Debug.watch,
                          "Time [sec/50]",
                          m.time)]
@@ -1202,21 +1339,25 @@ Elm.Destroid.Control.make = function (_elm) {
                          ,A2($Debug.watch,
                          "Flight data",
                          m.me)]
-                        ,["ast"
+                        ,["lvl"
+                         ,A2($Debug.watch,"Level",m.lvl)]
+                        ,["blink"
                          ,A2($Debug.watch,
-                         "Asteroids",
-                         m.ast)]],
+                         "Blink",
+                         m.blink)]],
       m);
    };
    var updater = F2(function (w,
    m) {
       return function () {
-         var _v51 = m.mode;
-         switch (_v51.ctor)
+         var _v70 = m.mode;
+         switch (_v70.ctor)
          {case "Dead":
             return A2(deadUpdate,
               w,
-              _v51._0 + 180);
+              _v70._0 + 180);
+            case "LevelIntro":
+            return levelIntroUpdate(w);
             case "Playing":
             return gameUpdate(w);
             case "Title":
@@ -1224,9 +1365,9 @@ Elm.Destroid.Control.make = function (_elm) {
             case "Transition":
             return A2(transitionUpdate,
               w,
-              _v51._0 + 120);}
+              _v70._0 + 120);}
          _U.badCase($moduleName,
-         "between lines 12 and 16");
+         "between lines 12 and 17");
       }()(watcher(timeStep(w)(m)));
    });
    _elm.Destroid.Control.values = {_op: _op
@@ -1236,10 +1377,16 @@ Elm.Destroid.Control.make = function (_elm) {
                                   ,titleUpdate: titleUpdate
                                   ,setSize: setSize
                                   ,transitionUpdate: transitionUpdate
+                                  ,prepLevelIntro: prepLevelIntro
+                                  ,emitTimes: emitTimes
+                                  ,levelIntroUpdate: levelIntroUpdate
+                                  ,checkIntroExpiration: checkIntroExpiration
+                                  ,emit: emit
                                   ,gameUpdate: gameUpdate
                                   ,flightControls: flightControls
                                   ,gun: gun
                                   ,gun$: gun$
+                                  ,b_i: b_i
                                   ,shootFrom: shootFrom
                                   ,evolveAll: evolveAll
                                   ,evolve: evolve
@@ -1249,15 +1396,19 @@ Elm.Destroid.Control.make = function (_elm) {
                                   ,distance: distance
                                   ,checkDistance: checkDistance
                                   ,filterN: filterN
-                                  ,applyCollisions: applyCollisions
-                                  ,astScale: astScale
+                                  ,shipBulImpacts: shipBulImpacts
+                                  ,astSize: astSize
                                   ,breakUp$: breakUp$
                                   ,breakUp: breakUp
-                                  ,distance$: distance$
-                                  ,checkDistance$: checkDistance$
                                   ,checkAst: checkAst
                                   ,checkAst_Bullet: checkAst_Bullet
-                                  ,applyImpacts: applyImpacts
+                                  ,bullAstImpacts: bullAstImpacts
+                                  ,checkAstDistance: checkAstDistance
+                                  ,shipAstImpacts: shipAstImpacts
+                                  ,Timed: Timed
+                                  ,expiration: expiration
+                                  ,expireBullets: expireBullets
+                                  ,checkBlink: checkBlink
                                   ,checkDeath: checkDeath
                                   ,deadUpdate: deadUpdate};
    return _elm.Destroid.Control.values;
@@ -1275,6 +1426,8 @@ Elm.Destroid.Debug.make = function (_elm) {
    _L = _N.List.make(_elm),
    $moduleName = "Destroid.Debug",
    $Basics = Elm.Basics.make(_elm),
+   $Color = Elm.Color.make(_elm),
+   $Graphics$Collage = Elm.Graphics.Collage.make(_elm),
    $Graphics$Element = Elm.Graphics.Element.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
@@ -1301,10 +1454,23 @@ Elm.Destroid.Debug.make = function (_elm) {
       _L.fromArray([show_fps(n)
                    ,show_step(n)]));
    };
+   var debug_panel = F2(function (_v0,
+   dt) {
+      return function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return $Graphics$Collage.move({ctor: "_Tuple2"
+                                          ,_0: 160 - 0.5 * $Basics.toFloat(_v0._0)
+                                          ,_1: 30 - 0.5 * $Basics.toFloat(_v0._1)})($Graphics$Collage.toForm($Graphics$Element.width(300)($Graphics$Element.color($Color.orange)(debug_info(dt)))));}
+         _U.badCase($moduleName,
+         "between lines 23 and 27");
+      }();
+   });
    _elm.Destroid.Debug.values = {_op: _op
                                 ,show_fps: show_fps
                                 ,show_step: show_step
-                                ,debug_info: debug_info};
+                                ,debug_info: debug_info
+                                ,debug_panel: debug_panel};
    return _elm.Destroid.Debug.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Main = Elm.Destroid.Main || {};
@@ -1372,6 +1538,8 @@ Elm.Destroid.Model.make = function (_elm) {
    _L = _N.List.make(_elm),
    $moduleName = "Destroid.Model",
    $Basics = Elm.Basics.make(_elm),
+   $Destroid$Params = Elm.Destroid.Params.make(_elm),
+   $Destroid$Utils = Elm.Destroid.Utils.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
@@ -1383,9 +1551,17 @@ Elm.Destroid.Model.make = function (_elm) {
             ,vy: 0
             ,x: 0
             ,y: 0};
-   var x1 = _U.replace([["vx",20]
-                       ,["y",80]],
+   var x_wh = _U.replace([["x",-80]
+                         ,["y",80]],
    x0);
+   var screenCoords = function (m) {
+      return $Destroid$Utils.v2scale(m.screenScale);
+   };
+   var stage = function (m) {
+      return A2(screenCoords,
+      m,
+      $Destroid$Params.spaceSize);
+   };
    var Model = function (a) {
       return function (b) {
          return function (c) {
@@ -1397,18 +1573,21 @@ Elm.Destroid.Model.make = function (_elm) {
                            return function (i) {
                               return function (j) {
                                  return function (k) {
-                                    return {_: {}
-                                           ,ast: g
-                                           ,buls: f
-                                           ,debug: k
-                                           ,dt: d
-                                           ,f: h
-                                           ,life: j
-                                           ,me: e
-                                           ,mode: a
-                                           ,size: b
-                                           ,time: c
-                                           ,trigg: i};
+                                    return function (l) {
+                                       return {_: {}
+                                              ,ast: g
+                                              ,blink: l
+                                              ,buls: f
+                                              ,dt: d
+                                              ,f: i
+                                              ,life: k
+                                              ,lvl: h
+                                              ,me: e
+                                              ,mode: a
+                                              ,screenScale: b
+                                              ,time: c
+                                              ,trigg: j};
+                                    };
                                  };
                               };
                            };
@@ -1420,10 +1599,35 @@ Elm.Destroid.Model.make = function (_elm) {
          };
       };
    };
+   var Level = F4(function (a,
+   b,
+   c,
+   d) {
+      return {_: {}
+             ,ls: a
+             ,tf: c
+             ,ts: b
+             ,xi: d};
+   });
    var Small = {ctor: "Small"};
    var Medium = {ctor: "Medium"};
    var Big = {ctor: "Big"};
-   var a0 = _U.insert("sz",Big,x1);
+   var l0 = {_: {}
+            ,ls: _L.fromArray([{ctor: "_Tuple3"
+                               ,_0: 0
+                               ,_1: 20
+                               ,_2: Big}
+                              ,{ctor: "_Tuple3"
+                               ,_0: 2
+                               ,_1: 20
+                               ,_2: Big}
+                              ,{ctor: "_Tuple3"
+                               ,_0: 4
+                               ,_1: 20
+                               ,_2: Big}])
+            ,tf: 1400
+            ,ts: _L.fromArray([])
+            ,xi: x_wh};
    var Phys = F7(function (a,
    b,
    c,
@@ -1446,40 +1650,50 @@ Elm.Destroid.Model.make = function (_elm) {
    var Dead = function (a) {
       return {ctor: "Dead",_0: a};
    };
-   var Playing = {ctor: "Playing"};
+   var Playing = function (a) {
+      return {ctor: "Playing"
+             ,_0: a};
+   };
+   var LevelIntro = function (a) {
+      return {ctor: "LevelIntro"
+             ,_0: a};
+   };
    var Transition = function (a) {
       return {ctor: "Transition"
              ,_0: a};
    };
    var Title = {ctor: "Title"};
    var istate = {_: {}
-                ,ast: _L.fromArray([a0])
+                ,ast: _L.fromArray([])
+                ,blink: $Maybe.Nothing
                 ,buls: _L.fromArray([])
-                ,debug: false
                 ,dt: 0
                 ,f: false
                 ,life: 100
+                ,lvl: l0
                 ,me: x0
                 ,mode: Title
-                ,size: {ctor: "_Tuple2"
-                       ,_0: 900
-                       ,_1: 600}
+                ,screenScale: 9
                 ,time: 0
                 ,trigg: false};
    _elm.Destroid.Model.values = {_op: _op
                                 ,Title: Title
                                 ,Transition: Transition
+                                ,LevelIntro: LevelIntro
                                 ,Playing: Playing
                                 ,Dead: Dead
                                 ,Phys: Phys
                                 ,Big: Big
                                 ,Medium: Medium
                                 ,Small: Small
+                                ,Level: Level
                                 ,Model: Model
+                                ,screenCoords: screenCoords
+                                ,stage: stage
                                 ,istate: istate
                                 ,x0: x0
-                                ,x1: x1
-                                ,a0: a0};
+                                ,x_wh: x_wh
+                                ,l0: l0};
    return _elm.Destroid.Model.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Params = Elm.Destroid.Params || {};
@@ -1495,27 +1709,87 @@ Elm.Destroid.Params.make = function (_elm) {
    _L = _N.List.make(_elm),
    $moduleName = "Destroid.Params",
    $Basics = Elm.Basics.make(_elm),
+   $Color = Elm.Color.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
-   var aspect = 1.5;
-   var astScaleSmall = 100;
-   var astScaleMedium = 70;
-   var astScaleBig = 40;
+   var t_blink = 60;
+   var astDamageScale = 0.1;
+   var bulletLife = 200;
+   var t_sep = 40;
+   var t_fade = 75;
+   var shipHitR = 3.0;
    var astV = 20;
    var bulV = 80;
-   var scaleV = 0.12;
+   var scaleV = 3.0e-2;
    var scaleR = 6.0e-3;
+   var lifebarcolor = A4($Color.rgba,
+   214,
+   102,
+   220,
+   0.7);
+   var bulletcolor = A3($Color.rgb,
+   247,
+   104,
+   147);
+   var boostercolor = A3($Color.rgb,
+   169,
+   172,
+   146);
+   var shipcolor = A3($Color.rgb,
+   225,
+   250,
+   213);
+   var titleBG = A3($Color.rgb,
+   45,
+   61,
+   91);
+   var gameBG = A3($Color.rgb,
+   31,
+   42,
+   62);
+   var debug = false;
+   var spaceH = 200;
+   var astSizeBig = spaceH / 15;
+   var astSizeMedium = spaceH / 35;
+   var astSizeSmall = spaceH / 65;
+   var shipSize = spaceH / 50;
+   var bulletSize = spaceH / 350;
+   var stageScale = 0.8;
+   var aspect = 1.5;
+   var spaceW = 200 * aspect;
+   var spaceSize = {ctor: "_Tuple2"
+                   ,_0: spaceW
+                   ,_1: spaceH};
    _elm.Destroid.Params.values = {_op: _op
+                                 ,aspect: aspect
+                                 ,stageScale: stageScale
+                                 ,spaceW: spaceW
+                                 ,spaceH: spaceH
+                                 ,spaceSize: spaceSize
+                                 ,debug: debug
+                                 ,gameBG: gameBG
+                                 ,titleBG: titleBG
+                                 ,shipcolor: shipcolor
+                                 ,boostercolor: boostercolor
+                                 ,bulletcolor: bulletcolor
+                                 ,lifebarcolor: lifebarcolor
                                  ,scaleR: scaleR
                                  ,scaleV: scaleV
                                  ,bulV: bulV
                                  ,astV: astV
-                                 ,astScaleBig: astScaleBig
-                                 ,astScaleMedium: astScaleMedium
-                                 ,astScaleSmall: astScaleSmall
-                                 ,aspect: aspect};
+                                 ,astSizeBig: astSizeBig
+                                 ,astSizeMedium: astSizeMedium
+                                 ,astSizeSmall: astSizeSmall
+                                 ,shipSize: shipSize
+                                 ,shipHitR: shipHitR
+                                 ,bulletSize: bulletSize
+                                 ,t_fade: t_fade
+                                 ,t_sep: t_sep
+                                 ,bulletLife: bulletLife
+                                 ,astDamageScale: astDamageScale
+                                 ,t_blink: t_blink};
    return _elm.Destroid.Params.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Utils = Elm.Destroid.Utils || {};
@@ -1535,30 +1809,42 @@ Elm.Destroid.Utils.make = function (_elm) {
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
-   _op["::^"] = F2(function (a1,
-   _v0) {
+   var isJust = function (m) {
       return function () {
-         switch (_v0.ctor)
+         switch (m.ctor)
+         {case "Just": return true;
+            case "Nothing": return false;}
+         _U.badCase($moduleName,
+         "between lines 31 and 33");
+      }();
+   };
+   var isNothing = function ($) {
+      return $Basics.not(isJust($));
+   };
+   _op["::^"] = F2(function (a1,
+   _v2) {
+      return function () {
+         switch (_v2.ctor)
          {case "_Tuple2":
             return {ctor: "_Tuple2"
                    ,_0: A2($List._op["::"],
                    a1,
-                   _v0._0)
-                   ,_1: _v0._1};}
+                   _v2._0)
+                   ,_1: _v2._1};}
          _U.badCase($moduleName,
          "on line 26, column 21 to 33");
       }();
    });
    _op["++^"] = F2(function (la1,
-   _v4) {
+   _v6) {
       return function () {
-         switch (_v4.ctor)
+         switch (_v6.ctor)
          {case "_Tuple2":
             return {ctor: "_Tuple2"
                    ,_0: A2($Basics._op["++"],
                    la1,
-                   _v4._0)
-                   ,_1: _v4._1};}
+                   _v6._0)
+                   ,_1: _v6._1};}
          _U.badCase($moduleName,
          "on line 21, column 23 to 37");
       }();
@@ -1579,13 +1865,13 @@ Elm.Destroid.Utils.make = function (_elm) {
    });
    var toF = $Basics.toFloat;
    var v2scale = F2(function (r,
-   _v9) {
+   _v11) {
       return function () {
-         switch (_v9.ctor)
+         switch (_v11.ctor)
          {case "_Tuple2":
             return {ctor: "_Tuple2"
-                   ,_0: r * _v9._0
-                   ,_1: r * _v9._1};}
+                   ,_0: r * _v11._0
+                   ,_1: r * _v11._1};}
          _U.badCase($moduleName,
          "on line 11, column 20 to 27");
       }();
@@ -1594,7 +1880,9 @@ Elm.Destroid.Utils.make = function (_elm) {
    _elm.Destroid.Utils.values = {_op: _op
                                 ,v2scale: v2scale
                                 ,toF: toF
-                                ,appendIf: appendIf};
+                                ,appendIf: appendIf
+                                ,isJust: isJust
+                                ,isNothing: isNothing};
    return _elm.Destroid.Utils.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Views = Elm.Destroid.Views || {};
@@ -1628,7 +1916,34 @@ Elm.Destroid.Views.make = function (_elm) {
    m) {
       return $Graphics$Element.leftAligned($Text.fromString("YOU\'RE DEAD"));
    });
-   var grad = function (s) {
+   var lifeBar = F2(function (wld,
+   m) {
+      return function () {
+         var $ = {ctor: "_Tuple2"
+                 ,_0: $Destroid$Utils.toF(wld.w)
+                 ,_1: $Destroid$Utils.toF(wld.h)},
+         w = $._0,
+         h = $._1;
+         var life = m.life * 1.4;
+         return A2($Destroid$Utils._op["<$>"],
+         $Graphics$Collage.move({ctor: "_Tuple2"
+                                ,_0: -0.5 * w + 90
+                                ,_1: 0.5 * h - 24}),
+         _L.fromArray([$Graphics$Collage.move({ctor: "_Tuple2"
+                                              ,_0: (life - 140) * 0.5
+                                              ,_1: 0})(A2($Graphics$Collage.filled,
+                      $Destroid$Params.lifebarcolor,
+                      A2($Graphics$Collage.rect,
+                      life,
+                      8)))
+                      ,A2($Graphics$Collage.outlined,
+                      $Graphics$Collage.solid($Color.white),
+                      A2($Graphics$Collage.rect,
+                      140,
+                      8))]));
+      }();
+   });
+   var boostgrad = function (s) {
       return $Graphics$Collage.gradient(A3($Color.linear,
       {ctor: "_Tuple2"
       ,_0: 0
@@ -1654,17 +1969,6 @@ Elm.Destroid.Views.make = function (_elm) {
                     141,
                     0.5)}])));
    };
-   var refl = $List.map(function (_v0) {
-      return function () {
-         switch (_v0.ctor)
-         {case "_Tuple2":
-            return {ctor: "_Tuple2"
-                   ,_0: 0 - _v0._0
-                   ,_1: _v0._1};}
-         _U.badCase($moduleName,
-         "on line 151, column 29 to 33");
-      }();
-   });
    var flame = _L.fromArray([{ctor: "_Tuple2"
                              ,_0: 1.3
                              ,_1: -1.3}
@@ -1746,32 +2050,79 @@ Elm.Destroid.Views.make = function (_elm) {
                                  ,{ctor: "_Tuple2"
                                   ,_0: -0.26
                                   ,_1: 3.84}]);
-   var position = function (ph) {
-      return function ($) {
-         return $Graphics$Collage.rotate(ph.r)($Graphics$Collage.move({ctor: "_Tuple2"
-                                                                      ,_0: ph.x
-                                                                      ,_1: ph.y})($));
-      };
-   };
-   var asteroid = F2(function (m,
-   a) {
+   var refl = $List.map(function (_v0) {
       return function () {
-         var $ = m.size,
-         w = $._0,
-         h = $._1;
-         var scale = function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return {ctor: "_Tuple2"
+                   ,_0: 0 - _v0._0
+                   ,_1: _v0._1};}
+         _U.badCase($moduleName,
+         "on line 182, column 29 to 33");
+      }();
+   });
+   var position = F2(function (m,
+   ph) {
+      return function ($) {
+         return $Graphics$Collage.rotate(ph.r)($Graphics$Collage.move(A2($Destroid$Model.screenCoords,
+         m,
+         {ctor: "_Tuple2"
+         ,_0: ph.x
+         ,_1: ph.y}))($));
+      };
+   });
+   var ship = function (m) {
+      return function () {
+         var sh = A2(position,
+         m,
+         m.me)($Graphics$Collage.group(A2($Destroid$Utils.appendIf,
+         m.f,
+         _L.fromArray([boostgrad($Destroid$Params.shipSize)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale($Destroid$Params.shipSize))(refl(flame))))
+                      ,boostgrad($Destroid$Params.shipSize)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale($Destroid$Params.shipSize))(flame)))]))(_L.fromArray([$Graphics$Collage.filled($Destroid$Params.boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale($Destroid$Params.shipSize))(booster)))
+                                                                                                                                                                             ,$Graphics$Collage.filled($Destroid$Params.boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale($Destroid$Params.shipSize))(refl(booster))))
+                                                                                                                                                                             ,$Graphics$Collage.filled($Destroid$Params.shipcolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale($Destroid$Params.shipSize))(shipdesign)))]))));
+         return $Destroid$Utils.isNothing(m.blink) ? sh : $Graphics$Collage.alpha(0.4)(sh);
+      }();
+   };
+   var bullet = F2(function (ph,
+   m) {
+      return function () {
+         var n = 16;
+         var s = $Destroid$Params.bulletSize;
+         return A2(position,
+         m,
+         ph)($Graphics$Collage.filled($Destroid$Params.bulletcolor)($Graphics$Collage.polygon(_L.fromArray([{ctor: "_Tuple2"
+                                                                                                            ,_0: 0 - s
+                                                                                                            ,_1: 0}
+                                                                                                           ,{ctor: "_Tuple2"
+                                                                                                            ,_0: 0 - s
+                                                                                                            ,_1: n * s}
+                                                                                                           ,{ctor: "_Tuple2"
+                                                                                                            ,_0: s
+                                                                                                            ,_1: n * s}
+                                                                                                           ,{ctor: "_Tuple2"
+                                                                                                            ,_0: s
+                                                                                                            ,_1: 0}]))));
+      }();
+   });
+   var asteroid = F2(function (a,
+   m) {
+      return function () {
+         var size = function () {
             var _v4 = a.sz;
             switch (_v4.ctor)
             {case "Big":
-               return h / $Destroid$Params.astScaleBig;
+               return $Destroid$Params.astSizeBig;
                case "Medium":
-               return h / $Destroid$Params.astScaleMedium;
+               return $Destroid$Params.astSizeMedium;
                case "Small":
-               return h / $Destroid$Params.astScaleSmall;}
+               return $Destroid$Params.astSizeSmall;}
             _U.badCase($moduleName,
-            "between lines 191 and 194");
+            "between lines 235 and 238");
          }();
-         return position(a)($Graphics$Collage.filled($Color.white)($Graphics$Collage.circle(scale)));
+         return A2(position,
+         m,
+         a)($Graphics$Collage.outlined($Graphics$Collage.solid($Color.white))($Graphics$Collage.circle(size)));
       }();
    });
    var copies = function (_v5) {
@@ -1804,7 +2155,7 @@ Elm.Destroid.Views.make = function (_elm) {
                                  ,_0: _v5._0
                                  ,_1: _v5._1}]);}
          _U.badCase($moduleName,
-         "between lines 83 and 93");
+         "between lines 150 and 160");
       }();
    };
    var duplicate = F2(function (m,
@@ -1813,13 +2164,152 @@ Elm.Destroid.Views.make = function (_elm) {
       A2($Basics.flip,
       $Graphics$Collage.move,
       f),
-      copies(m.size));
+      copies($Destroid$Model.stage(m)));
    });
-   var asteroids = F2(function (m,
-   a) {
-      return A2(duplicate,
+   var render = F2(function (m,l) {
+      return function () {
+         switch (l.ctor)
+         {case "::":
+            return A2($Basics._op["++"],
+              A2(duplicate,m,l._0(m)),
+              A2(render,m,l._1));
+            case "[]":
+            return _L.fromArray([]);}
+         _U.badCase($moduleName,
+         "between lines 140 and 142");
+      }();
+   });
+   var renderers = function (m) {
+      return A2($List._op["::"],
+      ship,
+      A2($Basics._op["++"],
+      A2($Destroid$Utils._op["<$>"],
+      bullet,
+      m.buls),
+      A2($Destroid$Utils._op["<$>"],
+      asteroid,
+      m.ast)));
+   };
+   var renderGroups = function (m) {
+      return A2(render,
       m,
-      A2(asteroid,m,a));
+      renderers(m));
+   };
+   var gameView = F2(function (wld,
+   m) {
+      return function () {
+         var $ = {ctor: "_Tuple2"
+                 ,_0: wld.w
+                 ,_1: wld.h},
+         cw = $._0,
+         ch = $._1;
+         return A2($Graphics$Collage.collage,
+         cw,
+         ch)(A2($List._op["::"],
+         $Graphics$Collage.filled($Destroid$Params.gameBG)(A2($Graphics$Collage.rect,
+         $Destroid$Utils.toF(cw),
+         $Destroid$Utils.toF(ch))),
+         A2($Basics._op["++"],
+         renderGroups(m),
+         A2($Basics._op["++"],
+         A2(lifeBar,wld,m),
+         $Destroid$Params.debug ? _L.fromArray([A2($Destroid$Debug.debug_panel,
+         {ctor: "_Tuple2",_0: cw,_1: ch},
+         m.dt)]) : _L.fromArray([])))));
+      }();
+   });
+   var whgrad = function (n) {
+      return A5($Color.radial,
+      {ctor: "_Tuple2",_0: 0,_1: 0},
+      0.2 * n,
+      {ctor: "_Tuple2",_0: 0,_1: 0},
+      n,
+      _L.fromArray([{ctor: "_Tuple2"
+                    ,_0: 0
+                    ,_1: A3($Color.rgb,0,0,0)}
+                   ,{ctor: "_Tuple2"
+                    ,_0: 1
+                    ,_1: A4($Color.rgba,
+                    0,
+                    0,
+                    0,
+                    0)}]));
+   };
+   var whform = function (m) {
+      return A2(position,
+      m,
+      m.lvl.xi)(A2($Graphics$Collage.gradient,
+      whgrad(100),
+      $Graphics$Collage.circle(200)));
+   };
+   var wormhole = F2(function (f,
+   m) {
+      return $Graphics$Collage.alpha(f)(whform(m));
+   });
+   var introRenderers = F2(function (f,
+   m) {
+      return A2($List._op["::"],
+      wormhole(f),
+      A2($Basics._op["++"],
+      renderers(m),
+      _L.fromArray([wormhole(f * 0.4)])));
+   });
+   var introRenderGroups = F2(function (f,
+   m) {
+      return A2(render,
+      m,
+      A2(introRenderers,f,m));
+   });
+   var fade = F3(function (ti,
+   tf,
+   t) {
+      return (t - ti) / (tf - ti);
+   });
+   var fadeInOut = F5(function (t1,
+   t2,
+   t3,
+   t4,
+   t) {
+      return _U.cmp(t1,
+      t) < 0 && _U.cmp(t,
+      t2) < 1 ? A3(fade,
+      t1,
+      t2,
+      t) : _U.cmp(t2,
+      t) < 0 && _U.cmp(t,
+      t3) < 1 ? 1 : _U.cmp(t3,
+      t) < 0 && _U.cmp(t,
+      t4) < 1 ? A3(fade,t4,t3,t) : 0;
+   });
+   var levelIntroView = F3(function (wld,
+   t,
+   m) {
+      return function () {
+         var $ = {ctor: "_Tuple2"
+                 ,_0: wld.w
+                 ,_1: wld.h},
+         cw = $._0,
+         ch = $._1;
+         var alph = A5(fadeInOut,
+         t,
+         t + $Destroid$Params.t_fade,
+         m.lvl.tf - $Destroid$Params.t_fade,
+         m.lvl.tf,
+         m.time);
+         return A2($Graphics$Collage.collage,
+         cw,
+         ch)(A2($List._op["::"],
+         $Graphics$Collage.filled($Destroid$Params.gameBG)(A2($Graphics$Collage.rect,
+         $Destroid$Utils.toF(cw),
+         $Destroid$Utils.toF(ch))),
+         A2($Basics._op["++"],
+         A2(introRenderGroups,alph,m),
+         A2($Basics._op["++"],
+         A2(lifeBar,wld,m),
+         $Destroid$Params.debug ? _L.fromArray([A2($Destroid$Debug.debug_panel,
+         {ctor: "_Tuple2",_0: cw,_1: ch},
+         m.dt)]) : _L.fromArray([])))));
+      }();
    });
    var sq = function (x) {
       return x * x;
@@ -1827,117 +2317,41 @@ Elm.Destroid.Views.make = function (_elm) {
    var hyper = function (x) {
       return $Basics.sqrt(1 + x * x);
    };
-   var lifebarcolor = A4($Color.rgba,
-   214,
-   102,
-   220,
-   0.7);
-   var lifeBar = F2(function (wld,
-   m) {
-      return function () {
-         var $ = {ctor: "_Tuple2"
-                 ,_0: $Destroid$Utils.toF(wld.w)
-                 ,_1: $Destroid$Utils.toF(wld.h)},
-         w = $._0,
-         h = $._1;
-         var life = m.life * 1.4;
-         return A2($Destroid$Utils._op["<$>"],
-         $Graphics$Collage.move({ctor: "_Tuple2"
-                                ,_0: -0.5 * w + 90
-                                ,_1: 0.5 * h - 24}),
-         _L.fromArray([$Graphics$Collage.move({ctor: "_Tuple2"
-                                              ,_0: (life - 140) * 0.5
-                                              ,_1: 0})(A2($Graphics$Collage.filled,
-                      lifebarcolor,
-                      A2($Graphics$Collage.rect,
-                      life,
-                      8)))
-                      ,A2($Graphics$Collage.outlined,
-                      $Graphics$Collage.solid($Color.white),
-                      A2($Graphics$Collage.rect,
-                      140,
-                      8))]));
-      }();
-   });
-   var bulletcolor = A3($Color.rgb,
-   247,
-   104,
-   147);
-   var bullet = F2(function (_v9,
-   ph) {
-      return function () {
-         switch (_v9.ctor)
-         {case "_Tuple2":
-            return function () {
-                 var n = 16;
-                 var s = _v9._1 / 1000;
-                 return position(ph)($Graphics$Collage.filled(bulletcolor)($Graphics$Collage.polygon(_L.fromArray([{ctor: "_Tuple2"
-                                                                                                                   ,_0: 0 - s
-                                                                                                                   ,_1: 0}
-                                                                                                                  ,{ctor: "_Tuple2"
-                                                                                                                   ,_0: 0 - s
-                                                                                                                   ,_1: n * s}
-                                                                                                                  ,{ctor: "_Tuple2"
-                                                                                                                   ,_0: s
-                                                                                                                   ,_1: n * s}
-                                                                                                                  ,{ctor: "_Tuple2"
-                                                                                                                   ,_0: s
-                                                                                                                   ,_1: 0}]))));
-              }();}
-         _U.badCase($moduleName,
-         "between lines 166 and 170");
-      }();
-   });
-   var bullets = function (m) {
-      return $List.concat(A2($Destroid$Utils._op["<$>"],
-      duplicate(m),
-      A2($Destroid$Utils._op["<$>"],
-      bullet(m.size),
-      m.buls)));
-   };
-   var boostercolor = A3($Color.rgb,
-   169,
-   172,
-   146);
-   var shipcolor = A3($Color.rgb,
-   225,
-   250,
-   213);
    var shipIntroAnim = F2(function (dr,
    m) {
       return function () {
-         var $ = m.size,
+         var scale = hyper(4 - dr) * $Destroid$Params.shipSize;
+         var $ = $Destroid$Model.stage(m),
          w = $._0,
          h = $._1;
-         var scale = hyper(4 - dr) * h / 120;
-         return $Graphics$Collage.group(_L.fromArray([$Graphics$Collage.alpha(dr / 4)($Graphics$Collage.filled(boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(booster))))
-                                                     ,$Graphics$Collage.alpha(dr / 4)($Graphics$Collage.filled(boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(refl(booster)))))
-                                                     ,$Graphics$Collage.filled(shipcolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(shipdesign)))]));
+         return $Graphics$Collage.group(_L.fromArray([$Graphics$Collage.alpha(dr / 4)($Graphics$Collage.filled($Destroid$Params.boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(booster))))
+                                                     ,$Graphics$Collage.alpha(dr / 4)($Graphics$Collage.filled($Destroid$Params.boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(refl(booster)))))
+                                                     ,$Graphics$Collage.filled($Destroid$Params.shipcolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(shipdesign)))]));
       }();
    });
-   var ship = function (m) {
+   var transitionView = F3(function (wld,
+   t0,
+   m) {
       return function () {
-         var $ = m.size,
+         var alph = $Debug.watch("Intro animation alpha")((m.time - t0) / 120);
+         var $ = {ctor: "_Tuple2"
+                 ,_0: wld.w
+                 ,_1: wld.h},
          w = $._0,
          h = $._1;
-         var scale = h / 120;
-         return position(m.me)($Graphics$Collage.group(A2($Destroid$Utils.appendIf,
-         m.f,
-         _L.fromArray([grad(scale)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(refl(flame))))
-                      ,grad(scale)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(flame)))]))(_L.fromArray([$Graphics$Collage.filled(boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(booster)))
-                                                                                                                                ,$Graphics$Collage.filled(boostercolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(refl(booster))))
-                                                                                                                                ,$Graphics$Collage.filled(shipcolor)($Graphics$Collage.polygon($List.map($Destroid$Utils.v2scale(scale))(shipdesign)))]))));
+         return A2($Graphics$Collage.collage,
+         w,
+         h)(_L.fromArray([$Graphics$Collage.filled($Destroid$Params.titleBG)(A2($Graphics$Collage.rect,
+                         $Destroid$Utils.toF(w),
+                         $Destroid$Utils.toF(h)))
+                         ,$Graphics$Collage.alpha(alph)($Graphics$Collage.filled($Destroid$Params.gameBG)(A2($Graphics$Collage.rect,
+                         $Destroid$Utils.toF(w),
+                         $Destroid$Utils.toF(h))))
+                         ,A2(shipIntroAnim,
+                         alph * 4,
+                         m)]));
       }();
-   };
-   var ships = function (m) {
-      return A2(duplicate,
-      m,
-      ship(m));
-   };
-   var titleBG = A3($Color.rgb,
-   45,
-   61,
-   91);
+   });
    var titleView = F2(function (wld,
    m) {
       return function () {
@@ -1946,12 +2360,12 @@ Elm.Destroid.Views.make = function (_elm) {
                  ,_1: wld.h},
          cw = $._0,
          ch = $._1;
-         var $ = m.size,
+         var $ = $Destroid$Model.stage(m),
          w = $._0,
          h = $._1;
          return A2($Graphics$Collage.collage,
          cw,
-         ch)(_L.fromArray([$Graphics$Collage.filled(titleBG)(A2($Graphics$Collage.rect,
+         ch)(_L.fromArray([$Graphics$Collage.filled($Destroid$Params.titleBG)(A2($Graphics$Collage.rect,
                           $Destroid$Utils.toF(cw),
                           $Destroid$Utils.toF(ch)))
                           ,A2(shipIntroAnim,0,m)
@@ -1975,71 +2389,17 @@ Elm.Destroid.Views.make = function (_elm) {
                           "../img/Controls.png")))]));
       }();
    });
-   var gameBG = A3($Color.rgb,
-   31,
-   42,
-   62);
-   var gameView = F2(function (wld,
-   m) {
-      return function () {
-         var $ = {ctor: "_Tuple2"
-                 ,_0: wld.w
-                 ,_1: wld.h},
-         cw = $._0,
-         ch = $._1;
-         var $ = m.size,
-         w = $._0,
-         h = $._1;
-         return A2($Graphics$Collage.collage,
-         cw,
-         ch)(A2($Basics._op["++"],
-         _L.fromArray([$Graphics$Collage.filled(gameBG)(A2($Graphics$Collage.rect,
-         $Destroid$Utils.toF(cw),
-         $Destroid$Utils.toF(ch)))]),
-         A2($Basics._op["++"],
-         bullets(m),
-         A2($Basics._op["++"],
-         ships(m),
-         A2($Basics._op["++"],
-         $List.concat(A2($Destroid$Utils._op["<$>"],
-         asteroids(m),
-         m.ast)),
-         A2($Basics._op["++"],
-         A2(lifeBar,wld,m),
-         m.debug ? _L.fromArray([$Graphics$Collage.move({ctor: "_Tuple2"
-                                                        ,_0: 160 - 0.5 * $Destroid$Utils.toF(cw)
-                                                        ,_1: 30 - 0.5 * $Destroid$Utils.toF(ch)})($Graphics$Collage.toForm($Graphics$Element.width(300)($Graphics$Element.color($Color.orange)($Destroid$Debug.debug_info(m.dt)))))]) : _L.fromArray([])))))));
-      }();
-   });
-   var transitionView = F3(function (wld,
-   t0,
-   m) {
-      return function () {
-         var alph = $Debug.watch("Intro animation alpha")((m.time - t0) / 120);
-         var $ = {ctor: "_Tuple2"
-                 ,_0: wld.w
-                 ,_1: wld.h},
-         w = $._0,
-         h = $._1;
-         return A2($Graphics$Collage.collage,
-         w,
-         h)(_L.fromArray([$Graphics$Collage.filled(titleBG)(A2($Graphics$Collage.rect,
-                         $Destroid$Utils.toF(w),
-                         $Destroid$Utils.toF(h)))
-                         ,$Graphics$Collage.alpha(alph)($Graphics$Collage.filled(gameBG)(A2($Graphics$Collage.rect,
-                         $Destroid$Utils.toF(w),
-                         $Destroid$Utils.toF(h))))
-                         ,A2(shipIntroAnim,
-                         alph * 4,
-                         m)]));
-      }();
-   });
    var view = F2(function (w,m) {
       return function () {
-         var _v13 = m.mode;
-         switch (_v13.ctor)
+         var _v12 = m.mode;
+         switch (_v12.ctor)
          {case "Dead":
             return A2(deadView,w,m);
+            case "LevelIntro":
+            return A3(levelIntroView,
+              w,
+              _v12._0,
+              m);
             case "Playing":
             return A2(gameView,w,m);
             case "Title":
@@ -2047,41 +2407,43 @@ Elm.Destroid.Views.make = function (_elm) {
             case "Transition":
             return A3(transitionView,
               w,
-              _v13._0,
+              _v12._0,
               m);}
          _U.badCase($moduleName,
-         "between lines 26 and 30");
+         "between lines 18 and 23");
       }();
    });
    _elm.Destroid.Views.values = {_op: _op
-                                ,gameBG: gameBG
-                                ,titleBG: titleBG
-                                ,shipcolor: shipcolor
-                                ,boostercolor: boostercolor
-                                ,bulletcolor: bulletcolor
-                                ,lifebarcolor: lifebarcolor
                                 ,view: view
                                 ,titleView: titleView
                                 ,shipIntroAnim: shipIntroAnim
                                 ,hyper: hyper
                                 ,sq: sq
+                                ,transitionView: transitionView
+                                ,levelIntroView: levelIntroView
+                                ,fade: fade
+                                ,fadeInOut: fadeInOut
+                                ,introRenderers: introRenderers
+                                ,introRenderGroups: introRenderGroups
+                                ,wormhole: wormhole
+                                ,whform: whform
+                                ,whgrad: whgrad
                                 ,gameView: gameView
-                                ,copies: copies
+                                ,renderGroups: renderGroups
+                                ,renderers: renderers
+                                ,render: render
                                 ,duplicate: duplicate
+                                ,copies: copies
                                 ,position: position
+                                ,ship: ship
+                                ,refl: refl
                                 ,shipdesign: shipdesign
                                 ,booster: booster
                                 ,flame: flame
-                                ,ship: ship
-                                ,refl: refl
-                                ,grad: grad
-                                ,ships: ships
+                                ,boostgrad: boostgrad
                                 ,bullet: bullet
-                                ,bullets: bullets
-                                ,lifeBar: lifeBar
                                 ,asteroid: asteroid
-                                ,asteroids: asteroids
-                                ,transitionView: transitionView
+                                ,lifeBar: lifeBar
                                 ,deadView: deadView};
    return _elm.Destroid.Views.values;
 };Elm.Destroid = Elm.Destroid || {};

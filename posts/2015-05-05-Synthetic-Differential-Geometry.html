@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>BlackBrane - On Synthetic Differential Geometry</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">BlackBrane</a>
+            </div>
+            <div id="navigation">
+                <a href="https://github.com/BlackBrane"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
+                <a href="../archive.html">Archive</a>
+                <a href="../phys-math-resources">Physics Resources</a>
+                <a href="../cs-resources">CS Resources</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>On Synthetic Differential Geometry</h1>
+
+            <div class="info">
+    Posted on May  5, 2015
+    
+        by Cliff
+    
+</div>
+
+<p>Differential geometry plays a key role in a huge number of topics in math and physics that are of interest to me – and well beyond – so I’ve long been keen on finding ways to express its constructions in a pure functional language, specifically Haskell or Idris. Formalizing such things in these languages often proves to be useful not just for computation but for illumination. Recently I found an incredibly insightful demonstration of precisely this in a <a href="http://blog.sigfpe.com/2006/09/practical-synthetic-differential.html">2006 post by Dan Piponi</a> on synthetic differential geometry. Most of the code in this post will be rather directly adapted from Dan’s post, but I’ll be writing mine in Idris.</p>
+<p>Synthetic differential geometry is a natural way to reason about infinitessimal neighborhoods of spaces by making <em>differentials</em> a primative notion (hence the name) as opposed to something that emerges indirectly from formal limit definitions in terms of <span class="math">\(\epsilon\)</span>’s and <span class="math">\(\delta\)</span>’s. As such, this approach aligns quite closely with the physicist’s or engineer’s informal understanding of derivatives and their manipulations. Much of what I’m going to do here will be quite familiar to anyone who has used calculus in any significant way. What seems much more surprising is just how easily these notions can be described.</p>
+<p>On first trying this approach, I was struck by the similarity with how complex numbers are constructed. In both cases we extend the real numbers by postulating an new algebraic element with some particular nonstandard multiplication properties, especially with reguards to squaring. Since we aim to describe infinitessimals, i.e. in some sense “the smallest possible” displacement, it makes sense to require that this new element <em>squares to zero</em>. Thus:</p>
+<p><strong>Axiom: There exists a “number” <span class="math">\(d\)</span> such that <span class="math">\(d^2 = 0\)</span>.</strong></p>
+<p>Just like with the complex numbers, any real number can multiply our special element, and so now a general element of our number system is characterized by two reals. In our Idris implementation, since we have a variety of numeric types that may be appropriate to use depending on the circumstance, we define a fully polymorphic data type constructed with two values of the type in question.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Dual</span> a <span class="fu">=</span> (<span class="fu">.+</span>) a a</code></pre>
+<p>Anyone who has seen the Haskell or Idris implementation of complex numbers will recognize it as precisely identical up to the choice of names. In both cases the important semantic information comes from how we define an instance of the numerical typeclass <code>Num</code> for numerical types <code>a</code>.</p>
+<pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">instance</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Num</span> (<span class="dt">Dual</span> a) <span class="kw">where</span>
+  (x <span class="fu">.+</span> dx) <span class="fu">+</span> (y <span class="fu">.+</span> dy) <span class="fu">=</span> (x <span class="fu">+</span> y) <span class="fu">.+</span> (dx <span class="fu">+</span> dy)
+  (x <span class="fu">.+</span> dx) <span class="fu">-</span> (y <span class="fu">.+</span> dy) <span class="fu">=</span> (x <span class="fu">-</span> y) <span class="fu">.+</span> (dx <span class="fu">-</span> dy)
+  (x <span class="fu">.+</span> dx) <span class="fu">*</span> (y <span class="fu">.+</span> dy) <span class="fu">=</span> (x <span class="fu">*</span> y) <span class="fu">.+</span> (x<span class="fu">*</span>dy <span class="fu">+</span> y<span class="fu">*</span>dx)
+  abs (x <span class="fu">.+</span> dx) <span class="fu">=</span> abs x <span class="fu">.+</span> abs dx
+  fromInteger n <span class="fu">=</span> fromInteger n <span class="fu">.+</span> fromInteger <span class="dv">0</span></code></pre>
+<ul>
+<li><a href="http://home.sandiego.edu/~shulman/papers/sdg-pizza-seminar.pdf">Michael Schulman – Synthetic Differential Geometry Pizza Seminar</a> (pdf)</li>
+<li><a href="http://home.math.au.dk/kock/sdg99.pdf">Anders Kock – Synthetic Differential Geometry</a> (pdf)</li>
+</ul>
+
+        </div>
+        <div id="footer">
+            <div id="footerleft">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" border="0">
+                <img alt="Creative Commons License" src="../images/CC-BY-NC.png" /></a>
+            </div>
+            <div id="footerright">
+                Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
+            </div>
+        </div>
+    </body>
+</html>
