@@ -732,18 +732,19 @@ Elm.Destroid.Control.make = function (_elm) {
    $Debug = Elm.Debug.make(_elm),
    $Destroid$Model = Elm.Destroid.Model.make(_elm),
    $Destroid$Params = Elm.Destroid.Params.make(_elm),
+   $Destroid$Rand = Elm.Destroid.Rand.make(_elm),
    $Destroid$Utils = Elm.Destroid.Utils.make(_elm),
    $Destroid$World = Elm.Destroid.World.make(_elm),
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
-   var deadUpdate = F3(function (w,
-   t,
-   m) {
-      return _U.cmp(m.time,
-      t) < 0 ? m : $Destroid$Model.istate;
-   });
+   var checkClear = function (m) {
+      return $List.isEmpty(m.ast) ? _U.replace([["mode"
+                                                ,$Destroid$Model.Cleared(m.time)]
+                                               ,["blink",$Maybe.Nothing]],
+      m) : m;
+   };
    var checkDeath = function (m) {
       return _U.cmp(m.life,
       0) > 0 ? m : _U.replace([["mode"
@@ -761,7 +762,7 @@ Elm.Destroid.Control.make = function (_elm) {
               m) : m;
             case "Nothing": return m;}
          _U.badCase($moduleName,
-         "between lines 290 and 292");
+         "between lines 316 and 318");
       }();
    };
    var expiration = F2(function (t,
@@ -776,7 +777,7 @@ Elm.Destroid.Control.make = function (_elm) {
             case "[]":
             return _L.fromArray([]);}
          _U.badCase($moduleName,
-         "between lines 279 and 281");
+         "between lines 305 and 307");
       }();
    });
    var expireBullets = function (m) {
@@ -819,7 +820,7 @@ Elm.Destroid.Control.make = function (_elm) {
             case "Small":
             return _L.fromArray([]);}
          _U.badCase($moduleName,
-         "between lines 235 and 238");
+         "between lines 261 and 264");
       }();
    };
    var astSize = function (a) {
@@ -832,7 +833,7 @@ Elm.Destroid.Control.make = function (_elm) {
             case "Small":
             return $Destroid$Params.astSizeSmall;}
          _U.badCase($moduleName,
-         "between lines 222 and 225");
+         "between lines 248 and 251");
       }();
    };
    var filterN = function (f) {
@@ -864,7 +865,7 @@ Elm.Destroid.Control.make = function (_elm) {
          $Destroid$Params.shipHitR,
          m.me),
          m.buls);
-         var db = $List.length(m.buls) - $List.length(bullets);
+         var db = $Destroid$Utils.length(m.buls) - $Destroid$Utils.length(bullets);
          return $Destroid$Utils.isNothing(m.blink) ? _U.replace([["buls"
                                                                  ,bullets]
                                                                 ,["life"
@@ -912,8 +913,8 @@ Elm.Destroid.Control.make = function (_elm) {
                               _v11._0._0,
                               _v11._1);
                               return function () {
-                                 var _v16 = _U.eq($List.length(_v11._1),
-                                 $List.length(lb$));
+                                 var _v16 = _U.eq($Destroid$Utils.length(_v11._1),
+                                 $Destroid$Utils.length(lb$));
                                  switch (_v16)
                                  {case false:
                                     return A2($Destroid$Utils._op["++^"],
@@ -928,7 +929,7 @@ Elm.Destroid.Control.make = function (_elm) {
                                                       ,_0: _v11._0._1
                                                       ,_1: _v11._1}));}
                                  _U.badCase($moduleName,
-                                 "between lines 250 and 252");
+                                 "between lines 276 and 278");
                               }();
                            }();
                          case "[]":
@@ -937,10 +938,10 @@ Elm.Destroid.Control.make = function (_elm) {
                                 ,_1: _v11._1};}
                       break;}
                  _U.badCase($moduleName,
-                 "between lines 245 and 252");
+                 "between lines 271 and 278");
               }();}
          _U.badCase($moduleName,
-         "between lines 245 and 252");
+         "between lines 271 and 278");
       }();
    };
    var bullAstImpacts = function (m) {
@@ -976,7 +977,7 @@ Elm.Destroid.Control.make = function (_elm) {
                                    ,$Maybe.Just(m.time + $Destroid$Params.t_blink)]],
               m) : m;}
          _U.badCase($moduleName,
-         "between lines 266 and 271");
+         "between lines 292 and 297");
       }();
    };
    var reflectY = F2(function (_v19,
@@ -992,7 +993,7 @@ Elm.Destroid.Control.make = function (_elm) {
                                                ,b.y - _v19._1]],
               b) : b;}
          _U.badCase($moduleName,
-         "between lines 183 and 185");
+         "between lines 209 and 211");
       }();
    });
    var reflectX = F2(function (_v23,
@@ -1008,7 +1009,7 @@ Elm.Destroid.Control.make = function (_elm) {
                                                ,b.x - _v23._0]],
               b) : b;}
          _U.badCase($moduleName,
-         "between lines 176 and 178");
+         "between lines 202 and 204");
       }();
    });
    var reflect = function (m) {
@@ -1025,7 +1026,7 @@ Elm.Destroid.Control.make = function (_elm) {
                                                                ,_1: _v27._1})($));
                     };}
                _U.badCase($moduleName,
-               "on line 188, column 34 to 65");
+               "on line 214, column 34 to 65");
             }();
          };
          return _U.replace([["me"
@@ -1056,7 +1057,7 @@ Elm.Destroid.Control.make = function (_elm) {
                                ,ph.r + ph.vr * _v31._0 * $Destroid$Params.scaleR]],
               ph);}
          _U.badCase($moduleName,
-         "between lines 167 and 169");
+         "between lines 193 and 195");
       }();
    });
    var evolveAll = F2(function (w,
@@ -1072,6 +1073,14 @@ Elm.Destroid.Control.make = function (_elm) {
                          evolve(w),
                          m.ast)]],
       m);
+   });
+   var deadUpdate = F3(function (t,
+   w,
+   m) {
+      return _U.cmp(m.time,
+      t) > -1 ? $Destroid$Model.istate : function ($) {
+         return expireBullets(bullAstImpacts(reflect(evolveAll(w)($))));
+      }(m);
    });
    var b_i = 5;
    var shootFrom = function (ph) {
@@ -1102,7 +1111,7 @@ Elm.Destroid.Control.make = function (_elm) {
                  m) : m;
               }();}
          _U.badCase($moduleName,
-         "between lines 145 and 146");
+         "between lines 171 and 172");
       }();
    });
    var gun = F2(function (_v39,m) {
@@ -1124,7 +1133,7 @@ Elm.Destroid.Control.make = function (_elm) {
                  m);
               }();}
          _U.badCase($moduleName,
-         "between lines 137 and 141");
+         "between lines 163 and 167");
       }();
    });
    var flightControls = F2(function (_v43,
@@ -1155,18 +1164,18 @@ Elm.Destroid.Control.make = function (_elm) {
                                           ,me1.vr - _v43._0]],
                          me1);}
                     _U.badCase($moduleName,
-                    "between lines 128 and 132");
+                    "between lines 154 and 158");
                  }();
                  return _U.replace([["me",me2]],
                  m$);
               }();}
          _U.badCase($moduleName,
-         "between lines 122 and 132");
+         "between lines 148 and 158");
       }();
    });
    var gameUpdate = function (w) {
       return function ($) {
-         return checkDeath(checkBlink(expireBullets(shipAstImpacts(bullAstImpacts(shipBulImpacts(reflect(evolveAll(w)(gun(w)(flightControls(w)($))))))))));
+         return checkClear(checkDeath(checkBlink(expireBullets(shipAstImpacts(bullAstImpacts(shipBulImpacts(reflect(evolveAll(w)(gun(w)(flightControls(w)($)))))))))));
       };
    };
    var emit = function (m) {
@@ -1225,8 +1234,45 @@ Elm.Destroid.Control.make = function (_elm) {
    };
    var levelIntroUpdate = function (w) {
       return function ($) {
-         return emit(checkIntroExpiration(gameUpdate(w)($)));
+         return emit(checkIntroExpiration(checkBlink(expireBullets(shipAstImpacts(bullAstImpacts(shipBulImpacts(reflect(evolveAll(w)(gun(w)(flightControls(w)($)))))))))));
       };
+   };
+   var mkPoint = function (m) {
+      return function () {
+         var py = A3($Destroid$Rand.genFloat,
+         (0 - $Destroid$Params.spaceH) / 2,
+         $Destroid$Params.spaceH / 2,
+         m);
+         var px = A3($Destroid$Rand.genFloat,
+         (0 - $Destroid$Params.spaceW) / 2,
+         $Destroid$Params.spaceW / 2,
+         m);
+         return _U.replace([["x",px]
+                           ,["y",py]],
+         $Destroid$Model.x0);
+      }();
+   };
+   var mkLevList = function (m) {
+      return A4($List.map3,
+      F3(function (v0,v1,v2) {
+         return {ctor: "_Tuple3"
+                ,_0: v0
+                ,_1: v1
+                ,_2: v2};
+      }),
+      A4($Destroid$Rand.genFloats,
+      0,
+      2 * $Basics.pi,
+      m.levnum + 1,
+      m),
+      A4($Destroid$Rand.genFloats,
+      5,
+      30,
+      m.levnum + 1,
+      m),
+      A2($List.repeat,
+      m.levnum + 1,
+      $Destroid$Model.Big));
    };
    var emitTimes = F2(function (t,
    n) {
@@ -1241,22 +1287,34 @@ Elm.Destroid.Control.make = function (_elm) {
       },
       _L.range(0,n));
    });
-   var prepLevelIntro = function (m) {
+   var mkLev = function (m) {
       return function () {
-         var lev = m.lvl;
-         return _U.replace([["mode"
-                            ,$Destroid$Model.LevelIntro(m.time)]
-                           ,["lvl"
-                            ,_U.replace([["ts"
-                                         ,A2(emitTimes,
-                                         m.time,
-                                         $List.length(lev.ls) - 1)]
-                                        ,["tf"
-                                         ,m.time + 2 * $Destroid$Params.t_fade + $Destroid$Utils.toF($List.length(lev.ls)) * $Destroid$Params.t_sep]],
-                            lev)]],
-         m);
+         var l = mkLevList(m);
+         return {_: {}
+                ,ls: l
+                ,tf: m.time + 2 * $Destroid$Params.t_fade + $Destroid$Utils.toF($Destroid$Utils.length(l)) * $Destroid$Params.t_sep
+                ,ts: A2(emitTimes,
+                m.time,
+                $Destroid$Utils.length(l) - 1)
+                ,xi: mkPoint(m)};
       }();
    };
+   var prepLevelIntro = function (m) {
+      return _U.replace([["mode"
+                         ,$Destroid$Model.LevelIntro(m.time)]
+                        ,["lvl",mkLev(m)]],
+      m);
+   };
+   var clearUpdate = F3(function (t,
+   w,
+   m) {
+      return _U.cmp(m.time,
+      t + $Destroid$Params.t_cleared) > -1 ? prepLevelIntro(_U.replace([["levnum"
+                                                                        ,m.levnum + 1]],
+      m)) : function ($) {
+         return expireBullets(bullAstImpacts(reflect(evolveAll(w)(flightControls(w)(gun(w)($))))));
+      }(m);
+   });
    var transitionUpdate = F3(function (w,
    tf,
    m) {
@@ -1338,13 +1396,7 @@ Elm.Destroid.Control.make = function (_elm) {
                         ,["me"
                          ,A2($Debug.watch,
                          "Flight data",
-                         m.me)]
-                        ,["lvl"
-                         ,A2($Debug.watch,"Level",m.lvl)]
-                        ,["blink"
-                         ,A2($Debug.watch,
-                         "Blink",
-                         m.blink)]],
+                         m.me)]],
       m);
    };
    var updater = F2(function (w,
@@ -1352,10 +1404,14 @@ Elm.Destroid.Control.make = function (_elm) {
       return function () {
          var _v70 = m.mode;
          switch (_v70.ctor)
-         {case "Dead":
+         {case "Cleared":
+            return A2(clearUpdate,
+              _v70._0,
+              w);
+            case "Dead":
             return A2(deadUpdate,
-              w,
-              _v70._0 + 180);
+              _v70._0 + $Destroid$Params.t_death,
+              w);
             case "LevelIntro":
             return levelIntroUpdate(w);
             case "Playing":
@@ -1367,7 +1423,7 @@ Elm.Destroid.Control.make = function (_elm) {
               w,
               _v70._0 + 120);}
          _U.badCase($moduleName,
-         "between lines 12 and 17");
+         "between lines 13 and 19");
       }()(watcher(timeStep(w)(m)));
    });
    _elm.Destroid.Control.values = {_op: _op
@@ -1379,6 +1435,9 @@ Elm.Destroid.Control.make = function (_elm) {
                                   ,transitionUpdate: transitionUpdate
                                   ,prepLevelIntro: prepLevelIntro
                                   ,emitTimes: emitTimes
+                                  ,mkLevList: mkLevList
+                                  ,mkPoint: mkPoint
+                                  ,mkLev: mkLev
                                   ,levelIntroUpdate: levelIntroUpdate
                                   ,checkIntroExpiration: checkIntroExpiration
                                   ,emit: emit
@@ -1410,7 +1469,9 @@ Elm.Destroid.Control.make = function (_elm) {
                                   ,expireBullets: expireBullets
                                   ,checkBlink: checkBlink
                                   ,checkDeath: checkDeath
-                                  ,deadUpdate: deadUpdate};
+                                  ,checkClear: checkClear
+                                  ,deadUpdate: deadUpdate
+                                  ,clearUpdate: clearUpdate};
    return _elm.Destroid.Control.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Debug = Elm.Destroid.Debug || {};
@@ -1544,16 +1605,6 @@ Elm.Destroid.Model.make = function (_elm) {
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
-   var x0 = {_: {}
-            ,r: 0
-            ,vr: 0
-            ,vx: 0
-            ,vy: 0
-            ,x: 0
-            ,y: 0};
-   var x_wh = _U.replace([["x",-80]
-                         ,["y",80]],
-   x0);
    var screenCoords = function (m) {
       return $Destroid$Utils.v2scale(m.screenScale);
    };
@@ -1562,6 +1613,18 @@ Elm.Destroid.Model.make = function (_elm) {
       m,
       $Destroid$Params.spaceSize);
    };
+   var x0 = {_: {}
+            ,r: 0
+            ,vr: 0
+            ,vx: 0
+            ,vy: 0
+            ,x: 0
+            ,y: 0};
+   var l0 = {_: {}
+            ,ls: _L.fromArray([])
+            ,tf: 0
+            ,ts: _L.fromArray([])
+            ,xi: x0};
    var Model = function (a) {
       return function (b) {
          return function (c) {
@@ -1574,19 +1637,22 @@ Elm.Destroid.Model.make = function (_elm) {
                               return function (j) {
                                  return function (k) {
                                     return function (l) {
-                                       return {_: {}
-                                              ,ast: g
-                                              ,blink: l
-                                              ,buls: f
-                                              ,dt: d
-                                              ,f: i
-                                              ,life: k
-                                              ,lvl: h
-                                              ,me: e
-                                              ,mode: a
-                                              ,screenScale: b
-                                              ,time: c
-                                              ,trigg: j};
+                                       return function (m) {
+                                          return {_: {}
+                                                 ,ast: g
+                                                 ,blink: m
+                                                 ,buls: f
+                                                 ,dt: d
+                                                 ,f: j
+                                                 ,levnum: i
+                                                 ,life: l
+                                                 ,lvl: h
+                                                 ,me: e
+                                                 ,mode: a
+                                                 ,screenScale: b
+                                                 ,time: c
+                                                 ,trigg: k};
+                                       };
                                     };
                                  };
                               };
@@ -1612,22 +1678,6 @@ Elm.Destroid.Model.make = function (_elm) {
    var Small = {ctor: "Small"};
    var Medium = {ctor: "Medium"};
    var Big = {ctor: "Big"};
-   var l0 = {_: {}
-            ,ls: _L.fromArray([{ctor: "_Tuple3"
-                               ,_0: 0
-                               ,_1: 20
-                               ,_2: Big}
-                              ,{ctor: "_Tuple3"
-                               ,_0: 2
-                               ,_1: 20
-                               ,_2: Big}
-                              ,{ctor: "_Tuple3"
-                               ,_0: 4
-                               ,_1: 20
-                               ,_2: Big}])
-            ,tf: 1400
-            ,ts: _L.fromArray([])
-            ,xi: x_wh};
    var Phys = F7(function (a,
    b,
    c,
@@ -1647,6 +1697,10 @@ Elm.Destroid.Model.make = function (_elm) {
       b,
       _U.insert("x",a,g))))));
    });
+   var Cleared = function (a) {
+      return {ctor: "Cleared"
+             ,_0: a};
+   };
    var Dead = function (a) {
       return {ctor: "Dead",_0: a};
    };
@@ -1669,6 +1723,7 @@ Elm.Destroid.Model.make = function (_elm) {
                 ,buls: _L.fromArray([])
                 ,dt: 0
                 ,f: false
+                ,levnum: 1
                 ,life: 100
                 ,lvl: l0
                 ,me: x0
@@ -1682,18 +1737,18 @@ Elm.Destroid.Model.make = function (_elm) {
                                 ,LevelIntro: LevelIntro
                                 ,Playing: Playing
                                 ,Dead: Dead
+                                ,Cleared: Cleared
                                 ,Phys: Phys
                                 ,Big: Big
                                 ,Medium: Medium
                                 ,Small: Small
                                 ,Level: Level
                                 ,Model: Model
-                                ,screenCoords: screenCoords
-                                ,stage: stage
                                 ,istate: istate
                                 ,x0: x0
-                                ,x_wh: x_wh
-                                ,l0: l0};
+                                ,l0: l0
+                                ,screenCoords: screenCoords
+                                ,stage: stage};
    return _elm.Destroid.Model.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Params = Elm.Destroid.Params || {};
@@ -1714,16 +1769,22 @@ Elm.Destroid.Params.make = function (_elm) {
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
+   var t_cleared = 400;
+   var t_death = 200;
    var t_blink = 60;
    var astDamageScale = 0.1;
    var bulletLife = 200;
-   var t_sep = 40;
+   var t_sep = 30;
    var t_fade = 75;
    var shipHitR = 3.0;
-   var astV = 20;
+   var astV = 10;
    var bulV = 80;
    var scaleV = 3.0e-2;
-   var scaleR = 6.0e-3;
+   var scaleR = 4.0e-3;
+   var clearcolor = A3($Color.rgb,
+   132,
+   216,
+   208);
    var lifebarcolor = A4($Color.rgba,
    214,
    102,
@@ -1775,6 +1836,7 @@ Elm.Destroid.Params.make = function (_elm) {
                                  ,boostercolor: boostercolor
                                  ,bulletcolor: bulletcolor
                                  ,lifebarcolor: lifebarcolor
+                                 ,clearcolor: clearcolor
                                  ,scaleR: scaleR
                                  ,scaleV: scaleV
                                  ,bulV: bulV
@@ -1789,8 +1851,124 @@ Elm.Destroid.Params.make = function (_elm) {
                                  ,t_sep: t_sep
                                  ,bulletLife: bulletLife
                                  ,astDamageScale: astDamageScale
-                                 ,t_blink: t_blink};
+                                 ,t_blink: t_blink
+                                 ,t_death: t_death
+                                 ,t_cleared: t_cleared};
    return _elm.Destroid.Params.values;
+};Elm.Destroid = Elm.Destroid || {};
+Elm.Destroid.Rand = Elm.Destroid.Rand || {};
+Elm.Destroid.Rand.make = function (_elm) {
+   "use strict";
+   _elm.Destroid = _elm.Destroid || {};
+   _elm.Destroid.Rand = _elm.Destroid.Rand || {};
+   if (_elm.Destroid.Rand.values)
+   return _elm.Destroid.Rand.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   $moduleName = "Destroid.Rand",
+   $Basics = Elm.Basics.make(_elm),
+   $Destroid$Model = Elm.Destroid.Model.make(_elm),
+   $Destroid$Utils = Elm.Destroid.Utils.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Random = Elm.Random.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var genFloat = F3(function (x,
+   y,
+   m) {
+      return $Basics.fst(A2($Random.generate,
+      A2($Random.$float,x,y),
+      $Random.initialSeed($Basics.floor(m.time))));
+   });
+   var genInt = F3(function (j,
+   k,
+   m) {
+      return $Basics.fst(A2($Random.generate,
+      A2($Random.$int,j,k),
+      $Random.initialSeed($Basics.floor(m.time))));
+   });
+   var gen = F3(function (l,
+   g,
+   _v0) {
+      return function () {
+         switch (_v0.ctor)
+         {case "_Tuple2":
+            return function () {
+                 var yz = A2($Random.generate,
+                 g,
+                 _v0._1);
+                 return _U.cmp(l,
+                 1) < 0 ? _L.fromArray([]) : _U.cmp(l,
+                 1) > -1 ? A2($List._op["::"],
+                 yz,
+                 A3(gen,
+                 l - 1,
+                 g,
+                 yz)) : _U.badIf($moduleName,
+                 "between lines 16 and 17");
+              }();}
+         _U.badCase($moduleName,
+         "between lines 15 and 17");
+      }();
+   });
+   var genI = F4(function (n,
+   m,
+   l,
+   s) {
+      return A3(gen,
+      l,
+      A2($Random.$int,n,m),
+      s);
+   });
+   var genInts = F4(function (x,
+   y,
+   l,
+   m) {
+      return A2($Destroid$Utils._op["<$>"],
+      $Basics.fst,
+      A4(genI,
+      x,
+      y,
+      l,
+      {ctor: "_Tuple2"
+      ,_0: 0
+      ,_1: $Random.initialSeed($Basics.floor(m.time))}));
+   });
+   var genF = F4(function (n,
+   m,
+   l,
+   s) {
+      return A3(gen,
+      l,
+      A2($Random.$float,n,m),
+      s);
+   });
+   var genFloats = F4(function (x,
+   y,
+   l,
+   m) {
+      return A2($Destroid$Utils._op["<$>"],
+      $Basics.fst,
+      A4(genF,
+      x,
+      y,
+      l,
+      {ctor: "_Tuple2"
+      ,_0: 0
+      ,_1: $Random.initialSeed($Basics.floor(m.time))}));
+   });
+   _elm.Destroid.Rand.values = {_op: _op
+                               ,gen: gen
+                               ,genI: genI
+                               ,genF: genF
+                               ,genInts: genInts
+                               ,genFloats: genFloats
+                               ,genInt: genInt
+                               ,genFloat: genFloat};
+   return _elm.Destroid.Rand.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Utils = Elm.Destroid.Utils || {};
 Elm.Destroid.Utils.make = function (_elm) {
@@ -1809,44 +1987,52 @@ Elm.Destroid.Utils.make = function (_elm) {
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
+   var fromJust = function (mx) {
+      return function () {
+         switch (mx.ctor)
+         {case "Just": return mx._0;}
+         _U.badCase($moduleName,
+         "between lines 41 and 42");
+      }();
+   };
    var isJust = function (m) {
       return function () {
          switch (m.ctor)
          {case "Just": return true;
             case "Nothing": return false;}
          _U.badCase($moduleName,
-         "between lines 31 and 33");
+         "between lines 33 and 35");
       }();
    };
    var isNothing = function ($) {
       return $Basics.not(isJust($));
    };
    _op["::^"] = F2(function (a1,
-   _v2) {
+   _v4) {
       return function () {
-         switch (_v2.ctor)
+         switch (_v4.ctor)
          {case "_Tuple2":
             return {ctor: "_Tuple2"
                    ,_0: A2($List._op["::"],
                    a1,
-                   _v2._0)
-                   ,_1: _v2._1};}
+                   _v4._0)
+                   ,_1: _v4._1};}
          _U.badCase($moduleName,
-         "on line 26, column 21 to 33");
+         "on line 28, column 21 to 33");
       }();
    });
    _op["++^"] = F2(function (la1,
-   _v6) {
+   _v8) {
       return function () {
-         switch (_v6.ctor)
+         switch (_v8.ctor)
          {case "_Tuple2":
             return {ctor: "_Tuple2"
                    ,_0: A2($Basics._op["++"],
                    la1,
-                   _v6._0)
-                   ,_1: _v6._1};}
+                   _v8._0)
+                   ,_1: _v8._1};}
          _U.badCase($moduleName,
-         "on line 21, column 23 to 37");
+         "on line 23, column 23 to 37");
       }();
    });
    var appendIf = F3(function (b,
@@ -1860,18 +2046,19 @@ Elm.Destroid.Utils.make = function (_elm) {
               xs,
               ys);}
          _U.badCase($moduleName,
-         "between lines 16 and 18");
+         "between lines 18 and 20");
       }();
    });
+   var length = $List.length;
    var toF = $Basics.toFloat;
    var v2scale = F2(function (r,
-   _v11) {
+   _v13) {
       return function () {
-         switch (_v11.ctor)
+         switch (_v13.ctor)
          {case "_Tuple2":
             return {ctor: "_Tuple2"
-                   ,_0: r * _v11._0
-                   ,_1: r * _v11._1};}
+                   ,_0: r * _v13._0
+                   ,_1: r * _v13._1};}
          _U.badCase($moduleName,
          "on line 11, column 20 to 27");
       }();
@@ -1880,9 +2067,11 @@ Elm.Destroid.Utils.make = function (_elm) {
    _elm.Destroid.Utils.values = {_op: _op
                                 ,v2scale: v2scale
                                 ,toF: toF
+                                ,length: length
                                 ,appendIf: appendIf
                                 ,isJust: isJust
-                                ,isNothing: isNothing};
+                                ,isNothing: isNothing
+                                ,fromJust: fromJust};
    return _elm.Destroid.Utils.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.Views = Elm.Destroid.Views || {};
@@ -1910,12 +2099,7 @@ Elm.Destroid.Views.make = function (_elm) {
    $List = Elm.List.make(_elm),
    $Maybe = Elm.Maybe.make(_elm),
    $Result = Elm.Result.make(_elm),
-   $Signal = Elm.Signal.make(_elm),
-   $Text = Elm.Text.make(_elm);
-   var deadView = F2(function (w,
-   m) {
-      return $Graphics$Element.leftAligned($Text.fromString("YOU\'RE DEAD"));
-   });
+   $Signal = Elm.Signal.make(_elm);
    var lifeBar = F2(function (wld,
    m) {
       return function () {
@@ -2050,7 +2234,11 @@ Elm.Destroid.Views.make = function (_elm) {
                                  ,{ctor: "_Tuple2"
                                   ,_0: -0.26
                                   ,_1: 3.84}]);
-   var refl = $List.map(function (_v0) {
+   var refl = F2(function (x,y) {
+      return A2($Destroid$Utils._op["<$>"],
+      x,
+      y);
+   })(function (_v0) {
       return function () {
          switch (_v0.ctor)
          {case "_Tuple2":
@@ -2058,7 +2246,7 @@ Elm.Destroid.Views.make = function (_elm) {
                    ,_0: 0 - _v0._0
                    ,_1: _v0._1};}
          _U.badCase($moduleName,
-         "on line 182, column 29 to 33");
+         "on line 183, column 26 to 30");
       }();
    });
    var position = F2(function (m,
@@ -2118,13 +2306,22 @@ Elm.Destroid.Views.make = function (_elm) {
                case "Small":
                return $Destroid$Params.astSizeSmall;}
             _U.badCase($moduleName,
-            "between lines 235 and 238");
+            "between lines 236 and 239");
          }();
          return A2(position,
          m,
          a)($Graphics$Collage.outlined($Graphics$Collage.solid($Color.white))($Graphics$Collage.circle(size)));
       }();
    });
+   var renderers$ = function (m) {
+      return A2($Basics._op["++"],
+      A2($Destroid$Utils._op["<$>"],
+      bullet,
+      m.buls),
+      A2($Destroid$Utils._op["<$>"],
+      asteroid,
+      m.ast));
+   };
    var copies = function (_v5) {
       return function () {
          switch (_v5.ctor)
@@ -2155,7 +2352,7 @@ Elm.Destroid.Views.make = function (_elm) {
                                  ,_0: _v5._0
                                  ,_1: _v5._1}]);}
          _U.badCase($moduleName,
-         "between lines 150 and 160");
+         "between lines 151 and 161");
       }();
    };
    var duplicate = F2(function (m,
@@ -2176,9 +2373,14 @@ Elm.Destroid.Views.make = function (_elm) {
             case "[]":
             return _L.fromArray([]);}
          _U.badCase($moduleName,
-         "between lines 140 and 142");
+         "between lines 141 and 143");
       }();
    });
+   var renderGroups$ = function (m) {
+      return A2(render,
+      m,
+      renderers$(m));
+   };
    var renderers = function (m) {
       return A2($List._op["::"],
       ship,
@@ -2280,6 +2482,65 @@ Elm.Destroid.Views.make = function (_elm) {
       t3) < 1 ? 1 : _U.cmp(t3,
       t) < 0 && _U.cmp(t,
       t4) < 1 ? A3(fade,t4,t3,t) : 0;
+   });
+   var clearView = F3(function (t,
+   wld,
+   m) {
+      return function () {
+         var $ = {ctor: "_Tuple2"
+                 ,_0: wld.w
+                 ,_1: wld.h},
+         cw = $._0,
+         ch = $._1;
+         return A2($Graphics$Collage.collage,
+         cw,
+         ch)(A2($Basics._op["++"],
+         _L.fromArray([$Graphics$Collage.filled($Destroid$Params.gameBG)(A2($Graphics$Collage.rect,
+                      $Destroid$Utils.toF(cw),
+                      $Destroid$Utils.toF(ch)))
+                      ,$Graphics$Collage.alpha(A5(fadeInOut,
+                      t,
+                      t + 0.2 * $Destroid$Params.t_cleared,
+                      t + 0.8 * $Destroid$Params.t_cleared,
+                      t + $Destroid$Params.t_cleared,
+                      m.time) * 0.5)($Graphics$Collage.filled($Destroid$Params.clearcolor)(A2($Graphics$Collage.rect,
+                      $Destroid$Utils.toF(cw),
+                      $Destroid$Utils.toF(ch))))]),
+         A2($Basics._op["++"],
+         renderGroups(m),
+         $Destroid$Params.debug ? _L.fromArray([A2($Destroid$Debug.debug_panel,
+         {ctor: "_Tuple2",_0: cw,_1: ch},
+         m.dt)]) : _L.fromArray([]))));
+      }();
+   });
+   var deadView = F3(function (t,
+   wld,
+   m) {
+      return function () {
+         var $ = {ctor: "_Tuple2"
+                 ,_0: wld.w
+                 ,_1: wld.h},
+         cw = $._0,
+         ch = $._1;
+         return A2($Graphics$Collage.collage,
+         cw,
+         ch)(A2($List._op["::"],
+         $Graphics$Collage.filled($Destroid$Params.gameBG)(A2($Graphics$Collage.rect,
+         $Destroid$Utils.toF(cw),
+         $Destroid$Utils.toF(ch))),
+         A2($Basics._op["++"],
+         renderGroups$(m),
+         A2($Basics._op["++"],
+         _L.fromArray([$Graphics$Collage.alpha(0.9 * A3(fade,
+         t + $Destroid$Params.t_death,
+         t,
+         m.time))($Graphics$Collage.filled($Color.white)(A2($Graphics$Collage.rect,
+         $Destroid$Utils.toF(cw),
+         $Destroid$Utils.toF(ch))))]),
+         $Destroid$Params.debug ? _L.fromArray([A2($Destroid$Debug.debug_panel,
+         {ctor: "_Tuple2",_0: cw,_1: ch},
+         m.dt)]) : _L.fromArray([])))));
+      }();
    });
    var levelIntroView = F3(function (wld,
    t,
@@ -2393,8 +2654,15 @@ Elm.Destroid.Views.make = function (_elm) {
       return function () {
          var _v12 = m.mode;
          switch (_v12.ctor)
-         {case "Dead":
-            return A2(deadView,w,m);
+         {case "Cleared":
+            return A3(clearView,
+              _v12._0,
+              w,
+              m);
+            case "Dead": return A3(deadView,
+              _v12._0,
+              w,
+              m);
             case "LevelIntro":
             return A3(levelIntroView,
               w,
@@ -2410,7 +2678,7 @@ Elm.Destroid.Views.make = function (_elm) {
               _v12._0,
               m);}
          _U.badCase($moduleName,
-         "between lines 18 and 23");
+         "between lines 18 and 24");
       }();
    });
    _elm.Destroid.Views.values = {_op: _op
@@ -2444,7 +2712,10 @@ Elm.Destroid.Views.make = function (_elm) {
                                 ,bullet: bullet
                                 ,asteroid: asteroid
                                 ,lifeBar: lifeBar
-                                ,deadView: deadView};
+                                ,deadView: deadView
+                                ,renderGroups$: renderGroups$
+                                ,renderers$: renderers$
+                                ,clearView: clearView};
    return _elm.Destroid.Views.values;
 };Elm.Destroid = Elm.Destroid || {};
 Elm.Destroid.World = Elm.Destroid.World || {};
@@ -9860,7 +10131,291 @@ Elm.Native.Window.make = function(localRuntime) {
 		resizeIfNeeded: resizeIfNeeded
 	};
 };
-Elm.Result = Elm.Result || {};
+Elm.Random = Elm.Random || {};
+Elm.Random.make = function (_elm) {
+   "use strict";
+   _elm.Random = _elm.Random || {};
+   if (_elm.Random.values)
+   return _elm.Random.values;
+   var _op = {},
+   _N = Elm.Native,
+   _U = _N.Utils.make(_elm),
+   _L = _N.List.make(_elm),
+   $moduleName = "Random",
+   $Basics = Elm.Basics.make(_elm),
+   $List = Elm.List.make(_elm);
+   var magicNum8 = 2147483562;
+   var range = function (_v0) {
+      return function () {
+         return {ctor: "_Tuple2"
+                ,_0: 0
+                ,_1: magicNum8};
+      }();
+   };
+   var magicNum7 = 2137383399;
+   var magicNum6 = 2147483563;
+   var magicNum5 = 3791;
+   var magicNum4 = 40692;
+   var magicNum3 = 52774;
+   var magicNum2 = 12211;
+   var magicNum1 = 53668;
+   var magicNum0 = 40014;
+   var generate = F2(function (_v2,
+   seed) {
+      return function () {
+         switch (_v2.ctor)
+         {case "Generator":
+            return _v2._0(seed);}
+         _U.badCase($moduleName,
+         "on line 246, column 5 to 19");
+      }();
+   });
+   var Seed = F4(function (a,
+   b,
+   c,
+   d) {
+      return {_: {}
+             ,next: b
+             ,range: d
+             ,split: c
+             ,state: a};
+   });
+   var State = F2(function (a,b) {
+      return {ctor: "State"
+             ,_0: a
+             ,_1: b};
+   });
+   var initState = function (s$) {
+      return function () {
+         var s = A2($Basics.max,
+         s$,
+         0 - s$);
+         var q = s / (magicNum6 - 1) | 0;
+         var s2 = A2($Basics._op["%"],
+         q,
+         magicNum7 - 1);
+         var s1 = A2($Basics._op["%"],
+         s,
+         magicNum6 - 1);
+         return A2(State,s1 + 1,s2 + 1);
+      }();
+   };
+   var next = function (_v5) {
+      return function () {
+         switch (_v5.ctor)
+         {case "State":
+            return function () {
+                 var k$ = _v5._1 / magicNum3 | 0;
+                 var s2$ = magicNum4 * (_v5._1 - k$ * magicNum3) - k$ * magicNum5;
+                 var s2$$ = _U.cmp(s2$,
+                 0) < 0 ? s2$ + magicNum7 : s2$;
+                 var k = _v5._0 / magicNum1 | 0;
+                 var s1$ = magicNum0 * (_v5._0 - k * magicNum1) - k * magicNum2;
+                 var s1$$ = _U.cmp(s1$,
+                 0) < 0 ? s1$ + magicNum6 : s1$;
+                 var z = s1$$ - s2$$;
+                 var z$ = _U.cmp(z,
+                 1) < 0 ? z + magicNum8 : z;
+                 return {ctor: "_Tuple2"
+                        ,_0: z$
+                        ,_1: A2(State,s1$$,s2$$)};
+              }();}
+         _U.badCase($moduleName,
+         "between lines 290 and 299");
+      }();
+   };
+   var split = function (_v9) {
+      return function () {
+         switch (_v9.ctor)
+         {case "State":
+            return function () {
+                 var _raw = $Basics.snd(next(_v9)),
+                 $ = _raw.ctor === "State" ? _raw : _U.badCase($moduleName,
+                 "on line 306, column 25 to 38"),
+                 t1 = $._0,
+                 t2 = $._1;
+                 var new_s2 = _U.eq(_v9._1,
+                 1) ? magicNum7 - 1 : _v9._1 - 1;
+                 var new_s1 = _U.eq(_v9._0,
+                 magicNum6 - 1) ? 1 : _v9._0 + 1;
+                 return {ctor: "_Tuple2"
+                        ,_0: A2(State,new_s1,t2)
+                        ,_1: A2(State,t1,new_s2)};
+              }();}
+         _U.badCase($moduleName,
+         "between lines 304 and 308");
+      }();
+   };
+   var initialSeed = function (n) {
+      return A4(Seed,
+      initState(n),
+      next,
+      split,
+      range);
+   };
+   var Generator = function (a) {
+      return {ctor: "Generator"
+             ,_0: a};
+   };
+   var customGenerator = function (generate) {
+      return Generator(generate);
+   };
+   var listHelp = F4(function (list,
+   n,
+   generate,
+   seed) {
+      return _U.cmp(n,
+      1) < 0 ? {ctor: "_Tuple2"
+               ,_0: $List.reverse(list)
+               ,_1: seed} : function () {
+         var $ = generate(seed),
+         value = $._0,
+         seed$ = $._1;
+         return A4(listHelp,
+         A2($List._op["::"],value,list),
+         n - 1,
+         generate,
+         seed$);
+      }();
+   });
+   var list = F2(function (n,
+   _v13) {
+      return function () {
+         switch (_v13.ctor)
+         {case "Generator":
+            return Generator(function (seed) {
+                 return A4(listHelp,
+                 _L.fromArray([]),
+                 n,
+                 _v13._0,
+                 seed);
+              });}
+         _U.badCase($moduleName,
+         "between lines 182 and 183");
+      }();
+   });
+   var pair = F2(function (_v16,
+   _v17) {
+      return function () {
+         switch (_v17.ctor)
+         {case "Generator":
+            return function () {
+                 switch (_v16.ctor)
+                 {case "Generator":
+                    return Generator(function (seed) {
+                         return function () {
+                            var $ = _v16._0(seed),
+                            left = $._0,
+                            seed$ = $._1;
+                            var $ = _v17._0(seed$),
+                            right = $._0,
+                            seed$$ = $._1;
+                            return {ctor: "_Tuple2"
+                                   ,_0: {ctor: "_Tuple2"
+                                        ,_0: left
+                                        ,_1: right}
+                                   ,_1: seed$$};
+                         }();
+                      });}
+                 _U.badCase($moduleName,
+                 "between lines 159 and 163");
+              }();}
+         _U.badCase($moduleName,
+         "between lines 159 and 163");
+      }();
+   });
+   var minInt = -2147483648;
+   var maxInt = 2147483647;
+   var iLogBase = F2(function (b,
+   i) {
+      return _U.cmp(i,
+      b) < 0 ? 1 : 1 + A2(iLogBase,
+      b,
+      i / b | 0);
+   });
+   var $int = F2(function (a,b) {
+      return Generator(function (seed) {
+         return function () {
+            var base = 2147483561;
+            var f = F3(function (n,
+            acc,
+            state) {
+               return function () {
+                  switch (n)
+                  {case 0: return {ctor: "_Tuple2"
+                                  ,_0: acc
+                                  ,_1: state};}
+                  return function () {
+                     var $ = seed.next(state),
+                     x = $._0,
+                     state$ = $._1;
+                     return A3(f,
+                     n - 1,
+                     x + acc * base,
+                     state$);
+                  }();
+               }();
+            });
+            var $ = _U.cmp(a,
+            b) < 0 ? {ctor: "_Tuple2"
+                     ,_0: a
+                     ,_1: b} : {ctor: "_Tuple2"
+                               ,_0: b
+                               ,_1: a},
+            lo = $._0,
+            hi = $._1;
+            var k = hi - lo + 1;
+            var n = A2(iLogBase,base,k);
+            var $ = A3(f,n,1,seed.state),
+            v = $._0,
+            state$ = $._1;
+            return {ctor: "_Tuple2"
+                   ,_0: lo + A2($Basics._op["%"],
+                   v,
+                   k)
+                   ,_1: _U.replace([["state"
+                                    ,state$]],
+                   seed)};
+         }();
+      });
+   });
+   var $float = F2(function (a,b) {
+      return Generator(function (seed) {
+         return function () {
+            var $ = A2(generate,
+            A2($int,minInt,maxInt),
+            seed),
+            number = $._0,
+            seed$ = $._1;
+            var negativeOneToOne = $Basics.toFloat(number) / $Basics.toFloat(maxInt - minInt);
+            var $ = _U.cmp(a,
+            b) < 0 ? {ctor: "_Tuple2"
+                     ,_0: a
+                     ,_1: b} : {ctor: "_Tuple2"
+                               ,_0: b
+                               ,_1: a},
+            lo = $._0,
+            hi = $._1;
+            var scaled = (lo + hi) / 2 + (hi - lo) * negativeOneToOne;
+            return {ctor: "_Tuple2"
+                   ,_0: scaled
+                   ,_1: seed$};
+         }();
+      });
+   });
+   _elm.Random.values = {_op: _op
+                        ,$int: $int
+                        ,$float: $float
+                        ,list: list
+                        ,pair: pair
+                        ,minInt: minInt
+                        ,maxInt: maxInt
+                        ,generate: generate
+                        ,initialSeed: initialSeed
+                        ,customGenerator: customGenerator
+                        ,Seed: Seed};
+   return _elm.Random.values;
+};Elm.Result = Elm.Result || {};
 Elm.Result.make = function (_elm) {
    "use strict";
    _elm.Result = _elm.Result || {};
