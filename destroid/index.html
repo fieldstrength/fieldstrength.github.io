@@ -1672,7 +1672,9 @@ Elm.Destroid.Main.make = function (_elm) {
    function (t) {
       return t / 20;
    },
-   $Time.fps(40));
+   A2($Time.fpsWhen,
+   40,
+   $Destroid$World.running));
    var input = A2($Signal.sampleOn,
    deltas,
    A3($Signal.map2,
@@ -3139,16 +3141,47 @@ Elm.Destroid.World.make = function (_elm) {
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm),
    $Window = Elm.Window.make(_elm);
-   var mkWorld = F2(function (cc,
-   _v0) {
+   var trig = F2(function (a,_v0) {
       return function () {
          switch (_v0.ctor)
+         {case "_Tuple2":
+            return function () {
+                 switch (a)
+                 {case false:
+                    return {ctor: "_Tuple2"
+                           ,_0: _v0._0
+                           ,_1: true};
+                    case true:
+                    return _v0._1 ? {ctor: "_Tuple2"
+                                    ,_0: $Basics.not(_v0._0)
+                                    ,_1: false} : {ctor: "_Tuple2"
+                                                  ,_0: _v0._0
+                                                  ,_1: false};}
+                 _U.badCase($moduleName,
+                 "between lines 48 and 51");
+              }();}
+         _U.badCase($moduleName,
+         "between lines 48 and 51");
+      }();
+   });
+   var running = A2($Signal._op["<~"],
+   $Basics.fst,
+   A3($Signal.foldp,
+   trig,
+   {ctor: "_Tuple2"
+   ,_0: true
+   ,_1: true},
+   $Keyboard.isDown(27)));
+   var mkWorld = F2(function (cc,
+   _v5) {
+      return function () {
+         switch (_v5.ctor)
          {case "_Tuple2": return {_: {}
                                  ,c: cc
-                                 ,h: _v0._1
-                                 ,w: _v0._0};}
+                                 ,h: _v5._1
+                                 ,w: _v5._0};}
          _U.badCase($moduleName,
-         "on line 35, column 22 to 48");
+         "on line 36, column 22 to 48");
       }();
    });
    var World = F3(function (a,
@@ -3172,20 +3205,20 @@ Elm.Destroid.World.make = function (_elm) {
    var SLeft = {ctor: "SLeft"};
    var mkSteer = function (arr) {
       return function () {
-         var _v4 = arr.x;
-         switch (_v4)
+         var _v9 = arr.x;
+         switch (_v9)
          {case -1: return SLeft;
             case 0: return SCenter;
             case 1: return SRight;}
          _U.badCase($moduleName,
-         "between lines 20 and 23");
+         "between lines 21 and 24");
       }();
    };
    var mkCommand = F2(function (arr,
    b) {
       return function () {
-         var _v5 = arr.y;
-         switch (_v5)
+         var _v10 = arr.y;
+         switch (_v10)
          {case 1: return {_: {}
                          ,shoot: b
                          ,steer: mkSteer(arr)
@@ -3218,7 +3251,9 @@ Elm.Destroid.World.make = function (_elm) {
                                 ,mkCommand: mkCommand
                                 ,commands: commands
                                 ,mkWorld: mkWorld
-                                ,world: world};
+                                ,world: world
+                                ,trig: trig
+                                ,running: running};
    return _elm.Destroid.World.values;
 };Elm.Dict = Elm.Dict || {};
 Elm.Dict.make = function (_elm) {
