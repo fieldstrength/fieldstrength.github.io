@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>BlackBrane - A classy approach to domain specific languages</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Field Strength</a>
+            </div>
+            <div id="navigation">
+                <a href="https://github.com/BlackBrane"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
+                <a href="../archive.html">Posts</a>
+                <a href="../phys-math-resources">Physics Resources</a>
+                <a href="../cs-resources">CS Resources</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>A classy approach to domain specific languages</h1>
+
+            <div class="info">
+    Posted on October  8, 2016
+    
+        by Cliff
+    
+</div>
+
+<p>How best to work with domain specific languages has long been a matter or personal and professional interest to me. After doing a lot of learning, I’ve implemented a prototype program that applies some of the promising techniques I’ve picked up, with some variations that I haven’t yet seen elsewhere.</p>
+<p>This project, available on Github, aims to make an extensible library and interpreter for manipulating mathematical expressions and proofs about them. I especially wanted to make it easy to extend with new mathematical constructs when the need arises. Therefore, we need much of our logic at an abstract level, which in Haskell land means type classes.</p>
+<h2 id="review-of-catamorphisms-in-haskell">Review of catamorphisms in Haskell</h2>
+<p>To start off, I’ll briefly review some basic ideas about recursion schemes first described in <a href="http://maartenfokkinga.github.io/utwente/mmf91m.pdf">Bananas, Lenses, Envelopes, and Barbed Wire</a>. For now I will only be focusing on catamorphisms. If you aren’t familiar with them I recommend checking out the blog series <a href="http://blog.sumtypeofway.com/an-introduction-to-recursion-schemes/">An Introduction to Recursion Schemes</a>.</p>
+<p>For the sake of discussion lets consider this very simple data type.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Lit</span> <span class="dt">Int</span>
+          <span class="fu">|</span> <span class="dt">Plus</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
+          <span class="fu">|</span> <span class="dt">Mult</span> <span class="dt">Expr</span> <span class="dt">Expr</span></code></pre></div>
+<p>The data type could be anything that has a recursive definition. The idea is that we have expressions or arbitrary size and we’re going to show a nice way to perform recursive computations on them.</p>
+<p>An example of the straightforward way to do this would be as follows.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+eval (<span class="dt">Lit</span> n)    <span class="fu">=</span> n
+eval (<span class="dt">Plus</span> x y) <span class="fu">=</span> eval x <span class="fu">+</span> eval y
+eval (<span class="dt">Mult</span> x y) <span class="fu">=</span> eval x <span class="fu">*</span> eval y</code></pre></div>
+<p>There is nothing wrong with this basic approach, particularly when the example is so simple, but when the complexity begins to grow it can be extremely helpful to use a recursion scheme that takes care of all the recursive function calls.</p>
+<p>First we rewrite our data type in a polymorphic form, making every constructor that referred to itself instead refer to a type variable.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE DeriveFunctor #-}</span>
+
+<span class="kw">data</span> <span class="dt">Expr</span> a <span class="fu">=</span> <span class="dt">Lit</span> <span class="dt">Int</span>
+            <span class="fu">|</span> <span class="dt">Plus</span> a a
+            <span class="fu">|</span> <span class="dt">Mult</span> a a
+            <span class="kw">deriving</span> <span class="dt">Functor</span></code></pre></div>
+<p>The motivation for this is not to have to describe our computation all at once, but instead to be able to describe it as a single recursive step, which is then applied repeatedly. The polymorphic type variable in this definition can represent the return type of any particular function we may wish to create.</p>
+<p>First, though, how do we represent an arbitrarily recursive expression with this type? Seemingly this would entail the infinite type</p>
+<pre><code>Expr (Expr (Expr ... ))</code></pre>
+<p>This obviously is not valid Haskell. But we can accomplish the same thing with the following data type.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">Fix</span> f <span class="fu">=</span> <span class="dt">In</span> {<span class="ot"> out ::</span> f (<span class="dt">Fix</span> f) }</code></pre></div>
+<p>It may take some practice to get used to but now we can represent our arbitrarily nested expressions just as before.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">ex1 ::</span> <span class="dt">Fix</span> <span class="dt">Expr</span>
+ex1 <span class="fu">=</span> <span class="dt">In</span> (<span class="dt">Plus</span> (<span class="dt">In</span> (<span class="dt">Lit</span> <span class="dv">2</span>)) (<span class="dt">In</span> (<span class="dt">Lit</span> <span class="dv">2</span>))) <span class="co">-- 2 + 2</span></code></pre></div>
+<p>Now we’re ready to re-cast our computation. As stated, all we really need to do is define the computation at a particular nesting layer. Intuitively, we can also think of it as applying to the last layer.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">evalStep ::</span> <span class="dt">Expr</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+evalStep (<span class="dt">Lit</span> n)    <span class="fu">=</span> n
+evalStep (<span class="dt">Plus</span> x y) <span class="fu">=</span> x <span class="fu">+</span> y
+evalStep (<span class="dt">Mult</span> x y) <span class="fu">=</span> x <span class="fu">*</span> y</code></pre></div>
+<p>You can see that this definition is almost the same as the basic <code>eval</code> function defined above, except that rather than calling itself recursively in the function body, it instead uses the already-evaluated values brought into scope by the pattern match.</p>
+<p>Since every recursive function we define will be built in the same way from these “step” functions, we might as well give them a name.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Algebra</span> f a <span class="fu">=</span> f a <span class="ot">-&gt;</span> a</code></pre></div>
+<p>Now the magic of this catamorphism scheme allows us to turn any such computation step into the full thing.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">cata ::</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> <span class="dt">Algebra</span> f a <span class="ot">-&gt;</span> <span class="dt">Fix</span> f <span class="ot">-&gt;</span> a
+cata g <span class="fu">=</span> g <span class="fu">.</span> fmap (cata g) <span class="fu">.</span> out</code></pre></div>
+<p>Our full evaluation function is now simply:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Fix</span> <span class="dt">Expr</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+eval <span class="fu">=</span> cata evalStep</code></pre></div>
+<p>There is also a dual notion of anamorphsim, genearlizing unfolds whereas catamorphisms are a generalization of folds.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Coalgebra</span> f a <span class="fu">=</span> a <span class="ot">-&gt;</span> f a
+
+<span class="ot">ana ::</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> <span class="dt">Coalgebra</span> f a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Fix</span> f
+ana coalg <span class="fu">=</span> <span class="dt">In</span> <span class="fu">.</span> fmap (ana coalg) <span class="fu">.</span> c</code></pre></div>
+<h2 id="full-flexibility">Full Flexibility</h2>
+<p>In writing my library I found that, while sometimes the above approach was amazingly helpful, other times I just wanted to work with a vanilla data type. After all, if we aren’t doing this fancy recursion scheme stuff it can be a pain to work with these extra <code>In</code> constructors all over the place.</p>
+<p>Well one straightforward way to have it both ways is to define both versions of our data type and relate them via a type class.</p>
+<p>Lets adopt the following definitions:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">Lit</span> <span class="dt">Int</span>
+          <span class="fu">|</span> <span class="dt">Plus</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
+          <span class="fu">|</span> <span class="dt">Mult</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
+
+<span class="kw">data</span> <span class="dt">Expr_</span> a <span class="fu">=</span> <span class="dt">Lit_</span> <span class="dt">Int</span>
+             <span class="fu">|</span> <span class="dt">Plus_</span> a a
+             <span class="fu">|</span> <span class="dt">Mult_</span> a a
+             <span class="kw">deriving</span> <span class="dt">Functor</span></code></pre></div>
+<p>Eventually, it may be nice to allow the user to specify their language just in the first non-parametric form and then have the second form generated by Template Haskell.</p>
+<p>In any event, once we have these definitions we can relate them with a type class, essentially making an isomorphism with a little help from the recursion infrastructure we introduced earlier.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">{-# LANGUAGE MultiParamTypeClasses,</span>
+<span class="co">             FunctionalDependencies #-}</span>
+
+<span class="kw">class</span> <span class="dt">Functor</span> f <span class="ot">=&gt;</span> <span class="dt">Fixable</span> f a <span class="fu">|</span> a <span class="ot">-&gt;</span> f, f <span class="ot">-&gt;</span> a <span class="kw">where</span>
+<span class="ot">  foldFix ::</span> <span class="dt">Algebra</span> f a
+<span class="ot">  unfoldFix ::</span> <span class="dt">Coalgebra</span> f a
+
+<span class="ot">  fromFix ::</span> <span class="dt">Fix</span> f <span class="ot">-&gt;</span> a
+  fromFix <span class="fu">=</span> cata foldFix
+
+<span class="ot">  toFix ::</span> a <span class="ot">-&gt;</span> <span class="dt">Fix</span> f
+  toFix <span class="fu">=</span> ana unfoldFix</code></pre></div>
+<p>We can instantiate our example as:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Fixable</span> <span class="dt">Expr_</span> <span class="dt">Expr</span> <span class="kw">where</span>
+  foldFix (<span class="dt">Lit_</span> x)      <span class="fu">=</span> <span class="dt">Lit</span> x
+  foldFix (<span class="dt">Plus_</span> x1 x2) <span class="fu">=</span> <span class="dt">Plus</span> x1 x2
+  foldFix (<span class="dt">Mult_</span> x1 x2) <span class="fu">=</span> <span class="dt">Mult</span> x1 x2
+
+  unfoldFix (<span class="dt">Lit</span> x)      <span class="fu">=</span> <span class="dt">Lit_</span> x
+  unfoldFix (<span class="dt">Plus</span> x1 x2) <span class="fu">=</span> <span class="dt">Plus_</span> x1 x2
+  unfoldFix (<span class="dt">Mult</span> x1 x2) <span class="fu">=</span> <span class="dt">Mult_</span> x1 x2</code></pre></div>
+<p>And now we can operate even more painlessly</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">catamap ::</span> <span class="dt">Fixable</span> f a <span class="ot">=&gt;</span> <span class="dt">Algebra</span> f b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b
+catamap alg <span class="fu">=</span> cata alg <span class="fu">.</span> toFix</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">RecursiveData</span> a <span class="kw">where</span>
+<span class="ot">  nodeEquality ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<span class="ot">  children ::</span> a <span class="ot">-&gt;</span> [a]
+
+<span class="kw">class</span> (<span class="dt">Eq</span> a, <span class="dt">Eq</span> s, <span class="dt">RecursiveData</span> a) <span class="ot">=&gt;</span> <span class="dt">SymbolicLang</span> a s <span class="fu">|</span> a <span class="ot">-&gt;</span> s <span class="kw">where</span>
+<span class="ot">  variable ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> a
+<span class="ot">  isVariable ::</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span>
+<span class="ot">  literal ::</span> s <span class="ot">-&gt;</span> a
+<span class="ot">  isLiteral ::</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> s
+<span class="ot">  evaluate ::</span> a <span class="ot">-&gt;</span> <span class="dt">EvalResult</span> a s
+
+<span class="kw">class</span> <span class="dt">Foldable</span> f <span class="ot">=&gt;</span> <span class="dt">ParaSymb</span> f <span class="kw">where</span>
+<span class="ot">  variable_ ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> f a
+<span class="ot">  isVariable_ ::</span> f a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">String</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"></code></pre></div>
+
+        </div>
+        <div id="footer">
+            <div id="footerleft">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" border="0">
+                <img alt="Creative Commons License" src="../images/CC-BY-NC.png" /></a>
+            </div>
+            <div id="footerright">
+                Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
+            </div>
+        </div>
+    </body>
+</html>
