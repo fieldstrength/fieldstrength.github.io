@@ -89,6 +89,7 @@
 <span class="val">(True, “Lee”)</span><span class="s2"> : </span><span class="typ">(Bool, String)</span>
 </p>
 </div>
+<p>You can see that in each case the compiler is reporting the type along with the entered value, and the symbol <code>:</code> can be read to mean “has the type”. In Idris every value occupies a type.</p>
 <p>One of the most jarring differences in syntax compared to more traditional languages is that <em>function application is denoted simply by space.</em> No parentheses or commas are required.</p>
 <div class="repl">
 <p class="p3">
@@ -315,7 +316,7 @@ arity (<span class="dt">S</span> n) a b <span class="fu">=</span> a <span class=
           <span class="fu">|</span> <span class="dt">Soph</span>
           <span class="fu">|</span> <span class="dt">Junior</span>
           <span class="fu">|</span> <span class="dt">Senior</span>
-          
+
 <span class="kw">data</span> <span class="dt">Student</span> <span class="fu">=</span> <span class="dt">MkStudent</span> <span class="dt">String</span> <span class="dt">Year</span> <span class="dt">Grade</span>
 
 <span class="kw">data</span> <span class="dt">Teacher</span> <span class="fu">=</span> <span class="dt">MkTeacher</span> <span class="dt">String</span>
