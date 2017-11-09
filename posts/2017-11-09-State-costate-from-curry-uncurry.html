@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>BlackBrane - State/Costate from Curry/Uncurry Adjunction</title>
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Field Strength</a>
+            </div>
+            <div id="navigation">
+                <a href="https://github.com/BlackBrane"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
+                <a href="../archive.html">Posts</a>
+                <a href="../phys-math-resources">Physics Resources</a>
+                <a href="../cs-resources">CS Resources</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>State/Costate from Curry/Uncurry Adjunction</h1>
+
+            <div class="info"> November  9, 2017 </div>
+
+<p>One of the wonderful things about learning category theory is the incredible wealth of examples that you find, over many different domains. Sometimes you come across an example that sets a thing you already know about into a larger context, and makes it seem like something inevitable that was rediscovered, instead of a mere engineering solution invented for a particular problem.</p>
+<p>This was exactly the case with a recent lecture I watched:</p>
+<p><a href="https://www.youtube.com/watch?v=FuOZjYVb7g0">Rúnar Bjarnason - Adjunctions in Everyday Life - λC 2017</a></p>
+<p>In it, he shows how one of the workhorses of the Haskell ecosystem, the State monad, arises as a direct consequence of an adjunction between a couple basic constructs: pairs and function arrows.</p>
+<h2 id="adjunctions">Adjunctions</h2>
+<p>An <a href="https://en.wikipedia.org/wiki/Adjoint_functors">adjunction</a> is a relationship between two functors. Here’s how it’s defined in Haskell. Focus on the first two methods for now, and the isomorphism they suggest. (Due to the default definitions, we need only supply the first pair <strong>or</strong> the last pair of functions in the interface.)</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> (<span class="dt">Functor</span> f, <span class="dt">Functor</span> g) <span class="ot">=&gt;</span> <span class="dt">Adjunction</span> f g <span class="kw">where</span>
+
+<span class="ot">    leftAdjunct  ::</span> (f a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> g b
+<span class="ot">    rightAdjunct ::</span> (a <span class="ot">-&gt;</span> g b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> b
+
+<span class="ot">    unit   ::</span> a <span class="ot">-&gt;</span> g (f a)
+<span class="ot">    counit ::</span> f (g a) <span class="ot">-&gt;</span> a
+
+    unit   <span class="fu">=</span> leftAdjunct  id
+    counit <span class="fu">=</span> rightAdjunct id
+
+    leftAdjunct  h <span class="fu">=</span> fmap h <span class="fu">.</span> unit
+    rightAdjunct h <span class="fu">=</span> counit <span class="fu">.</span> fmap h</code></pre></div>
+<p>Informally, <code>leftAdjunct</code> and <code>rightAdjunct</code> defines an isomorphism between certain kinds of function arrows (natural transformations) involving the two functors in question. Even though all of this is in the category <code>Hask</code>, the way the functors enter into the signatures is suggestive of how this generalizes to arbitrary categories.</p>
+<p>Two rather basic examples of Functors in Haskell are the (partially applied) pair and function type constructors.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Functor</span> ((<span class="ot">-&gt;</span>) a)
+<span class="kw">instance</span> <span class="dt">Functor</span> ((,) a)</code></pre></div>
+<p>In this case the isomorphism in question is well known to every Haskeller. We have curried functions by default: multi-argument functions are defined as functions returning functions. This isomorphism is witnessed by the pair:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">uncurry<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a, b) <span class="ot">-&gt;</span> c
+curry<span class="ot">   ::</span> ((a, b) <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c</code></pre></div>
+<p>And indeed, these functions are exactly the <code>leftAdjunct</code> and <code>rightAdjunct</code> of the adjunction between the two functors. The one small technicality is that we need to swap the order of the arguments in each.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Adjunction</span> ((,) a) ((<span class="ot">-&gt;</span>) a) <span class="kw">where</span>
+    leftAdjunct  h x y <span class="fu">=</span> curry h y x
+    rightAdjunct h x y <span class="fu">=</span> uncurry h (y, x)</code></pre></div>
+<h2 id="state-and-costate">State and Costate</h2>
+<p>So what about <code>unit</code> and <code>counit</code> then? Clearly they’re of comparable importance to the adjoint functions since they also furnish a complete definition of the adjunction.</p>
+<p>One thing that stands out immediately is that, by taking an arbitrary value and sticking it into some context, the <code>unit</code> function bears a striking resemblance to the <code>return</code> function from the <code>Monad</code> type class. Similarly, <code>counit</code> looks like the <code>extract</code> of a <code>Comonad</code>.</p>
+<p>Well what does this entail for our example? If we take <code>f = ((,) s)</code> and <code>g = ((-&gt;) s)</code> then, up to trivial differences, the <code>unit</code> we get is something every intermediate haskeller will know. The <code>counit</code>, while not so ubiquitous, is also a noteworthy member of the ecosystem.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">State</span> s a <span class="fu">=</span> s <span class="ot">-&gt;</span> (s, a)  <span class="co">-- f (g a)</span>
+<span class="kw">type</span> <span class="dt">Store</span> s a <span class="fu">=</span> (s, s <span class="ot">-&gt;</span> a)  <span class="co">-- g (f a)</span></code></pre></div>
+<p>For a quick review: The State monad is just a function that takes a state <code>s</code> as input, and returns some value <code>a</code> along with a new state. Similarly the <a href="https://www.stackage.org/haddock/lts/comonad/Control-Comonad-Store.html#t:Store">store</a> comonad (which I’ve called Costate to emphasize the duality with the more well-known State), contains a static value <code>s</code> with an <a href="https://stackoverflow.com/questions/8766246/what-is-the-store-comonad">updatable accessor function</a>.</p>
+<p>Indeed, it turns out that <code>fmap</code>ing the <code>counit</code> and <code>unit</code> functions we mentioned above gives us exactly the <code>join</code> and <code>extract</code> functions that are needed to define the monad/comonad instances respectively.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--   :: (s -&gt; (s, s -&gt; (s, a))) -&gt; (s -&gt; (s, a))</span>
+<span class="ot">join ::</span> <span class="dt">State</span> s (<span class="dt">State</span> s a) <span class="ot">-&gt;</span> <span class="dt">State</span> s a
+join <span class="fu">=</span> fmap counit
+
+<span class="co">--        :: (s, s -&gt; a) -&gt; (s, s -&gt; (s, s -&gt; a))</span>
+<span class="ot">duplicate ::</span> <span class="dt">Store</span> s a <span class="ot">-&gt;</span> <span class="dt">Store</span> s (<span class="dt">Store</span> s a)
+duplicate <span class="fu">=</span> fmap unit</code></pre></div>
+<h2 id="summary">Summary</h2>
+<p>The pair functor is left-adjoint to the function functor, which entails a certain isomorphism between functions to and from the functors in question. The familiar curry/uncurry functions from Haskell witness this isomorphism and furnish the adjunction.</p>
+<p>Nothing in this post is original, and the subjects are well discussed from a variety of angles elsewhere. But I tried to lay it out in a way that would be understandable to my earlier self. In particular, I’m hoping it conveys the tantalizing sense of the big iceberg lying beneath the mundane constructions that are the bread and butter of everyday Haskell programming.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="https://www.schoolofhaskell.com/user/bartosz/lenses-stores-and-yoneda">Lenses, Stores, and Yoneda</a></li>
+</ul>
+
+        </div>
+        <div id="footer">
+            <div id="footerleft">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" border="0">
+                <img alt="Creative Commons License" src="../images/CC-BY-NC.png" /></a>
+            </div>
+            <div id="footerright">
+                Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
+            </div>
+        </div>
+    </body>
+</html>
