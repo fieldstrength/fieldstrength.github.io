@@ -4,10 +4,9 @@
     <head>
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>BlackBrane - State/Costate from Curry/Uncurry Adjunction</title>
+        <title>Field Strength - State/Costate from Curry/Uncurry Adjunction</title>
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+         
     </head>
     <body>
         <div id="header">
@@ -15,7 +14,7 @@
                 <a href="../">Field Strength</a>
             </div>
             <div id="navigation">
-                <a href="https://github.com/BlackBrane"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
+                <a href="https://github.com/fieldstrength"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
                 <a href="../archive.html">Posts</a>
                 <a href="../phys-math-resources">Physics Resources</a>
                 <a href="../cs-resources">CS Resources</a>
@@ -28,51 +27,62 @@
 
             <div class="info"> November  9, 2017 </div>
 
+<div class="info">
+     Tagged: <a href="../tags/haskell/index.html">haskell</a>, <a href="../tags/programming/index.html">programming</a>, <a href="../tags/math/index.html">math</a>, <a href="../tags/category-theory/index.html">category-theory</a> 
+</div>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#adjunctions">Adjunctions</a></li>
+<li><a href="#state-and-costate">State and Costate</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#further-reading">Further reading</a></li>
+</ul>
 <p>One of the wonderful things about learning category theory is the incredible wealth of examples that you find, over many different domains. Sometimes you come across an example that sets a thing you already know into a larger context, and makes it seem like something inevitable that was rediscovered, rather than a mere engineering solution invented for a particular problem.</p>
 <p>This was exactly the case with a recent lecture I watched:</p>
 <p><a href="https://www.youtube.com/watch?v=FuOZjYVb7g0">Rúnar Bjarnason - Adjunctions in Everyday Life - λC 2017</a></p>
 <p>In it, he shows how one of the workhorses of the Haskell ecosystem, the State monad, arises as a direct consequence of an adjunction between a couple basic constructs: pairs and function arrows.</p>
 <h2 id="adjunctions">Adjunctions</h2>
 <p>An <a href="https://en.wikipedia.org/wiki/Adjoint_functors">adjunction</a> is a relationship between two functors. Here’s how it’s defined in Haskell. Focus on the first two methods for now, and the isomorphism they suggest. (Due to the default definitions, we need only supply the first pair or the last pair of functions in the interface.)</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> (<span class="dt">Functor</span> f, <span class="dt">Functor</span> g) <span class="ot">=&gt;</span> <span class="dt">Adjunction</span> f g <span class="kw">where</span>
-
-<span class="ot">    leftAdjunct  ::</span> (f a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> g b
-<span class="ot">    rightAdjunct ::</span> (a <span class="ot">-&gt;</span> g b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> b
-
-<span class="ot">    unit   ::</span> a <span class="ot">-&gt;</span> g (f a)
-<span class="ot">    counit ::</span> f (g a) <span class="ot">-&gt;</span> a
-
-    unit   <span class="fu">=</span> leftAdjunct  id
-    counit <span class="fu">=</span> rightAdjunct id
-
-    leftAdjunct  h <span class="fu">=</span> fmap h <span class="fu">.</span> unit
-    rightAdjunct h <span class="fu">=</span> counit <span class="fu">.</span> fmap h</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">class</span> (<span class="dt">Functor</span> f, <span class="dt">Functor</span> g) <span class="ot">=&gt;</span> <span class="dt">Adjunction</span> f g <span class="kw">where</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="ot">    leftAdjunct  ::</span> (f a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> g b</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="ot">    rightAdjunct ::</span> (a <span class="ot">-&gt;</span> g b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> b</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="ot">    unit   ::</span> a <span class="ot">-&gt;</span> g (f a)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="ot">    counit ::</span> f (g a) <span class="ot">-&gt;</span> a</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">    unit   <span class="fu">=</span> leftAdjunct  id</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    counit <span class="fu">=</span> rightAdjunct id</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">    leftAdjunct  h <span class="fu">=</span> fmap h <span class="fu">.</span> unit</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">    rightAdjunct h <span class="fu">=</span> counit <span class="fu">.</span> fmap h</a></code></pre></div>
 <p>Informally, <code>leftAdjunct</code> and <code>rightAdjunct</code> define an isomorphism between certain kinds of function arrows (a natural transformation) involving the two functors in question. Even though all of this is in the category <code>Hask</code>, the way the functors enter into the signatures is suggestive of how this generalizes to arbitrary categories.</p>
 <p>Two rather basic examples of Functors in Haskell are the (partially applied) pair and function type constructors.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Functor</span> ((,) a)
-<span class="kw">instance</span> <span class="dt">Functor</span> ((<span class="ot">-&gt;</span>) a)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">instance</span> <span class="dt">Functor</span> ((,) a)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">instance</span> <span class="dt">Functor</span> ((<span class="ot">-&gt;</span>) a)</a></code></pre></div>
 <p>In this case the isomorphism in question is well known to every Haskeller. We have curried functions by default: multi-argument functions are defined as functions returning functions. This isomorphism is witnessed by the pair:</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">curry<span class="ot">   ::</span> ((a, b) <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c
-uncurry<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a, b) <span class="ot">-&gt;</span> c</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb3-1" data-line-number="1">curry<span class="ot">   ::</span> ((a, b) <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">uncurry<span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a, b) <span class="ot">-&gt;</span> c</a></code></pre></div>
 <p>And indeed, these functions are exactly the <code>leftAdjunct</code> and <code>rightAdjunct</code> of the adjunction between the two functors. The one small technicality is that we need to swap the order of the arguments in each.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Adjunction</span> ((,) a) ((<span class="ot">-&gt;</span>) a) <span class="kw">where</span>
-    leftAdjunct  h x y <span class="fu">=</span> curry h y x
-    rightAdjunct h x y <span class="fu">=</span> uncurry h (y, x)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">instance</span> <span class="dt">Adjunction</span> ((,) a) ((<span class="ot">-&gt;</span>) a) <span class="kw">where</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    leftAdjunct  h x y <span class="fu">=</span> curry h y x</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    rightAdjunct h x y <span class="fu">=</span> uncurry h (y, x)</a></code></pre></div>
 <h2 id="state-and-costate">State and Costate</h2>
 <p>So what about <code>unit</code> and <code>counit</code> then? Clearly they’re of comparable importance to the adjoint functions since they also furnish a complete definition of the adjunction.</p>
 <p>One thing that stands out immediately is that, by taking an arbitrary value and sticking it into some context, <code>unit</code> bears a striking resemblance to the <code>return</code> function from the <code>Monad</code> type class. Similarly, <code>counit</code> looks like the <code>extract</code> of <code>Comonad</code>.</p>
 <p>Well what does this entail for our example? If we take <code>f = ((,) s)</code> and <code>g = ((-&gt;) s)</code> then, up to trivial differences, the <code>unit</code> we get is something every intermediate Haskeller will recognize. The <code>counit</code>, while not so ubiquitous, is also a noteworthy member of the ecosystem.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">State</span> s a <span class="fu">=</span> s <span class="ot">-&gt;</span> (s, a)  <span class="co">-- f (g a)</span>
-<span class="kw">type</span> <span class="dt">Store</span> s a <span class="fu">=</span> (s, s <span class="ot">-&gt;</span> a)  <span class="co">-- g (f a)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">type</span> <span class="dt">State</span> s a <span class="fu">=</span> s <span class="ot">-&gt;</span> (s, a)  <span class="co">-- f (g a)</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">type</span> <span class="dt">Store</span> s a <span class="fu">=</span> (s, s <span class="ot">-&gt;</span> a)  <span class="co">-- g (f a)</span></a></code></pre></div>
 <p>For a quick review: The State monad is just a function that takes a state <code>s</code> as input, and returns some value <code>a</code> along with a new state. Similarly the <a href="https://www.stackage.org/haddock/lts/comonad/Control-Comonad-Store.html#t:Store">Store</a> comonad (which I’ve called Costate to emphasize the duality with the more well-known <a href="https://www.stackage.org/haddock/lts/transformers/Control-Monad-Trans-State-Lazy.html#t:StateT">State</a>), contains a static value <code>s</code> with an <a href="https://stackoverflow.com/questions/8766246/what-is-the-store-comonad">updatable accessor function</a>.</p>
 <p>Indeed, it turns out that <code>fmap</code>ing the <code>counit</code> and <code>unit</code> functions we mentioned above gives us exactly the <code>join</code> and <code>extract</code> functions that are needed to define the monad/comonad instances respectively.</p>
-<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">--   :: (s -&gt; (s, s -&gt; (s, a))) -&gt; (s -&gt; (s, a))</span>
-<span class="ot">join ::</span> <span class="dt">State</span> s (<span class="dt">State</span> s a) <span class="ot">-&gt;</span> <span class="dt">State</span> s a
-join <span class="fu">=</span> fmap counit
-
-<span class="co">--        :: (s, s -&gt; a) -&gt; (s, s -&gt; (s, s -&gt; a))</span>
-<span class="ot">duplicate ::</span> <span class="dt">Store</span> s a <span class="ot">-&gt;</span> <span class="dt">Store</span> s (<span class="dt">Store</span> s a)
-duplicate <span class="fu">=</span> fmap unit</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">--   :: (s -&gt; (s, s -&gt; (s, a))) -&gt; (s -&gt; (s, a))</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="ot">join ::</span> <span class="dt">State</span> s (<span class="dt">State</span> s a) <span class="ot">-&gt;</span> <span class="dt">State</span> s a</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">join <span class="fu">=</span> fmap counit</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">--        :: (s, s -&gt; a) -&gt; (s, s -&gt; (s, s -&gt; a))</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="ot">duplicate ::</span> <span class="dt">Store</span> s a <span class="ot">-&gt;</span> <span class="dt">Store</span> s (<span class="dt">Store</span> s a)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">duplicate <span class="fu">=</span> fmap unit</a></code></pre></div>
 <h2 id="summary">Summary</h2>
 <p>We started with a familiar correspondence between two equivalent ways to express two-argument functions. By recognizing it as an adjunction and instantiating the Haskell type class, we arrived at two “new” constructions. One of them is a description of state machine computations, while the other is most naturally considered a way to refine a “view” or “getter” into a particular value.</p>
 <p>Stated concretely, the pair functor is left-adjoint to the function functor, which entails an isomorphism between functions to and from the functors in question. The familiar curry/uncurry functions from Haskell witness this isomorphism and furnish the adjunction.</p>
@@ -96,5 +106,6 @@ duplicate <span class="fu">=</span> fmap unit</code></pre></div>
                 Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
             </div>
         </div>
+        
     </body>
 </html>

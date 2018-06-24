@@ -4,10 +4,9 @@
     <head>
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>BlackBrane - Computer Science Resources</title>
+        <title>Field Strength - Computer Science Resources</title>
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+         
     </head>
     <body>
         <div id="header">
@@ -15,7 +14,7 @@
                 <a href="../">Field Strength</a>
             </div>
             <div id="navigation">
-                <a href="https://github.com/BlackBrane"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
+                <a href="https://github.com/fieldstrength"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
                 <a href="../archive.html">Posts</a>
                 <a href="../phys-math-resources">Physics Resources</a>
                 <a href="../cs-resources">CS Resources</a>
@@ -26,10 +25,23 @@
         <div id="content">
             <h1>Computer Science Resources</h1>
 
-            <p>Here I will collect various resources related to computer science, especially as pertain to Haskell programming.</p>
+            <h2>Contents</h2>
+<ul>
+<li><a href="#haskell">Haskell</a><ul>
+<li><a href="#beginners-haskell">Beginner’s Haskell</a></li>
+<li><a href="#haskell-topic-overviews">Haskell Topic Overviews</a></li>
+<li><a href="#targeted-haskell-tutorials">Targeted Haskell Tutorials</a></li>
+</ul></li>
+<li><a href="#dependent-types">Dependent Types</a></li>
+<li><a href="#machine-learning">Machine Learning</a></li>
+<li><a href="#algorithms-data-structures">Algorithms &amp; Data Structures</a></li>
+<li><a href="#numerical-mathematical-physical-computing">Numerical, Mathematical &amp; Physical Computing</a></li>
+<li><a href="#misc">Misc</a></li>
+</ul>
+<p>Here I will collect various resources related to computer science, especially as pertain to Haskell programming.</p>
 <h1 id="haskell">Haskell</h1>
 <p>Haskell is the world’s preimere functional programming language. First the Haskell <a href="https://www.haskell.org/">homepage</a>, <a href="http://tryhaskell.org/">tryhaskell.org</a> for experimenting in the browser, and <a href="https://www.haskell.org/hoogle/">Hoogle</a> to search haskell code by type or by name.</p>
-<h3 id="beginners-haskell">Beginner’s Haskell</h3>
+<h2 id="beginners-haskell">Beginner’s Haskell</h2>
 <ul>
 <li><a href="http://learnyouahaskell.com/">Learn You a Haskell for Great Good!</a> – Probably the best absolute beginner’s introduction.</li>
 <li><a href="http://book.realworldhaskell.org/read/">Real World Haskell</a> – Another excellent free-to-read Haskell book focused on practical applications.</li>
@@ -39,7 +51,7 @@
 <li><a href="http://lotz84.github.io/haskellbyexample/">Haskell by Example</a></li>
 <li><a href="http://fldit-www.cs.uni-dortmund.de/~peter/PS07/HR.pdf">The Haskell Road to Logic, Math and Programming</a> (PDF)</li>
 </ul>
-<h3 id="haskell-topic-overviews">Haskell Topic Overviews</h3>
+<h2 id="haskell-topic-overviews">Haskell Topic Overviews</h2>
 <ul>
 <li><a href="https://wiki.haskell.org/Typeclassopedia">Typeclassopedia</a> – These typeclasses, and underlying categorical concepts, are faily crucial to becoming a proficient haskeller.</li>
 <li><a href="https://github.com/Gabriel439/post-rfc/blob/master/sotu.md#data-science">State of the Haskell Ecosystem</a></li>
@@ -48,7 +60,7 @@
 <li><a href="http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/">The Algebra of algebraic data types</a></li>
 <li><a href="http://chimera.labs.oreilly.com/books/1230000000929/index.html">Parallel and Concurrent Programming in Haskell</a></li>
 </ul>
-<h3 id="targeted-haskell-tutorials">Targeted Haskell Tutorials</h3>
+<h2 id="targeted-haskell-tutorials">Targeted Haskell Tutorials</h2>
 <ul>
 <li><a href="http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html">Functors, Applicatives, And Monads In Pictures</a></li>
 <li><a href="https://ocharles.org.uk/blog/pages/2014-12-01-24-days-of-ghc-extensions.html">24 Days of GHC Extensions</a></li>
@@ -63,6 +75,7 @@
 <li><a href="http://www.haskellforall.com/2013/05/program-imperatively-using-haskell.html">Program imperatively using Haskell lenses</a></li>
 <li><a href="http://blog.jakubarnold.cz/2014/07/20/mutable-state-in-haskell.html">Mutable State in Haskell</a></li>
 <li><a href="https://ocharles.org.uk/blog/guest-posts/2014-12-22-template-haskell.html">TemplateHaskell tutorial by Sean Westfall</a></li>
+<li><a href="https://futtetennismo.me/posts/algorithms-and-data-structures/2017-12-08-functional-graphs.html">Functional programming with graphs</a></li>
 </ul>
 <h1 id="dependent-types">Dependent Types</h1>
 <ul>
@@ -76,8 +89,9 @@
 <li><a href="https://github.com/terryum/awesome-deep-learning-papers">Awesome Deep Learning Papers</a> – curated list by Terry Taewoong Um.</li>
 <li><a href="https://github.com/terryum/TensorFlow_Exercises">Tensorflow exercises</a></li>
 </ul>
-<h1 id="algorithms">Algorithms</h1>
+<h1 id="algorithms-data-structures">Algorithms &amp; Data Structures</h1>
 <ul>
+<li><a href="https://cs.uwaterloo.ca/~plragde/flaneries/FDS/">Functional Data Structures</a></li>
 <li><a href="https://workshape.github.io/visual-graph-algorithms/">A Visual Guide to Graph Traversal Algorithms</a></li>
 </ul>
 <h1 id="numerical-mathematical-physical-computing">Numerical, Mathematical &amp; Physical Computing</h1>
@@ -103,5 +117,6 @@
                 Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
             </div>
         </div>
+        
     </body>
 </html>

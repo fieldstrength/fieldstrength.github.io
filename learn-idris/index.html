@@ -4,10 +4,9 @@
     <head>
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>BlackBrane - Lightning Intro to Functional Programming and Dependent Types with Idris</title>
+        <title>Field Strength - Lightning Intro to Functional Programming and Dependent Types with Idris</title>
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
-        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
+         
     </head>
     <body>
         <div id="header">
@@ -15,7 +14,7 @@
                 <a href="../">Field Strength</a>
             </div>
             <div id="navigation">
-                <a href="https://github.com/BlackBrane"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
+                <a href="https://github.com/fieldstrength"><!--<img src="/images/gh.svg" width="16" />-->Code</a>
                 <a href="../archive.html">Posts</a>
                 <a href="../phys-math-resources">Physics Resources</a>
                 <a href="../cs-resources">CS Resources</a>
@@ -26,7 +25,25 @@
         <div id="content">
             <h1>Lightning Intro to Functional Programming and Dependent Types with Idris</h1>
 
-            <p>The purpose of this tutorial is to introduce the key concepts of functional programming and dependent type theory, convince you that these ideas can be powerful tools both for writing useful software and obtaining strong guarantees of its correctness, and to specifically demonstrate how to utilize these ideas with the <a href="idris-lang.org">Idris</a> programming language.</p>
+            <h2>Contents</h2>
+<ul>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#first-commands">First Commands</a></li>
+</ul></li>
+<li><a href="#constants">Constants</a></li>
+<li><a href="#functions-i">Functions I</a></li>
+<li><a href="#basic-data-declarations">Basic Data Declarations</a></li>
+<li><a href="#functions-ii-the-finer-points-of-recursion">Functions II: the finer points of recursion</a></li>
+<li><a href="#first-io">First IO</a></li>
+<li><a href="#polymorphic-data-types">Polymorphic Data Types</a><ul>
+<li><a href="#lists">Lists</a></li>
+</ul></li>
+<li><a href="#generalized-algebraic-data-types">Generalized Algebraic Data Types</a><ul>
+<li><a href="#vectors">Vectors</a></li>
+<li><a href="#propositions">Propositions</a></li>
+</ul></li>
+</ul>
+<p>The purpose of this tutorial is to introduce the key concepts of functional programming and dependent type theory, convince you that these ideas can be powerful tools both for writing useful software and obtaining strong guarantees of its correctness, and to specifically demonstrate how to utilize these ideas with the <a href="idris-lang.org">Idris</a> programming language.</p>
 <p>While Idris has solid and ever-improving <a href="docs.idris-lang.org">official documentation</a>, it does not focus on teaching fundamental concepts, leaving a significant pedagogical gap for someone without previous experience in functional programming. This work-in-progress tutorial is an attempt to bridge that gap.</p>
 <p>Let’s first introduce, in broad strokes, the meaning of these two main ideas we refer to in this title.</p>
 <h4 id="functional-programming">Functional Programming</h4>
@@ -168,44 +185,44 @@ Can’t disambiguate name: <span class="val">ForeignEnv.::</span>, <span class="
 <p>Finally I note in passing that, though we won’t explicitly cover it in this tutorial, much of this functionality is also available from within text editors, especially via the idris modes for <a href="https://github.com/idris-hackers/idris-mode">emacs</a> and <a href="https://github.com/idris-hackers/idris-vim">vim</a>.</p>
 <h4 id="modules">Modules</h4>
 <p>For now, we’ll only attempt to cover the minimal essentials necessary to get you up and running. Every Idris module begins with a module declaration, followed by optional import statements, like this:</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">module</span> <span class="dt">LearnIdris</span>
-
-<span class="kw">import</span> <span class="dt">MyOtherModule</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">module</span> <span class="dt">LearnIdris</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">import</span> <span class="dt">MyOtherModule</span></a></code></pre></div>
 <p>below which the contents of the module is defined. In general all Idris code may only depend on what has been defined above it in the module, or in the imported modules. The only exception to this is for mutually-defined data and functions which we’ll see later.</p>
 <p>All identifiers, including module names, are allowed to start with either capital or lowercase letters.</p>
 <p>Modules introduce a namespace for all identifiers defined within. This means that you’re free to reuse any names from the standard libraries, however if you do you’ll often then have to give the namespace explicitly when using them. So for example, if we are to redefine Bool in a module called Tutorial, we’d then have to write <code>Tutorial.Bool</code> prevent ambiguities while using it. In some cases this may not be neccessary when its sufficiently clear from the context which verion is being invoked.</p>
 <h2 id="constants">Constants</h2>
 <p>In definitions for constants and functions, we begin by declaring the type using <code>:</code>, and then we assign the value with <code>=</code>. Here are some simple examples.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">mybool</span> <span class="ot">:</span> <span class="dt">Bool</span>
-mybool <span class="fu">=</span> <span class="dt">True</span>
-
-<span class="fu">mylist</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Integer</span>
-mylist <span class="fu">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]
-
-<span class="fu">mystring</span> <span class="ot">:</span> <span class="dt">String</span>
-mystring <span class="fu">=</span> <span class="st">&quot;green curry&quot;</span>
-
-<span class="fu">mytype</span> <span class="ot">:</span> <span class="dt">Type</span>
-mytype <span class="fu">=</span> <span class="dt">String</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fu">mybool</span> <span class="ot">:</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">mybool <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="fu">mylist</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Integer</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">mylist <span class="fu">=</span> [<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="fu">mystring</span> <span class="ot">:</span> <span class="dt">String</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">mystring <span class="fu">=</span> <span class="st">&quot;green curry&quot;</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="fu">mytype</span> <span class="ot">:</span> <span class="dt">Type</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">mytype <span class="fu">=</span> <span class="dt">String</span></a></code></pre></div>
 <p>Note that Idris enforces no capitalization requirements on any identifiers, but we usually follow the convention that names of data types and data constructors are capitalized while names of functions and constants start with a lowercase.</p>
 <h2 id="functions-i">Functions I</h2>
 <p>Function definitions will follow the same basic format that we used above. One major difference is that we’ll in general use more than one <code>=</code> to describe the function. Consider the following simple example.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- boolean NOT, a single-argument function</span>
-<span class="fu">not</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-not <span class="dt">True</span>  <span class="fu">=</span> <span class="dt">False</span>
-not <span class="dt">False</span> <span class="fu">=</span> <span class="dt">True</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">-- boolean NOT, a single-argument function</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="fu">not</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">not <span class="dt">True</span>  <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">not <span class="dt">False</span> <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
 <p>First, notice that we’ve used the <code>-&gt;</code> symbol to express the fact that the <code>not</code> function takes a Bool as input and produces a Bool as an output. This specification of the function’s input and output types is called the function’s <strong>type signature.</strong> In the body, we used the most straightforward way to define a function, which is to write an equation for all possible input values. While this is the most conceptually straightforward way, it will become prohibitively tedious for most input types.</p>
 <p>A more powerful approach is to abstract over the possible input values by binding them to variables on the right-hand side. Check out this implementation of exclusive-or:</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- boolean XOR, a 2-argument function</span>
-<span class="fu">xor</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-xor <span class="dt">False</span> x <span class="fu">=</span> x
-xor <span class="dt">True</span>  x <span class="fu">=</span> not x</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co">-- boolean XOR, a 2-argument function</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="fu">xor</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">xor <span class="dt">False</span> x <span class="fu">=</span> x</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">xor <span class="dt">True</span>  x <span class="fu">=</span> not x</a></code></pre></div>
 <p>Binding one of our inputs to the variable <code>x</code> allowed us to express in 2 equations what otherwise would have taken 4 if we explicitly wrote out all the possible input values.</p>
 <p>This process of writing functions in terms of partly-explicit and partly-abstract data is called <strong>pattern matching.</strong> While it tends to take some getting used to, when you do it’s an incredibly powerful and elegant way of describing functions.</p>
 <p>One property of our last function that won’t always hold is that the patterns (of left-hand-side data) are mutually exclusive. When this isn’t the case, we’ll use the fact that Idris attempts to match the patterns in the order that we write them. One particular way we can do this is by using <code>_</code> which matches anything.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">isZero</span> <span class="ot">:</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-isZero <span class="dv">0</span> <span class="fu">=</span> <span class="dt">True</span>
-isZero <span class="fu">_</span> <span class="fu">=</span> <span class="dt">False</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="fu">isZero</span> <span class="ot">:</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">isZero <span class="dv">0</span> <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">isZero <span class="fu">_</span> <span class="fu">=</span> <span class="dt">False</span></a></code></pre></div>
 <p>If we wrote these two lines in the opposite order, the function would always return <code>False</code> because <code>_</code> would “match” on any possible input and so the other pattern would never be tried.</p>
 <div class="aside">
 <p>If it stands out that I have repeatedly used the word <strong>equation</strong> to describe this definition syntax, that is intentional. Unlike the analogous operators in most programming languages, these assignments can be <em>literally</em> interpreted as equations. This stems from the fact that all definitions in Idris are <strong>immutable</strong>. Whenever we define something with <code>=</code> the name really is associated to that <em>value,</em> not just a memory location whose contents is subject to update. So it’s important to think about operations on these values as producing something new, as opposed to overwriting what we’ve already defined.</p>
@@ -213,18 +230,18 @@ isZero <span class="fu">_</span> <span class="fu">=</span> <span class="dt">Fals
 </div>
 <h4 id="infix-operators">Infix Operators</h4>
 <p>For another example, we could define two more standard boolean logical operators.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- specify the order of precedence when defining operators:</span>
-<span class="kw">infixl</span> <span class="dv">4</span> <span class="fu">&amp;&amp;</span>, <span class="fu">||</span>
-
-<span class="co">-- boolean AND</span>
-<span class="fu">(&amp;&amp;)</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-(<span class="fu">&amp;&amp;</span>) <span class="dt">True</span> <span class="dt">True</span> <span class="fu">=</span> <span class="dt">True</span>
-(<span class="fu">&amp;&amp;</span>) <span class="fu">_</span>    <span class="fu">_</span>    <span class="fu">=</span> <span class="dt">False</span>
-
-<span class="co">-- boolean OR</span>
-<span class="fu">(||)</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-(<span class="fu">||</span>) <span class="dt">False</span> <span class="dt">False</span> <span class="fu">=</span> <span class="dt">False</span>
-(<span class="fu">||</span>) <span class="fu">_</span>     <span class="fu">_</span>     <span class="fu">=</span> <span class="dt">True</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">-- specify the order of precedence when defining operators:</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">infixl</span> <span class="dv">4</span> <span class="fu">&amp;&amp;</span>, <span class="fu">||</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">-- boolean AND</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="fu">(&amp;&amp;)</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">(<span class="fu">&amp;&amp;</span>) <span class="dt">True</span> <span class="dt">True</span> <span class="fu">=</span> <span class="dt">True</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">(<span class="fu">&amp;&amp;</span>) <span class="fu">_</span>    <span class="fu">_</span>    <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">-- boolean OR</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="fu">(||)</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">(<span class="fu">||</span>) <span class="dt">False</span> <span class="dt">False</span> <span class="fu">=</span> <span class="dt">False</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">(<span class="fu">||</span>) <span class="fu">_</span>     <span class="fu">_</span>     <span class="fu">=</span> <span class="dt">True</span></a></code></pre></div>
 <p>Note that the first non-comment line of this code snippet is what’s called a <em>fixity declaration,</em> which we supply whenever we name a function with these special operator characters. Such a function is called an <em>infix operator</em> because they’re invoked by inserting the operator between the two inputs, as for example when we add <code>5 + 3</code>. The fixity declaration is needed because it clarifies which operators take precedence over which others; that’s what the ‘4’ in the above fixity declaration means. Operators with the highest precedence are evaluated first, from the maximum of 10 down to the minimum of 0. It also specifies whether evaluation proceeds from the right or the left, denoted by <code>infixr</code> and <code>infixl</code> respectively. This means, for example, that <code>x &amp;&amp; y &amp;&amp; z</code> evaluates the same way as <code>(x &amp;&amp; y) &amp;&amp; z</code>. In this particular case the distinction is irrelevant, but in general this is an ambiguity that needs to be fixed.</p>
 <p>Whenever we have an infix operator, we can use it like a regular (‘postfix’) function by wrapping it in parentheses. (In particular we need to do this when writing their type declarations, as in the above code.) For example these two ways of multiplying are equivalent:</p>
 <div class="repl">
@@ -283,121 +300,121 @@ Idris&gt; :t xor False
 xor False : Bool -&gt; Bool</code></pre>
 <p>Indeed, when we supply one value to the 2-argument function, we get back a single-argument function. This is called <strong>partial application</strong>. It’s one of many benefits we’ll reap from treating functions as first-class language values.</p>
 <p>Currying also gives us added flexibility when <em>defining</em> functions. We can always use the standard approach of defining multi-argument functions directly by expressing their final output in terms of the input values. However we can also utilize the fact that multi-argument functions are curried to directly define them as higher-order functions. For example we could have alternatively defined our <code>xor</code> function as:</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- 2-argument function as a 1-argument higher-order function</span>
-<span class="fu">xor'</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-xor' <span class="dt">False</span> <span class="fu">=</span> id
-xor' <span class="dt">True</span>  <span class="fu">=</span> not</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co">-- 2-argument function as a 1-argument higher-order function</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="fu">xor'</span> <span class="ot">:</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">xor' <span class="dt">False</span> <span class="fu">=</span> id</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">xor' <span class="dt">True</span>  <span class="fu">=</span> not</a></code></pre></div>
 <p>To emphasize the difference, in the first <code>xor</code> definition we introduced two arguments on the left-hand-side, so the expression on the right-hand-side needed to be a Bool. In this case we only introduce one value on the LHS, so in order to be consistent with the type signature, the expressions on the RHS need to be of type <code>Bool -&gt; Bool</code>. Here <code>id</code> is of course the identity function, which is defined for all types, and we’ve already described <code>not</code>.</p>
 <p>Overall, it’s much more common to define higher-order functions in the former way, but the possibility of this other approach can sometimes make things easier. More importantly for our purposes, it can be very helpful for understanding this critical concept to see at least see one example of this other approach.</p>
 <h4 id="computing-types">Computing Types</h4>
 <p>Since types are just a kind of value, we can compute them like we could anything else. One place where this can be useful is for defining a shorthand for certain type structures we intend to use.</p>
 <p>For a first example, take this type synonym function for lists of lists of a supplied type.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">array</span> <span class="ot">:</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span>
-array a <span class="fu">=</span> <span class="dt">List</span> (<span class="dt">List</span> a)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="fu">array</span> <span class="ot">:</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">array a <span class="fu">=</span> <span class="dt">List</span> (<span class="dt">List</span> a)</a></code></pre></div>
 <p>We can also write a type-function describing the dependency of an arbitrary return type on a particular number of copies of a given input type.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">arity</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span>
-arity <span class="dt">Z</span>     a b <span class="fu">=</span> b
-arity (<span class="dt">S</span> n) a b <span class="fu">=</span> a <span class="ot">-&gt;</span> (arity n a b)</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="fu">arity</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">arity <span class="dt">Z</span>     a b <span class="fu">=</span> b</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">arity (<span class="dt">S</span> n) a b <span class="fu">=</span> a <span class="ot">-&gt;</span> (arity n a b)</a></code></pre></div>
 <h2 id="basic-data-declarations">Basic Data Declarations</h2>
 <p>Data types are the mechanism by which a user introduces new values and types into the system.</p>
 <p>a critical concept to understand, being the single way a user can expand the range of possible types and values the language knows how to deal with. In this section we will introduce them at a level that is extremely simple and easy, but later on we will see some more sophisticated examples.</p>
 <p>We can define our own basic data types with a data declaration like the following.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Bool</span> <span class="fu">=</span> <span class="dt">True</span> <span class="fu">|</span> <span class="dt">False</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Bool</span> <span class="fu">=</span> <span class="dt">True</span> <span class="fu">|</span> <span class="dt">False</span></a></code></pre></div>
 <p>We first give the name of our data type, then after the <code>=</code> sign we supply a list of <strong>data constructors</strong> separated by vertical bars. In this simple example the two data constructors, <code>True</code> and <code>False</code>, correspond directly to the two possible values of the data type.</p>
 <p>A more general situation is to follow each data constructor by other types of values that must be supplied. For example, the following data declaration might be used to represent two different types of users of a service: Registered users have an ID number and a String for their name, while unregistered users have only an ID number.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Visitor</span> <span class="fu">=</span> <span class="dt">Unregistered</span> <span class="dt">Int</span>
-             <span class="fu">|</span> <span class="dt">Registered</span> <span class="dt">Int</span> <span class="dt">String</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Visitor</span> <span class="fu">=</span> <span class="dt">Unregistered</span> <span class="dt">Int</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">             <span class="fu">|</span> <span class="dt">Registered</span> <span class="dt">Int</span> <span class="dt">String</span></a></code></pre></div>
 <p>These kinds of data declarations define what are called <a href="http://en.wikipedia.org/wiki/Algebraic_data_type">Algebraic data types</a>. The name refers to how, as we’ve seen, the data types can be combined in two different ways, roughly <a href="https://codewords.recurse.com/issues/three/algebra-and-calculus-of-algebraic-data-types/">analgous in structure</a> to addition and multiplication.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">module</span> <span class="dt">Seminar</span>
-
-<span class="kw">data</span> <span class="dt">Grade</span> <span class="fu">=</span> <span class="dt">A</span> <span class="fu">|</span> <span class="dt">B</span> <span class="fu">|</span> <span class="dt">C</span> <span class="fu">|</span> <span class="dt">F</span>
-
-<span class="kw">data</span> <span class="dt">Year</span> <span class="fu">=</span> <span class="dt">Fresh</span>
-          <span class="fu">|</span> <span class="dt">Soph</span>
-          <span class="fu">|</span> <span class="dt">Junior</span>
-          <span class="fu">|</span> <span class="dt">Senior</span>
-
-<span class="kw">data</span> <span class="dt">Student</span> <span class="fu">=</span> <span class="dt">MkStudent</span> <span class="dt">String</span> <span class="dt">Year</span> <span class="dt">Grade</span>
-
-<span class="kw">data</span> <span class="dt">Teacher</span> <span class="fu">=</span> <span class="dt">MkTeacher</span> <span class="dt">String</span>
-
-<span class="kw">data</span> <span class="dt">Person</span> <span class="fu">=</span> <span class="dt">S</span> <span class="dt">Student</span>
-            <span class="fu">|</span> <span class="dt">T</span> <span class="dt">Teacher</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">module</span> <span class="dt">Seminar</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">data</span> <span class="dt">Grade</span> <span class="fu">=</span> <span class="dt">A</span> <span class="fu">|</span> <span class="dt">B</span> <span class="fu">|</span> <span class="dt">C</span> <span class="fu">|</span> <span class="dt">F</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">data</span> <span class="dt">Year</span> <span class="fu">=</span> <span class="dt">Fresh</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">          <span class="fu">|</span> <span class="dt">Soph</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">          <span class="fu">|</span> <span class="dt">Junior</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">          <span class="fu">|</span> <span class="dt">Senior</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="kw">data</span> <span class="dt">Student</span> <span class="fu">=</span> <span class="dt">MkStudent</span> <span class="dt">String</span> <span class="dt">Year</span> <span class="dt">Grade</span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="kw">data</span> <span class="dt">Teacher</span> <span class="fu">=</span> <span class="dt">MkTeacher</span> <span class="dt">String</span></a>
+<a class="sourceLine" id="cb13-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="kw">data</span> <span class="dt">Person</span> <span class="fu">=</span> <span class="dt">S</span> <span class="dt">Student</span></a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">            <span class="fu">|</span> <span class="dt">T</span> <span class="dt">Teacher</span></a></code></pre></div>
 <pre><code>*Tutorial&gt; MkStudent &quot;Joe&quot; Soph A
 MkStudent &quot;Joe&quot; Soph A : Student</code></pre>
 <h2 id="functions-ii-the-finer-points-of-recursion">Functions II: the finer points of recursion</h2>
 <h4 id="natural-numbers">Natural Numbers</h4>
 <p>The natural numbers – integers starting from zero and counting up – are, as the name implies, an intuitively natural number system, and are a good place to begin examining how to describe numbers as data types. After all they’re the first form of numbers humans understood (sans zero), and they’re generally the first one we all learn about in school.</p>
 <p>The key property of the natural numbers we’re going to exploit is the fact that all of them can be described by only two data constructors. Zero <code>Z</code> and the <em>successor function</em> <code>S</code> whose interpretation is to increase the number by 1. Thus naturals are described by this remarkably simple definition:</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Nat</span> <span class="fu">=</span> <span class="dt">Z</span> <span class="fu">|</span> <span class="dt">S</span> <span class="dt">Nat</span>
-
-<span class="co">{-  0  ~  Z</span>
-<span class="co">    1  ~  S Z</span>
-<span class="co">    2  ~  S (S Z)</span>
-<span class="co">    3  ~  S (S (S Z)) ...  -}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Nat</span> <span class="fu">=</span> <span class="dt">Z</span> <span class="fu">|</span> <span class="dt">S</span> <span class="dt">Nat</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co">{-  0  ~  Z</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">    1  ~  S Z</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co">    2  ~  S (S Z)</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"><span class="co">    3  ~  S (S (S Z)) ...  -}</span></a></code></pre></div>
 <p>Here we’ve also introduced the syntax for multi-line comments to show what the first few Nats look like in terms of these constructors. Simple as it is, this way of representing the naturals will be unfamiliar to many, so it may help to see them written explicitly. This form for the naturals is often called the <a href="https://en.wikipedia.org/wiki/Peano_axioms">Peano axioms</a>.</p>
 <p>Many will justifiably wonder why we should bother with such a system, given that encoding integers in any of the standard ways are certainly more efficient and intuitive. The first reason is conceptual and pedagocial: Nats are first of all <em>the simplest possible example</em> of an inductive datatype. Many other data types that we’ll encounter will involve this same general property of being defined by repeated application of a data constructor acting on that same data type. More to the point, defining operations like addition and multiplication are almost inevitably <strong>structurally recursive</strong> functions. This means they are defined in a recursive way, in direct correspondence to the recursive structure of the data on they operate. It is this property that we focus on now.</p>
 <p>Another reason, which we’ll take up further on, is this: Defining Nats in this recursive way makes them amenable to having <em>the properties of the functions on them formally proven.</em> This is where the dependent type system will really shine for us. Proofs are also first class data types in idris, and we’ll see this when we examine, for example, proofs of the commutative and associative properties of addition and multiplication.</p>
 <p>For now though, lets turn to our first example of a structurally recursive function.</p>
 <h4 id="addition-and-multiplication-of-natural-numbers">Addition and multiplication of natural numbers</h4>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">plus</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
-plus <span class="dt">Z</span>     m <span class="fu">=</span> m
-plus (<span class="dt">S</span> n) m <span class="fu">=</span> <span class="dt">S</span> (plus n m)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="fu">plus</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">plus <span class="dt">Z</span>     m <span class="fu">=</span> m</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">plus (<span class="dt">S</span> n) m <span class="fu">=</span> <span class="dt">S</span> (plus n m)</a></code></pre></div>
 <p>Here we see prototypical example of a common format to be repeated in many different contexts. Our data type has a <strong>base case</strong>, <code>Z</code>, for which we can define the answer directly, and we also must describe the <strong>step case</strong> which defines the answer at level <code>S n</code> in terms of the same function one level lower, at level <code>n</code>. This suffices to define addition for all natural numbers.</p>
 <p>Similarly, just as addition is defined as the repeated application of the successor function, we can define multiplication recursively as repeated application of addition.</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">mult</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span>
-mult <span class="dt">Z</span>     m <span class="fu">=</span> <span class="dt">Z</span>
-mult (<span class="dt">S</span> n) m <span class="fu">=</span> plus m (mult n m)</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="fu">mult</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">mult <span class="dt">Z</span>     m <span class="fu">=</span> <span class="dt">Z</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">mult (<span class="dt">S</span> n) m <span class="fu">=</span> plus m (mult n m)</a></code></pre></div>
 <h2 id="first-io">First IO</h2>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">main</span> <span class="ot">:</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> putStrLn <span class="st">&quot;Hello world!&quot;</span>
-
-<span class="fu">getName</span> <span class="ot">:</span> <span class="dt">IO</span> <span class="dt">String</span>
-getName <span class="fu">=</span> <span class="kw">do</span> x <span class="ot">&lt;-</span> getLine
-             return x
-
-<span class="fu">greet</span> <span class="ot">:</span> <span class="dt">IO</span> ()
-greet <span class="fu">=</span> <span class="kw">do</span> putStrLn <span class="st">&quot;What's your name?&quot;</span>
-           n <span class="ot">&lt;-</span> getLine
-           putStrLn <span class="fu">$</span> <span class="st">&quot;Hello, &quot;</span> <span class="fu">++</span> n <span class="fu">++</span> <span class="st">&quot;!&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="fu">main</span> <span class="ot">:</span> <span class="dt">IO</span> ()</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">main <span class="fu">=</span> putStrLn <span class="st">&quot;Hello world!&quot;</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="fu">getName</span> <span class="ot">:</span> <span class="dt">IO</span> <span class="dt">String</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">getName <span class="fu">=</span> <span class="kw">do</span> x <span class="ot">&lt;-</span> getLine</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">             return x</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="fu">greet</span> <span class="ot">:</span> <span class="dt">IO</span> ()</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9">greet <span class="fu">=</span> <span class="kw">do</span> putStrLn <span class="st">&quot;What's your name?&quot;</span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">           n <span class="ot">&lt;-</span> getLine</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">           putStrLn <span class="fu">$</span> <span class="st">&quot;Hello, &quot;</span> <span class="fu">++</span> n <span class="fu">++</span> <span class="st">&quot;!&quot;</span></a></code></pre></div>
 <h2 id="polymorphic-data-types">Polymorphic Data Types</h2>
 <h4 id="maybe">Maybe</h4>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="dt">Nothing</span> <span class="fu">|</span> <span class="dt">Just</span> a</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="fu">safeDiv</span> <span class="ot">:</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Float</span>
-safeDiv x y   <span class="fu">=</span> <span class="dt">Just</span> (x <span class="fu">/</span> y)
-safeDiv <span class="fu">_</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0</span> <span class="fu">=</span> <span class="dt">Nothing</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="dt">Nothing</span> <span class="fu">|</span> <span class="dt">Just</span> a</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="fu">safeDiv</span> <span class="ot">:</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Float</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">safeDiv x y   <span class="fu">=</span> <span class="dt">Just</span> (x <span class="fu">/</span> y)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">safeDiv <span class="fu">_</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0</span> <span class="fu">=</span> <span class="dt">Nothing</span></a></code></pre></div>
 <h4 id="either">Either</h4>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Either</span> a b <span class="fu">=</span> <span class="dt">Left</span> a <span class="fu">|</span> <span class="dt">Right</span> b</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Either</span> a b <span class="fu">=</span> <span class="dt">Left</span> a <span class="fu">|</span> <span class="dt">Right</span> b</a></code></pre></div>
 <h3 id="lists">Lists</h3>
 <p>Lists are, of course, one of the most basic and ubiquitous data structures around. We’ve already seen an example of a list invoked in the usual way by square braces <code>[1,0,0,1]</code>, but as you may guess, this is only syntactic sugar. Lists are a proper idris data type so let’s see how they’re defined:</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">infixr</span> <span class="dv">7</span> <span class="ot">::</span>
-
-<span class="kw">data</span> <span class="dt">List</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> (<span class="ot">::</span>) a (<span class="dt">List</span> a)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">infixr</span> <span class="dv">7</span> <span class="ot">::</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw">data</span> <span class="dt">List</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> (<span class="ot">::</span>) a (<span class="dt">List</span> a)</a></code></pre></div>
 <p>There are a couple important things to notice about this definition. For one thing, while we’ve already seen infix operators used as functions, here we see they can be used as a data constructor as well (which, anyway, is a special kind of function). Another important element is that the declaration refers to an abstract type <code>a</code>, because we want to define lists for all possible types simultaneously. Notice that the left-hand side of the equation doesn’t just say <code>List</code>, it says <code>List a</code>. This means that <code>List</code> by itself is not a type. To make a concrete type we must fill in the <code>a</code>, so for example <code>List Int</code> or <code>List String</code> are types, but <code>List</code> by itself is not, it is actually a function with signature <code>Type -&gt; Type</code>.</p>
 <p>As the declaration says, we can construct a list with either <code>Nil</code> which creates an empty list of any particular type, or with <code>(::)</code> which takes an element of type <code>a</code> on the left, and a list of <code>a</code>’s on the right, and returns back a new list with the first element appended to the front of the list.</p>
 <p>So an example of a fully-explicit list definition is the following:</p>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">-- [0,1,2]</span>
-<span class="fu">lst</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Integer</span>
-lst <span class="fu">=</span> <span class="dv">0</span> <span class="ot">::</span> <span class="dv">1</span> <span class="ot">::</span> <span class="dv">2</span> <span class="ot">::</span> <span class="dt">Nil</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co">-- [0,1,2]</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="fu">lst</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Integer</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">lst <span class="fu">=</span> <span class="dv">0</span> <span class="ot">::</span> <span class="dv">1</span> <span class="ot">::</span> <span class="dv">2</span> <span class="ot">::</span> <span class="dt">Nil</span></a></code></pre></div>
 <h2 id="generalized-algebraic-data-types">Generalized Algebraic Data Types</h2>
 <h3 id="vectors">Vectors</h3>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Vect</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span>
-  <span class="dt">Nil</span> <span class="ot">:</span> <span class="dt">Vect</span> <span class="dt">Z</span> a
-  <span class="fu">(::)</span> <span class="ot">:</span> a <span class="ot">-&gt;</span> <span class="dt">Vect</span> n a <span class="ot">-&gt;</span> <span class="dt">Vect</span> (<span class="dt">S</span> n) a</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Vect</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">  <span class="dt">Nil</span> <span class="ot">:</span> <span class="dt">Vect</span> <span class="dt">Z</span> a</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">  <span class="fu">(::)</span> <span class="ot">:</span> a <span class="ot">-&gt;</span> <span class="dt">Vect</span> n a <span class="ot">-&gt;</span> <span class="dt">Vect</span> (<span class="dt">S</span> n) a</a></code></pre></div>
 <h3 id="propositions">Propositions</h3>
 <h4 id="evenness">Evenness</h4>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="kw">data</span> <span class="dt">Even</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span>
-  <span class="dt">EvenZ</span> <span class="ot">:</span> <span class="dt">Even</span> <span class="dt">Z</span>
-  <span class="dt">EvenS</span> <span class="ot">:</span> <span class="dt">Even</span> n <span class="ot">-&gt;</span> <span class="dt">Even</span> (<span class="dt">S</span> (<span class="dt">S</span> n))</code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">data</span> <span class="dt">Even</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="dt">EvenZ</span> <span class="ot">:</span> <span class="dt">Even</span> <span class="dt">Z</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">  <span class="dt">EvenS</span> <span class="ot">:</span> <span class="dt">Even</span> n <span class="ot">-&gt;</span> <span class="dt">Even</span> (<span class="dt">S</span> (<span class="dt">S</span> n))</a></code></pre></div>
 <h4 id="comparison">Comparison</h4>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">||| Proof that one number is less than or equal to another</span>
-<span class="kw">data</span> <span class="dt">LTE</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span>
-  <span class="dt">LTEZero</span> <span class="ot">:</span> <span class="dt">LTE</span> <span class="dt">Z</span> r
-  <span class="dt">LTESucc</span> <span class="ot">:</span> <span class="dt">LTE</span> l r <span class="ot">-&gt;</span> <span class="dt">LTE</span> (<span class="dt">S</span> l) (<span class="dt">S</span> r)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode idris"><code class="sourceCode idris"><span class="co">||| A correct-by-construction ordered list of Nats</span>
-<span class="kw">data</span> <span class="dt">OrdList</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span>
-  <span class="dt">Nil</span>  <span class="ot">:</span> <span class="dt">OrdList</span> []
-  <span class="fu">(::)</span> <span class="ot">:</span> <span class="dt">LTE</span> x y <span class="ot">-&gt;</span> <span class="dt">OrdList</span> (y <span class="ot">::</span> l) <span class="ot">-&gt;</span> <span class="dt">OrdList</span> <span class="fu">$</span> x <span class="ot">::</span> (y <span class="ot">::</span> l)</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co">||| Proof that one number is less than or equal to another</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">data</span> <span class="dt">LTE</span> <span class="ot">:</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">  <span class="dt">LTEZero</span> <span class="ot">:</span> <span class="dt">LTE</span> <span class="dt">Z</span> r</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">  <span class="dt">LTESucc</span> <span class="ot">:</span> <span class="dt">LTE</span> l r <span class="ot">-&gt;</span> <span class="dt">LTE</span> (<span class="dt">S</span> l) (<span class="dt">S</span> r)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode idris"><code class="sourceCode idris"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co">||| A correct-by-construction ordered list of Nats</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">data</span> <span class="dt">OrdList</span> <span class="ot">:</span> <span class="dt">List</span> <span class="dt">Nat</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> <span class="kw">where</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="dt">Nil</span>  <span class="ot">:</span> <span class="dt">OrdList</span> []</a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="fu">(::)</span> <span class="ot">:</span> <span class="dt">LTE</span> x y <span class="ot">-&gt;</span> <span class="dt">OrdList</span> (y <span class="ot">::</span> l) <span class="ot">-&gt;</span> <span class="dt">OrdList</span> <span class="fu">$</span> x <span class="ot">::</span> (y <span class="ot">::</span> l)</a></code></pre></div>
 <p>To be continued…</p>
         </div>
         <div id="footer">
@@ -409,5 +426,6 @@ lst <span class="fu">=</span> <span class="dv">0</span> <span class="ot">::</spa
                 Site proudly generated by <a href="http://jaspervdj.be/hakyll">Hakyll</a>.
             </div>
         </div>
+        
     </body>
 </html>
