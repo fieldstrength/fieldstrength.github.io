@@ -1,10 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head> 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+
 <style type="text/css">
 body{
-	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#333333;
 	line-height:150%;
@@ -12,7 +17,7 @@ body{
 }
 
 .hh3{
-	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px
 	color:#000000;
 	font-weight:bold;
@@ -25,19 +30,19 @@ body{
 	line-height:normal;
 }
 
-.bb{ 
+.bb{
 	color:#12475f;
 	font-weight:bold;
 	line-height:normal;
 }
 
-.bb1{ 
+.bb1{
 	color:#12475f;
 	font-weight:bold;
 	line-height:normal;
 }
 
-.bb2{ 
+.bb2{
 	color:#12475f;
 	font-weight:bold;
 	line-height: 150%;
@@ -47,7 +52,7 @@ a:link, a:visited, a:active{ font-weight:bold; color:#111111; border-bottom: 1px
 a:hover{font-weight:bold; color:#666666; border-bottom: 1px solid #F0ED20; text-decoration:none; }
 
 .ack{
-	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px;
 	color:#BBBBBB;
 	text-align:justify;
@@ -57,7 +62,7 @@ a:hover{font-weight:bold; color:#666666; border-bottom: 1px solid #F0ED20; text-
 .ack a:hover{font-weight:normal; color:#FFFFFF; border-bottom: 1px solid #F0ED20; text-decoration:none; }
 
 .c1{
-	font-family:Verdana, Arial, Helvetica, sans-serif; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#333333;
 	width:900px;
@@ -105,7 +110,7 @@ td.ent{
 
 function imgpreload () {
 
-	preimg = new Image(); 
+	preimg = new Image();
 	urlData = new Array();
 	wstr = new String();
 
@@ -119,7 +124,7 @@ function imgpreload () {
 		wstr = "img/" + wstr + "over.gif";
 		urlData[v] = wstr;
 	}
-	
+
 	for(var v=1; v<40; v++) {
 		wstr = "B";
 		if(v<10) { wstr += "0"; }
@@ -127,7 +132,7 @@ function imgpreload () {
 		wstr = "img/" + wstr + "over.gif";
 		urlData[v+104] = wstr;
 	}
-	
+
 	for(var v=1; v<144; v++) {
 		preimg = urlData[v];
 	}
@@ -143,7 +148,7 @@ function imgpreload () {
 		  document.getElementById("BGHidden").style.display = 'none';
 		}
     }
-	
+
 	function togOverview() {
        if(document.getElementById("overviewVisible").style.display == 'block') {
           document.getElementById("overviewVisible").style.display = 'none';
@@ -154,7 +159,7 @@ function imgpreload () {
 		  document.getElementById("overviewHidden").style.display = 'none';
 		}
     }
-	
+
 	function togInDepth() {
        if(document.getElementById("indepthVisible").style.display == 'block') {
           document.getElementById("indepthVisible").style.display = 'none';
@@ -165,7 +170,7 @@ function imgpreload () {
 		  document.getElementById("indepthHidden").style.display = 'none';
 		}
     }
-	
+
 	function togForm() {
        if(document.getElementById("formVisible").style.display == 'block') {
           document.getElementById("formVisible").style.display = 'none';
@@ -176,7 +181,7 @@ function imgpreload () {
 		  document.getElementById("formHidden").style.display = 'none';
 		}
     }
-	
+
 	function togBKS() {
        if(document.getElementById("bksVisible").style.display == 'block') {
           document.getElementById("bksVisible").style.display = 'none';
@@ -187,7 +192,7 @@ function imgpreload () {
 		  document.getElementById("bksHidden").style.display = 'none';
 		}
     }
-	
+
 	function togSum() {
        if(document.getElementById("summaryVisible").style.display == 'block') {
           document.getElementById("summaryVisible").style.display = 'none';
@@ -198,17 +203,17 @@ function imgpreload () {
 		  document.getElementById("summaryHidden").style.display = 'none';
 		}
     }
-	
+
 	function jover(id) {
 		var w = document.getElementById(id);
 		w.style.color = '#000'; <!-- 33487f -->
-		
+
 	}
-	
+
 	function jout(id) {
 		var w = document.getElementById(id);
 		w.style.color = '#528898'; <!-- 5c7786 -->
-		
+
 	}
 
 </script>
@@ -232,7 +237,7 @@ function imgpreload () {
             <tr><td><table cellpadding="22" bgcolor="#292929" style="line-height:normal; text-align:justify; color:#FFFFFF"><tr><td>This javascript application illustrates the proofs of Bell's theorem that arise from a set of measurements performed on five qubits. In summary, it allows a user to select sets of states only if they correspond to consistent (non-orthogonal) measurement results. The theorem is seen most directly from the fact that it is never possible to choose a state from every row, i.e. one for each of the seven measurements considered. By applying the results to distant measurements on entangled sets of qubits, we can conclude that a hidden variable theory can only succeed if it is nonlocally dependent on data from multiple spacelike-separated regions, in violation of the principle of causality.</td></tr></table></td></tr>
         </table>
         <br />
-        
+
 	<div id="firstrow" style="width:900px; height:218px; padding:0; position:relative; top:0px; left:0px;">
 	<div id="obstable" style="position:absolute; top:0px; left:0px;">
                     <table cellpadding="0" cellspacing="0">
@@ -578,180 +583,180 @@ function imgpreload () {
 
 <div id="secondrow" style="width:900px; height:260px; padding:0px; position:relative; top:4px; left:0px;">
 <div id="pentagon" class="b1" style="position:absolute; top:0px; left:0px;">
-	<!-- ImageReady Slices (pentagon.psd) --> 
+	<!-- ImageReady Slices (pentagon.psd) -->
 <table cellpadding="0" cellspacing="0" width="218">
 <tr><td colspan="32" height="22" align="center" class="header1" bgcolor="#000000"><font color="#FFFFFF">Spin Correspondence Map</font></td></tr>
 </table>
-<table id="map" width="218" border="0" cellpadding="0" cellspacing="0"> 
-	<tr> 
-		<td colspan="19"> 
-			<img src="img/map/pentagon_01.gif" width="217" height="25" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="25" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="9" rowspan="2"> 
-			<img src="img/map/pentagon_02.gif" width="101" height="27" alt="" /></td> 
-		<td> 
-			<img src="img/map/p11.gif" width="17" height="18" alt="" id="p11" /></td> 
-		<td colspan="9" rowspan="2"> 
-			<img src="img/map/pentagon_04.gif" width="99" height="27" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="18" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td rowspan="8"> 
-			<img src="img/map/pentagon_05.gif" width="17" height="122" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="9" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="6" rowspan="2"> 
-			<img src="img/map/pentagon_06.gif" width="65" height="27" alt="" /></td> 
-		<td colspan="2"> 
-			<img src="img/map/p53.gif" width="17" height="17" alt="" id="p53" /></td> 
-		<td rowspan="9"> 
-			<img src="img/map/pentagon_08.gif" width="19" height="152" alt="" /></td> 
-		<td rowspan="9"> 
-			<img src="img/map/pentagon_09.gif" width="19" height="152" alt="" /></td> 
-		<td colspan="2"> 
-			<img src="img/map/p23.gif" width="18" height="17" alt="" id="p23" /></td> 
-		<td colspan="6" rowspan="2"> 
-			<img src="img/map/pentagon_11.gif" width="62" height="27" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="17" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="2" rowspan="6"> 
-			<img src="img/map/pentagon_12.gif" width="17" height="96" alt="" /></td> 
-		<td colspan="2" rowspan="6"> 
-			<img src="img/map/pentagon_13.gif" width="18" height="96" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="10" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td rowspan="7"> 
-			<img src="img/map/pentagon_14.gif" width="29" height="125" alt="" /></td> 
-		<td colspan="2"> 
-			<img src="img/map/p41.gif" width="16" height="16" alt="" id="p41" /></td> 
-		<td colspan="3" rowspan="2"> 
-			<img src="img/map/pentagon_16.gif" width="20" height="43" alt="" /></td> 
-		<td colspan="3" rowspan="2"> 
-			<img src="img/map/pentagon_17.gif" width="19" height="43" alt="" /></td> 
-		<td colspan="2"> 
-			<img src="img/map/p31.gif" width="17" height="16" alt="" id="p31" /></td> 
-		<td rowspan="7"> 
-			<img src="img/map/pentagon_19.gif" width="26" height="125" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="16" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="2"> 
-			<img src="img/map/pentagon_20.gif" width="16" height="27" alt="" /></td> 
-		<td colspan="2"> 
-			<img src="img/map/pentagon_21.gif" width="17" height="27" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="27" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td rowspan="5"> 
-			<img src="img/map/pentagon_22.gif" width="14" height="82" alt="" /></td> 
-		<td colspan="3"> 
-			<img src="img/map/p33.gif" width="15" height="15" alt="" id="p33" /></td> 
-		<td rowspan="3"> 
-			<img src="img/map/pentagon_24.gif" width="7" height="43" alt="" /></td> 
-		<td rowspan="3"> 
-			<img src="img/map/pentagon_25.gif" width="5" height="43" alt="" /></td> 
-		<td colspan="3" rowspan="2"> 
-			<img src="img/map/p43.gif" width="17" height="17" alt="" id="p43" /></td> 
-		<td rowspan="5"> 
-			<img src="img/map/pentagon_27.gif" width="14" height="82" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="15" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="3" rowspan="2"> 
-			<img src="img/map/pentagon_28.gif" width="15" height="28" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="2" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="3"> 
-			<img src="img/map/pentagon_29.gif" width="17" height="26" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="26" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="2" rowspan="2"> 
-			<img src="img/map/pentagon_30.gif" width="13" height="39" alt="" /></td> 
-		<td colspan="3"> 
-			<img src="img/map/p21.gif" width="16" height="15" alt="" id="p21" /></td> 
-		<td rowspan="2"> 
-			<img src="img/map/pentagon_32.gif" width="10" height="39" alt="" /></td> 
-		<td> 
-			<img src="img/map/p13.gif" width="17" height="15" alt="" id="p13" /></td> 
-		<td rowspan="2"> 
-			<img src="img/map/pentagon_34.gif" width="9" height="39" alt="" /></td> 
-		<td colspan="3"> 
-			<img src="img/map/p51.gif" width="16" height="15" alt="" id="p51" /></td> 
-		<td colspan="2" rowspan="2"> 
-			<img src="img/map/pentagon_36.gif" width="15" height="39" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="15" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td colspan="3"> 
-			<img src="img/map/pentagon_37.gif" width="16" height="24" alt="" /></td> 
-		<td> 
-			<img src="img/map/pentagon_38.gif" width="17" height="24" alt="" /></td> 
-		<td colspan="3"> 
-			<img src="img/map/pentagon_39.gif" width="16" height="24" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="1" height="24" alt="" /></td> 
-	</tr> 
-	<tr> 
-		<td> 
-			<img src="img/map/spacer.gif" width="29" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="14" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="11" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="7" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="7" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="10" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="19" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="17" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="19" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="9" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="9" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="5" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="12" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="3" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="14" height="1" alt="" /></td> 
-		<td> 
-			<img src="img/map/spacer.gif" width="26" height="1" alt="" /></td> 
-		<td></td> 
-	</tr> 
-</table> 
-<!-- End ImageReady Slices --> 
+<table id="map" width="218" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td colspan="19">
+			<img src="img/map/pentagon_01.gif" width="217" height="25" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="25" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="9" rowspan="2">
+			<img src="img/map/pentagon_02.gif" width="101" height="27" alt="" /></td>
+		<td>
+			<img src="img/map/p11.gif" width="17" height="18" alt="" id="p11" /></td>
+		<td colspan="9" rowspan="2">
+			<img src="img/map/pentagon_04.gif" width="99" height="27" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="18" alt="" /></td>
+	</tr>
+	<tr>
+		<td rowspan="8">
+			<img src="img/map/pentagon_05.gif" width="17" height="122" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="9" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="6" rowspan="2">
+			<img src="img/map/pentagon_06.gif" width="65" height="27" alt="" /></td>
+		<td colspan="2">
+			<img src="img/map/p53.gif" width="17" height="17" alt="" id="p53" /></td>
+		<td rowspan="9">
+			<img src="img/map/pentagon_08.gif" width="19" height="152" alt="" /></td>
+		<td rowspan="9">
+			<img src="img/map/pentagon_09.gif" width="19" height="152" alt="" /></td>
+		<td colspan="2">
+			<img src="img/map/p23.gif" width="18" height="17" alt="" id="p23" /></td>
+		<td colspan="6" rowspan="2">
+			<img src="img/map/pentagon_11.gif" width="62" height="27" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="17" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="6">
+			<img src="img/map/pentagon_12.gif" width="17" height="96" alt="" /></td>
+		<td colspan="2" rowspan="6">
+			<img src="img/map/pentagon_13.gif" width="18" height="96" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="10" alt="" /></td>
+	</tr>
+	<tr>
+		<td rowspan="7">
+			<img src="img/map/pentagon_14.gif" width="29" height="125" alt="" /></td>
+		<td colspan="2">
+			<img src="img/map/p41.gif" width="16" height="16" alt="" id="p41" /></td>
+		<td colspan="3" rowspan="2">
+			<img src="img/map/pentagon_16.gif" width="20" height="43" alt="" /></td>
+		<td colspan="3" rowspan="2">
+			<img src="img/map/pentagon_17.gif" width="19" height="43" alt="" /></td>
+		<td colspan="2">
+			<img src="img/map/p31.gif" width="17" height="16" alt="" id="p31" /></td>
+		<td rowspan="7">
+			<img src="img/map/pentagon_19.gif" width="26" height="125" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="16" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="img/map/pentagon_20.gif" width="16" height="27" alt="" /></td>
+		<td colspan="2">
+			<img src="img/map/pentagon_21.gif" width="17" height="27" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="27" alt="" /></td>
+	</tr>
+	<tr>
+		<td rowspan="5">
+			<img src="img/map/pentagon_22.gif" width="14" height="82" alt="" /></td>
+		<td colspan="3">
+			<img src="img/map/p33.gif" width="15" height="15" alt="" id="p33" /></td>
+		<td rowspan="3">
+			<img src="img/map/pentagon_24.gif" width="7" height="43" alt="" /></td>
+		<td rowspan="3">
+			<img src="img/map/pentagon_25.gif" width="5" height="43" alt="" /></td>
+		<td colspan="3" rowspan="2">
+			<img src="img/map/p43.gif" width="17" height="17" alt="" id="p43" /></td>
+		<td rowspan="5">
+			<img src="img/map/pentagon_27.gif" width="14" height="82" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="15" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="3" rowspan="2">
+			<img src="img/map/pentagon_28.gif" width="15" height="28" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="2" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<img src="img/map/pentagon_29.gif" width="17" height="26" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="26" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="2">
+			<img src="img/map/pentagon_30.gif" width="13" height="39" alt="" /></td>
+		<td colspan="3">
+			<img src="img/map/p21.gif" width="16" height="15" alt="" id="p21" /></td>
+		<td rowspan="2">
+			<img src="img/map/pentagon_32.gif" width="10" height="39" alt="" /></td>
+		<td>
+			<img src="img/map/p13.gif" width="17" height="15" alt="" id="p13" /></td>
+		<td rowspan="2">
+			<img src="img/map/pentagon_34.gif" width="9" height="39" alt="" /></td>
+		<td colspan="3">
+			<img src="img/map/p51.gif" width="16" height="15" alt="" id="p51" /></td>
+		<td colspan="2" rowspan="2">
+			<img src="img/map/pentagon_36.gif" width="15" height="39" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="15" alt="" /></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<img src="img/map/pentagon_37.gif" width="16" height="24" alt="" /></td>
+		<td>
+			<img src="img/map/pentagon_38.gif" width="17" height="24" alt="" /></td>
+		<td colspan="3">
+			<img src="img/map/pentagon_39.gif" width="16" height="24" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="1" height="24" alt="" /></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="img/map/spacer.gif" width="29" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="14" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="11" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="7" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="7" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="10" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="19" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="17" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="19" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="9" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="9" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="5" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="2" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="12" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="3" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="14" height="1" alt="" /></td>
+		<td>
+			<img src="img/map/spacer.gif" width="26" height="1" alt="" /></td>
+		<td></td>
+	</tr>
+</table>
+<!-- End ImageReady Slices -->
 </div>
 
 
@@ -909,7 +914,7 @@ function imgpreload () {
     <img src="img/B02.gif" id="B02" style="border:1px #BBBBBB;" onmouseover="basisOver(2);" onmouseout="basisOut(2)" />
     <img src="img/B03.gif" id="B03" style="border:1px #BBBBBB;" onmouseover="basisOver(3);" onmouseout="basisOut(3)" />
     <img src="img/B04.gif" id="B04" style="border:1px #BBBBBB;" onmouseover="basisOver(4);" onmouseout="basisOut(4)" />
-    
+
     </td>
 </tr>
 <tr>
@@ -970,26 +975,26 @@ function imgpreload () {
 
 <span class="header1" style="background-color:#000000"><font color="#FFFFFF">&nbsp;Summary of user control:&nbsp;</font></span><br /><br />
 
-        
-        
-<div style="margin-left:30px; margin-right:30px; margin-top:0px; margin-bottom:0px;">        
-        <span class="bb1">&bull; Hover your cursor over any numbered state box (top-right table) to see its key properties including spin orientations, 32-D expansion and basis membership*. All measurements yield either <img src="img/upp.gif" /> (+1) or <img src="img/downn.gif" /> (-1).<br /><br /> 
-        
+
+
+<div style="margin-left:30px; margin-right:30px; margin-top:0px; margin-bottom:0px;">
+        <span class="bb1">&bull; Hover your cursor over any numbered state box (top-right table) to see its key properties including spin orientations, 32-D expansion and basis membership*. All measurements yield either <img src="img/upp.gif" /> (+1) or <img src="img/downn.gif" /> (-1).<br /><br />
+
          &bull; Clicking on any state <i>selects</i> it and disables any others that are orthogonal to it, signifying that these disallowed states can never be observed to coexist with the current selection(s). The orthogonality conditions can be explored by making multiple selections and seeing how the remaining options become more constrained with every choice. Click on any disabled region to reset the selections.<br /><br />
-         
+
          &bull; The box symbolizing a particular basis is highlighted if one of its member-states has been selected. A red X is drawn over any whose members have <i>all</i> been prohibited by orthogonality, violating the completeness relation for that basis. These completeness conditions impose even greater constraints when imposed together with the orthogonalities.<br /><br />
-         
+
          &bull; Hoving over any basis box highlights the membership of that basis, furnishing its definition.</span> <br /><br /></div>
-         
+
 
 <a href="http://plato.stanford.edu/entries/bell-theorem/" target="_blank">Bell's theorem</a> was the first of a series of no-go theorems ruling out <i>local realism</i> as an interpretation of quantum mechanics. It means that any attempt to describe QM as arising from a deeper classical (deterministic) theory would require superluminal influences, placing it in significant tension with relativity. The result is most well-known in the context of its original formulation, the <a href="http://en.wikipedia.org/wiki/Bell%27s_theorem#Bell_inequalities" target="_blank">Bell inequalities</a>, expressing a limit on the statistical correlation between distant particles described by any local, deterministic theory. Over a wide class of experiments, these inequalities have been consistently violated and the quantum predictions have been consistently upheld. A lesser-known but arguably more important formulation is found in the <a href="http://plato.stanford.edu/entries/kochen-specker/" target="_blank">Kochen-Specker theorem</a>, or Bell-Kochen-Specker (BKS) theorem, which does not rely on inequalities but rather on sets of firm rules that are imposed by QM and are so far universally confirmed by experiment. Consequently, they reveal the result in a much more stark way. This program illustrates one such example of a BKS-type proof of Bell's theorem using five qubits.<br /><br />
 
 The basic building blocks of this BKS proof scheme are the six observables \(\hat{O}_1\) through \(\hat{O}_6\), defined as tensor products of Pauli spin operators (\(\sigma_x, \sigma_z\)) and 2-by-2 identity operators (\(\mathbb{I}\)). From these, and from the single-qubit Pauli operators themselves, we construct <i>seven sets of commuting observables</i>, or seven allowed ways to measure the system. These seven allowed measurements correspond to the seven rows of the top tables. The conspicuously missing last entry in the seventh row of the Observables Table plays a special role. This <i>entangled basis</i> corresponds to the simultaneous measurement of all six \(\hat{O}_i\), and thus the resulting eigenstates cannot be described in terms individual qubit spins but only in terms of their correlations, that is, of their \(\hat{O}_i\) eigenvalues. As will be shown in detail, it is a tension between this entangled basis and the other measurements that leads to the contradictions at the heart of the theorem.<br /><br />
 
 In the following sections I will first explain the most straightforward way of obtaining the BKS theorem: the <i>observables proof</i>. I will then describe the simple but vital logical step for turning these BKS theorem proofs into proofs of the much stronger Bell's theorem. It will also be shown that every observables proof is necessarily a restriction of a more extensive structure called a <i>states proof</i>. <!--Finally, since these no-go theorems touch upon some of the deepest and most central issues in physics, the last section will describe in broad strokes the significance of these results and current state of play regarding these questions. Such a discussion must be subjective, but is also crucial to putting the theorems in their proper context. The bottom line seems to be that we simply live in a quantum mechanical world. These findings, both formal and especially experimental, leave very little room to evade this conclusion.--><br /><br />
-         
+
          <span style="line-height:normal;"><font color="#12475f">*</font><font size="-4" color="#777777">For simplicity, I will sometimes use the word &quot;state&quot; to refer to any projector. In addition to rank-1 projectors, or normal states, this system also uses rank-4 projectors which specify the system to within a four-dimensional (two-bit) subspace. For the present purposes the word &quot;state&quot; is accurate enough. A similar remark applies to the &quot;bases&quot; that include these rank-4 projectors.</font></span>
-         
+
 </td></tr></table>
 
 
@@ -1016,7 +1021,7 @@ Here we have adopted notation in which \(\hat{\sigma}_{jx}\) and \(\hat{\sigma}_
 
 The astute reader may have already noticed the peculiarity in this construction that allows for the proof. Each of the measurement sets contains one extra bit of information that is fully dependent on the others, and thus does not add any additional knowledge. This one-bit redundancy reflects the fact that the product of all the operators in a set is proportional to the identity operator of the full Hilbert space. In the case of \(M_1\) through \(M_6\), the product is equal to \(\mathbb{I}\), and therefore the product of the resulting eigenvalues must be <b>1</b>. In the case of \(M_7\), the product of the operators is \(-\mathbb{I}\) and therefore the product of the measured eigenvalues in this set must be <b>-1</b>. The importance of constructing the sets with this redundancy is that it describes an experiment which establishes the rules governing the relationships among these quantities unambiguously. The rules just described are guaranteed to hold with probability 100%, because the results with the wrong number of minus signs correspond to orthogonal subspaces, and so projecting onto them gives zero. To summarize, the rules are:<br /><br />
 
-<div style="margin-left:30px; margin-right:30px; margin-top:0px; margin-bottom:0px;">        
+<div style="margin-left:30px; margin-right:30px; margin-top:0px; margin-bottom:0px;">
         <span class="bb"><u>Rule 1:</u> When measuring one of the sets \(M_1\) through \(M_6\), we are certain to obtain an <i>even</i> number of -1 results.<br /><br />
 <u>Rule 2:</u> When measuring set \(M_7\), we are certain to obtain an <i>odd</i> number of -1 results.<br /></span></div><br />
 
