@@ -1,0 +1,729 @@
+<!-- TODO: Main navigation links (Home, index, tags, ...) --><!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>
+    Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach – Fieldstrength Lab Notebook
+  </title>
+  
+    
+      <meta property='og:description' content />
+      <meta property='og:site_name' content='Fieldstrength Lab Notebook' />
+      <meta property='og:type' content='website' />
+      <meta property='og:title' content='Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach' />
+    
+    
+      <base href='/z2/' />
+      <link href='static/favicon.ico' rel='icon' />
+    
+    <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
+<script async id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+  
+  <!-- CSSSTART -->
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.min.js,npm/twind/observe/observe.umd.min.js'></script><script type='text/javascript'>// Be silent to avoid complaining about non-tailwind classes
+// https://github.com/tw-in-js/twind/discussions/180#discussioncomment-678272
+console.log("ema: Twind: setup & observe")
+twind.setup({mode: 'silent'})
+window.emaTwindObs = twindObserve.observe(document.documentElement);</script>
+  <!-- CSSEND -->
+
+  <!-- Heist error element -->
+  <style type='text/css'>
+    strong.error {
+      color: lightcoral;
+      font-size: 90%;
+      font-family: monospace;
+    }
+  </style>
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='static/fonts/IBMPlexSans-Regular.ttf' as='font' type='font/ttf' crossorigin />
+
+<style>
+  @font-face {
+    font-family: 'Plex';
+    src: url('static/fonts/IBMPlexSans-Regular.ttf') format("truetype");
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'Plex', sans-serif;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght'500;
+  }
+
+  a,
+  a:link {
+	color: #614d9c;
+    text-decoration: none;
+    border-bottom: 1px solid #3994fa
+  }
+
+  a:visited {
+    color: #614d9c;
+    text-decoration: none;
+    border-bottom: 1px solid #3994fa
+  }
+
+  a:hover {
+    color: #3e5eb0;
+    text-decoration: none;
+    border-bottom: 1px solid #b6384f
+  }
+
+  .bgclass {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    color: black;
+    font-size: 15px;
+    font-family: Plex;
+    background: linear-gradient(0deg, rgb(190, 200, 222), rgb(217, 241, 233)) no-repeat;
+    background-color: #331A20;
+    background-attachment: fixed
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  .header-font {
+    font-family: 'Plex', sans-serif;
+  }
+
+  h1 a {
+    color: black;
+  }
+
+  div#header {
+    border-bottom: 2px solid black;
+    margin-bottom: 25px;
+    padding: 12px;
+    background-color: #331A20;
+    color: #FFF;
+    font-family: 'Plex', sans-serif;
+  }
+
+  div#header a {
+    color: rgb(249, 242, 218);
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 12px;
+    text-decoration: none;
+  }
+
+  .pathlike {
+    color: rgb(141,142,127);
+    text-decoration: italic;
+  }
+
+  .uptree-node {
+    background-color: #331A20;
+  }
+
+  .uptree-node a {
+    color: rgb(141,142,127);
+  }
+</style>
+
+
+  
+    <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+  
+</head>
+
+<!-- DoNotFormat -->
+
+
+
+<!-- DoNotFormat -->
+
+<body class='bgclass'>
+  
+
+    <div id='header'>
+      <a href='./'>Fieldstrength</a>
+      <span class='mx-2'>/</span>
+      <span class='pathlike'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</span>
+    </div>
+
+    <div class='container mx-auto max-w-screen-md'>
+      <div class='mt-2 md:mt-4'>
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
+          
+            <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='books.html'>
+      books
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='index.html'>
+      zettelkasten
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
+        <div class='md:shadow-2xl md:mb-8'>
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+            <main class='px-4 py-4'>
+              <h1 class='flex items-end justify-center mb-4 p-3 bg-red-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach
+  </a>
+</h1>
+              <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
+  
+    <p class='mb-3'>
+      <em>By John Hamal Hubbard and Barbara Burke Hubbard.</em>
+    </p>
+  <div xmlhtmlRaw><center><img src="https://i.imgur.com/ruZ6ktL.jpg"></center>
+</div><h2 id='vectors-matrices-and-derivatives' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Vectors, Matrices and Derivatives</h2>
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      Points can’t be added; vectors can.
+    </p>
+  
+    </blockquote>
+  
+    <p class='mb-3'>
+      The book draws a distinction between <em>points</em> (indicated by boldface variables and rounded parentheses around columns) and <em>vectors</em> (boldface+arrow variables and square brackets around column vectors).
+    </p>
+  
+    <p class='mb-3'>
+      There is no sensible way to add <em>points</em>, but points can be subtracted to yield a position vector. This intuitively maps to the fact that quantifying positions requires specifying a priviledged base point to measure from.
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          1.1.6 – standard basis vectors
+        </li>
+      
+        <li>
+          1.1.7 – vector fields
+        </li>
+      
+    </ul>
+  <h3 id='matrices' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Matrices</h3>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Definition 1.2.1 – <a href='matrix.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>matrix</a>
+        </li>
+      
+    </ul>
+  <h3 id='continuity-and-limits' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Continuity and limits</h3>
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      Continuity is the fundamental notion of topology
+    </p>
+  
+    </blockquote>
+  <h3 id='four-big-theorems' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Four big theorems</h3>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Definition 1.6.1 - <a href='compact-set.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>compact</a>s.
+        </li>
+      
+    </ul>
+  <h3 id='differential-calculus' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Differential calculus</h3>
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      The object of diferential calculus is to study nonlinear mappings by replacing them with linear transformations… The hardest part of differential calculus is determining when replacing a nonlinear object by a linear one is justified.
+    </p>
+  
+    </blockquote>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Definition 1.7.1 - <a href='derivative.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>derivative</a>
+        </li>
+      
+    </ul>
+  <h2 id='solving-equations' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Solving Equations</h2><h3 id='the-main-algorithm-row-reduction' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>The main algorithm: Row reduction</h3><h4 id='row-operations' class='mt-6 mb-2 text-2xl font-bold text-gray-700'>Row operations</h4>
+    <p class='mb-3'>
+      (Definition 2.1.1)
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Multiply a row by a constant
+        </li>
+      
+        <li>
+          Add a multiple of one row to another
+        </li>
+      
+        <li>
+          swap rows (redundant)
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      Theorem 2.1.3:
+    </p>
+  
+    <p class='mb-3'>
+      <strong>Theorem.</strong> If the matrix <span class='math inline'>\([A,\vec{b}]\)</span> for the linear system of equations <span class='math inline'>\(A\vec{x} = \vec{b}\)</span> can by turned into <span class='math inline'>\([A_2, \vec{b}_2]\)</span> by row operations, then that new system of equations has the same solution set.
+    </p>
+  
+    <p class='mb-3'>
+      Definition 2.1.5
+    </p>
+  
+    <p class='mb-3'>
+      <strong>Definition.</strong> A matrix is in <em><strong>echelon form</strong></em> if
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          All rows of only zeros are at the bottom
+        </li>
+      
+        <li>
+          In every row, the <em>pivot</em> – first nonzero entry – is always to the right of the pivot in the preceeding row.
+        </li>
+      
+        <li>
+          All pivots are equal to <span class='math inline'>\(1\)</span>, a <em>pivotal 1</em>.
+        </li>
+      
+        <li>
+          Every <em>column</em> that contains a pivotal 1 has all other entries zero.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      Theorem 2.1.8
+    </p>
+  
+    <p class='mb-3'>
+      <strong>Theorem.</strong> Given any matrix <span class='math inline'>\(A\)</span> there exists a unique matrix <span class='math inline'>\(\tilde{A}\)</span> in <span title='Link is broken'><s>[[echelon form]]</s>❌</span> that can be obtained from <span class='math inline'>\(A\)</span> by row operations.
+    </p>
+  
+    <p class='mb-3'>
+      <em>Proof (implementation):</em>
+    </p>
+  
+    <p class='mb-3'>
+      For each column index <span class='math inline'>\(c \in \{ 1 .. w \}\)</span> (left to right):
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
+      
+        <li>
+          Search downward until you find a row <span class='math inline'>\(r\)</span> with a nonzero entry (a “pivot”).
+        </li>
+      
+        <li>
+          Swap this row <span class='math inline'>\(r\)</span> into position <span class='math inline'>\(c\)</span>. Scale it so that the pivot is 1.
+        </li>
+      
+        <li>
+          Add whatever multiples of this row are needed to zero out the elements of column <span class='math inline'>\(c\)</span> for rows with indices <span class='math inline'>\(\gt c\)</span>
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      <strong>Definition.</strong> 2.2.2 A <em><strong>pivotal unknown</strong></em> is an unknown variable in a linear system that corresponds to a column with a pivotal 1.
+    </p>
+  
+    <p class='mb-3'>
+      <strong>Theorem.</strong> 2.2.4 <em><strong>Solutions to linear equations</strong></em>. For a <span title='Link is broken'><s>[system of linear equations](linear-system)</s>❌</span> <span class='math inline'>\(A\mathbf{x} = \vec{b}\)</span> and its echelon form <span class='math inline'>\([\tilde{A}, \tilde{\vec{b}}]\)</span>.
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          If <span class='math inline'>\(\tilde{\vec{b}}\)</span> has a pivotal 1, then there are no solutions.
+        </li>
+      
+        <li>
+          Otherwise:
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          If there is any non-pivotal unknown the system has infinitely many solutions.
+        </li>
+      
+        <li>
+          If there is only pivotal unknowns the system has a unique solution.
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      Proposition 2.3.1: A matrix <span class='math inline'>\(A\)</span> is invertible iff it row reduces to the identity.
+    </p>
+  
+    <p class='mb-3'>
+      Theorem 2.3.2: <a href='matrix-inverse.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>inverse matrix</a>.
+    </p>
+  
+    <p class='mb-3'>
+      Def 2.3.5 <a href='elementary-matrices.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>elementary matrices</a>
+    </p>
+  <h3 id='linear-combinations-span-and-linear-independence' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Linear combinations, span and linear independence</h3>
+    <p class='mb-3'>
+      Definition 2.4.2 - linear combination of vectors
+    </p>
+  
+    <p class='mb-3'>
+      Definition 2.4.3 - The <span title='Link is broken'><s>[[span]]</s>❌</span> of a set of vectors is the set of linear combinations. Also used as a verb.
+    </p>
+  
+    <p class='mb-3'>
+      Example 2.4.5 Check span via <a href='row-reduction.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>row reduction</a>.
+    </p>
+  
+    <p class='mb-3'>
+      Definition 2.4.6 Linear independence - The vectors <span class='math inline'>\(v_1 ... v_k\)</span> are linearly independent if there is at most one way of writing another vector <span class='math inline'>\(w\)</span> as a linear combination of them.
+    </p>
+  
+    <p class='mb-3'>
+      Thm 2.4.12 in R^n, n+1 vectors are never lin-independent and n-1 vectors never span.
+    </p>
+  
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      Choosing a basis for a subspace of <span class='math inline'>\(R^n\)</span>, or for <span class='math inline'>\(R^n\)</span> itself, is like choosing axes (with units marked) in the plane or in space. This allows us to pass from non-coordinate geometric (synthetic geometry) to coordinate geometry (analytic geometry). Bases provide a “frame of reference” for vectors in a subspace.
+    </p>
+  
+    </blockquote>
+  
+    <p class='mb-3'>
+      Definition 2.4.13 Basis Example 2.4.14 Standard Basis Def 2.4.17 Orthonormal Basis
+    </p>
+  
+    <p class='mb-3'>
+      Proposition/Def 2.4.20 Every <a href='subspace.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>subspace</a> of <span class='math inline'>\(R^n\)</span> has a basis and any two bases have the same number of elements, the <em><strong>dimension</strong></em> of the space.
+    </p>
+  
+    <p class='mb-3'>
+      Def 2.5.1 <a href='kernel.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>kernel</a> of a linear map <span class='math inline'>\(T\)</span>. Its represented by the solution set of the <a href='linear-system.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>linear system</a> <span class='math inline'>\(T\vec{x} = \vec{0}\)</span>.
+    </p>
+  
+    <p class='mb-3'>
+      Figure 2.5.1 “Three languages”
+    </p>
+  <table class='mb-3'><thead><tr class='border-b-2 border-t-2 border-gray-300'><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='computation.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>computation</a></th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='algebra.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>algebra</a></th><th class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='geometry.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>geometry</a></th></tr></thead><tbody><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Row reduction</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='matrix-inverse.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>inverse matrix</a>, <a href='linear-system.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>linear system</a></td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='subspace.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>subspace</a></td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Solution existence</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>span</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='image.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>image</a></td></tr><tr class='border-b-2 border-t-2 border-gray-300'><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>Solution uniqueness</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'>linear independence</td><td class='py-2 px-2 align-top border-r-2 border-l-2 border-gray-300'><a href='kernel.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>kernel</a></td></tr></tbody></table>
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      It is important to master all three, and understand their equivalence
+    </p>
+  
+    </blockquote>
+  
+    <p class='mb-3'>
+      Thm 2.5.5 The pivotal columns of <span class='math inline'>\(T\)</span> form a basis for <span class='math inline'>\(\mathrm{Img} T\)</span>
+    </p>
+  
+    <p class='mb-3'>
+      Thm 2.5.8 Basis for kernel <a href='expand-me.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>[EXPAND ME]</a>
+    </p>
+  
+    <p class='mb-3'>
+      <strong>Theorem.</strong> 2.5.9 The <strong>dimension formula</strong>: For <a href='linear.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>linear</a> map <span class='math inline'>\(T : \mathbb{R}^n \to \mathbb{R}^m\)</span>:
+    </p>
+  
+    <p class='mb-3'>
+      <span class='math display'>$$
+\dim(\ker T) + \dim(\img T) = n
+$$</span>
+    </p>
+  
+    <p class='mb-3'>
+      Proposition 2.5.12 - For a matrix <span class='math inline'>\(T\)</span> the row-space and the column-space have the same dimension. Corallary 2.5.13 - A matrix <span class='math inline'>\(T\)</span> and its transpose <span class='math inline'>\(T^\dagger\)</span> have the same rank.
+    </p>
+  
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      Prop 2.5.12 gives us the statement we wanted in Section 2.4: the number of linearly independent equations in a [linear system] <span class='math inline'>\(A\vec x = \mathbf{b}\)</span> is the number of pivotal columns of <span class='math inline'>\(A\)</span>. zz
+    </p>
+  
+    </blockquote>
+  
+    <blockquote class='py-0.5 px-4 mb-3 italic border-l-4 bg-gray-50 text-gray-600 border-gray-400 quote'>
+      
+    <p class='mb-3'>
+      Unfortunately for the history of math, in the same year 1750 that Euler wrote his analysis, Gabriel Cramer published a treatment of linear equations based on determinants, which rapidly took hold, and the more qualitative approach begun by Euler was forgotten.
+    </p>
+  
+    </blockquote>
+  <h3 id='abstract-vector-spaces' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Abstract vector spaces</h3>
+    <p class='mb-3'>
+      <a href='vector-space.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>vector space</a>
+    </p>
+  <h3 id='newtons-method' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Newton’s method</h3><h3 id='superconvergence' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Superconvergence</h3><h3 id='inverse-and-implicit-function-theorems' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Inverse and Implicit function theorems</h3><h2 id='higher-partial-derivatives' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Higher partial derivatives</h2><h2 id='integration' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Integration</h2><h2 id='lengths-of-curves-areas-of-surfaces' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Lengths of curves, areas of surfaces</h2><h2 id='formas-and-vector-calculus' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Formas and Vector calculus</h2>
+  <!-- What goes in this file will appear below the note body-->
+</article>
+              <div class='flex flex-col lg:flex-row lg:space-x-2'>
+                
+                
+  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
+    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
+    <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='index.html'>
+            zettelkasten
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='sequence.html'>
+            sequence
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='row-reduction.html'>
+            row reduction
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='linear-system.html'>
+            linear system
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='lin-alg.html'>
+            linear algebra
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='matrix-inverse.html'>
+            inverse matrix
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='elementary-matrices.html'>
+            elementary matrices
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a> Definition 2.3.5</div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='derivative.html'>
+            derivative
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Note that sometimes the partial derivatives exist even though the the derivative itself does not! See <a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a> thm 1.7.10</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Note that <a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a> uses the notation <span class='math inline'>\(D_i f\)</span>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='converge.html'>
+            converge
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='books/calc-alg-forms.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Vector Calculus, Linear Algebra and Differential Forms – A Unified Approach</a> 0.4.7</div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+    </ul>
+  </div>
+
+              </div>
+              
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+      <a title='Tag' class='px-1 bg-gray-100 rounded hover:bg-gray-50 hover:text-red-500' href='-/tags/book.html'>
+        <!-- DoNotFormat -->
+        #book
+        <!-- DoNotFormat -->
+      </a>
+    
+      <a title='Tag' class='px-1 bg-gray-100 rounded hover:bg-gray-50 hover:text-red-500' href='-/tags/math/linear-algebra.html'>
+        <!-- DoNotFormat -->
+        #math/linear-algebra
+        <!-- DoNotFormat -->
+      </a>
+    
+  </section>
+
+              <!-- What goes in this file will at the very end of the main div -->
+            </main>
+          </div>
+        </div>
+        <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+  
+  <div>
+    <a href='' title='Go to Home page'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/all.html' title='View Index'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.4.2.0'>
+      <img class='w-6 h-6 hover:text-red-700' src='_emanote-static/emanote-logo.svg' />
+    </a>
+  </div>
+  <div>
+    <a href='-/tags.html' title='View tags'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/tasks.html' title='View tasks'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+      </div>
+    </div>
+  
+</body>
+
+</html>

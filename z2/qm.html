@@ -1,0 +1,1032 @@
+<!-- TODO: Main navigation links (Home, index, tags, ...) --><!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>
+    quantum mechanics – Fieldstrength Lab Notebook
+  </title>
+  
+    
+      <meta property='og:description' content />
+      <meta property='og:site_name' content='Fieldstrength Lab Notebook' />
+      <meta property='og:type' content='website' />
+      <meta property='og:title' content='quantum mechanics' />
+    
+    
+      <base href='/z2/' />
+      <link href='static/favicon.ico' rel='icon' />
+    
+    <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
+<script async id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+  
+  <!-- CSSSTART -->
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.min.js,npm/twind/observe/observe.umd.min.js'></script><script type='text/javascript'>// Be silent to avoid complaining about non-tailwind classes
+// https://github.com/tw-in-js/twind/discussions/180#discussioncomment-678272
+console.log("ema: Twind: setup & observe")
+twind.setup({mode: 'silent'})
+window.emaTwindObs = twindObserve.observe(document.documentElement);</script>
+  <!-- CSSEND -->
+
+  <!-- Heist error element -->
+  <style type='text/css'>
+    strong.error {
+      color: lightcoral;
+      font-size: 90%;
+      font-family: monospace;
+    }
+  </style>
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='static/fonts/IBMPlexSans-Regular.ttf' as='font' type='font/ttf' crossorigin />
+
+<style>
+  @font-face {
+    font-family: 'Plex';
+    src: url('static/fonts/IBMPlexSans-Regular.ttf') format("truetype");
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'Plex', sans-serif;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght'500;
+  }
+
+  a,
+  a:link {
+	color: #614d9c;
+    text-decoration: none;
+    border-bottom: 1px solid #3994fa
+  }
+
+  a:visited {
+    color: #614d9c;
+    text-decoration: none;
+    border-bottom: 1px solid #3994fa
+  }
+
+  a:hover {
+    color: #3e5eb0;
+    text-decoration: none;
+    border-bottom: 1px solid #b6384f
+  }
+
+  .bgclass {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    color: black;
+    font-size: 15px;
+    font-family: Plex;
+    background: linear-gradient(0deg, rgb(190, 200, 222), rgb(217, 241, 233)) no-repeat;
+    background-color: #331A20;
+    background-attachment: fixed
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  .header-font {
+    font-family: 'Plex', sans-serif;
+  }
+
+  h1 a {
+    color: black;
+  }
+
+  div#header {
+    border-bottom: 2px solid black;
+    margin-bottom: 25px;
+    padding: 12px;
+    background-color: #331A20;
+    color: #FFF;
+    font-family: 'Plex', sans-serif;
+  }
+
+  div#header a {
+    color: rgb(249, 242, 218);
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 12px;
+    text-decoration: none;
+  }
+
+  .pathlike {
+    color: rgb(141,142,127);
+    text-decoration: italic;
+  }
+
+  .uptree-node {
+    background-color: #331A20;
+  }
+
+  .uptree-node a {
+    color: rgb(141,142,127);
+  }
+</style>
+
+
+  
+    <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+  
+</head>
+
+<!-- DoNotFormat -->
+
+
+
+<!-- DoNotFormat -->
+
+<body class='bgclass'>
+  
+
+    <div id='header'>
+      <a href='./'>Fieldstrength</a>
+      <span class='mx-2'>/</span>
+      <span class='pathlike'>quantum mechanics</span>
+    </div>
+
+    <div class='container mx-auto max-w-screen-md'>
+      <div class='mt-2 md:mt-4'>
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
+          
+            <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='framework.html'>
+      scientific framework
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='index.html'>
+      zettelkasten
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+            <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='scientific-model.html'>
+      scientific model
+    </a>
+  </div>
+
+  
+</li>
+          
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
+        <div class='md:shadow-2xl md:mb-8'>
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+            <main class='px-4 py-4'>
+              <h1 class='flex items-end justify-center mb-4 p-3 bg-red-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    quantum mechanics
+  </a>
+</h1>
+              <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
+  
+    <p class='mb-3'>
+      QM is a <a href='framework.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>scientific framework</a> that generalizes <a href='classical.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>classical mechanics</a>.
+    </p>
+  
+    <p class='mb-3'>
+      It is noteworthy for departing from its predecessor in not being deterministic (at least in practice), but rather giving predictions only in the form of <a href='probability.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>probability</a> of allowed outcome. This was a radical departure from the expectations that were traditionally placed on a <a href='sci-theory.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>scientific theory</a> or <a href='framework.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>scientific framework</a>.
+    </p>
+  <h2 id='postulates' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Postulates</h2><h3 id='operator-formalism' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Operator formalism</h3>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          The state of a physical system corresponds to a vector in a complex Hilbert space, normalized to <span class='math inline'>\(1\)</span>. 
+    <!-- DoNotFormat -->
+    <!-- We use JavaScript because anchor links won't work if there is a <base> tag;
+         see https://stackoverflow.com/a/34765348 
+    -->
+    <sup class='px-0.5'><a class='text-red-600 hover:underline' href='javascript:;' onclick="document.location.hash='#fn1';">1</a></sup>
+    <!-- DoNotFormat -->
+  .
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      <span class='math display'>$$
+\bbox[8px,border:2px solid #DAB5E5]{
+\left \langle \Psi \vert \Psi \right \rangle = 1
+}
+$$</span>
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          There exists a <a href='hermitian-op.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Hermitian operator</a> called the <strong>Hamiltonian</strong> that defines the time evolution for the physical states.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      <span class='math display'>$$
+\bbox[8px,border:2px solid #DAB5E5]{
+i\frac{\partial}{\partial t} \left \lvert \Psi \right \rangle = \hat H \left \lvert \Psi \right \rangle
+}
+$$</span>
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='observable.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>observable</a>s correspond to <a href='hermitian-op.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Hermitian operator</a>s. Measurement of the observable yields one of the corresponding operator’s eigenvalues.
+        </li>
+      
+    </ul>
+  <h3 id='path-integral-formulation' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Path integral formulation</h3>
+    <p class='mb-3'>
+      See <a href='path-integral.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>path integral</a>.
+    </p>
+  <h2 id='overview' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Overview</h2><h3 id='range-of-application' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Range of application</h3>
+    <p class='mb-3'>
+      Since QM was first developed, many advances of our understanding have proceeded not by modifying this basic framework, but by changing the system we are applying it to. Most notably, incorporating <a href='sr.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>special relativity</a> and particle creation/destruction required changing from the basic models of <a href='quantum-particle.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>quantum particle</a>s to <a href='qft.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>quantum field theory</a>.
+    </p>
+  
+    <p class='mb-3'>
+      While we know for sure that our current <a href='sci-theory.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>scientific theory</a>s based on QM are incomplete, notably lacking an account of <a href='qg.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>quantum gravity</a>, it is not yet clear if the framework of QM itself must be modified or superceded. Notably <a href='st.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>string theory</a> is a singularly promising candidate framework for <a href='qg.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>quantum gravity</a> that does not modify QM itself.
+    </p>
+  <h3 id='considerations-for-' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Considerations for <a href='fundamental-physics.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>fundamental physics</a></h3>
+    <p class='mb-3'>
+      Much of our understanding of QM comes from systematic ways to take a system in classical mechanics and <em>quantizing</em> it, and forming the quantum mechanical system out of it.
+    </p>
+  
+    <p class='mb-3'>
+      This is very useful and practical for most purposes, but for investigating big fundamental questions this perspective is quite likely not sufficent. After all, this approach has the ‘causality’ wrong, it is QM that is primary and classical mechanics represents a particular way of taking a limit of it.
+    </p>
+  
+    <p class='mb-3'>
+      Further, we have examples of theoretical quantum systems, like the (6,0) <a href='qft.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>quantum field theory</a> that dont have a known classical limit. While another quantum system, <a href='st.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>string theory</a> evidently has six classical limits, namely the five <a href='superstring.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>superstring</a> theories and 11-dimensional <a href='sugra.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>supergravity</a>.
+    </p>
+  <h2 id='important-examples' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Important examples</h2><h3 id='quantum-particle' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>Quantum particle</h3>
+    <p class='mb-3'>
+      The most important, conceptually and historically, of quantum systems is the <a href='quantum-particle.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>quantum particle</a> . See that article for more details.
+    </p>
+  <h2 id='compositional-properties' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>compositional properties</h2>
+    <p class='mb-3'>
+      We can use ideas from <a href='category-theory.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>category theory</a> to understand and classify some of the aspects of compositionality in quantum mechanics. See <a href='categorical-qm.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>categorical quantum mechanics</a>.
+    </p>
+  
+    <p class='mb-3'>
+      Just like in classical mechanics, and in classical <a href='logic.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>logic</a> or <a href='computation.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>computation</a> (see <a href='adt.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>algebraic data types</a>), we can compose systems with essentially the operations AND and OR. Products and sums.
+    </p>
+  
+    <p class='mb-3'>
+      Of course, generally for scientific purposes we’re interested in more than just the <em>pure</em> <a href='tensor-product.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>tensor product</a> or <a href='direct-sum.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>direct sum</a> of consitituent systems (the two ways of composing specialized to <em>quantum</em> systems), because we need to add some kind of interaction between them in order for the other parts to matter to us.
+    </p>
+  
+    <p class='mb-3'>
+      In technical terms, this compositionality of quantum systems is captured by saying that quantum systems are described by a <a href='https://ncatlab.org/nlab/show/rig+category' class='text-red-600 hover:underline' target='_blank' rel='noopener'>rig category</a>. In other words, a category that has a notion of “addition” and “multiplication” defined on it, such that the multiplication distributes over addition. In other words, it is a <a href='monoidal.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>monoidal category</a> in two compatible ways, just like how a a standard <em>ring</em> in <a href='algebra.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>algebra</a> has addition and multiplication operations that must distribute. We can think of this a a categorification of a rig (ring without negation), i.e. a <a href='https://ncatlab.org/nlab/show/2-rig' class='text-red-600 hover:underline' target='_blank' rel='noopener'>2-rig</a>.
+    </p>
+  <h2 id='interpretation' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Interpretation</h2>
+    <p class='mb-3'>
+      <a href='qm-interpretation.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>interpretation of quantum mechanics</a>
+    </p>
+  
+    <p class='mb-3'>
+      <a href='mwi.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>many-worlds interpretation</a>
+    </p>
+  <h2 id='applications' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Applications</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          [<a href='teleportation.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>quantum teleportation</a>]#
+        </li>
+      
+    </ul>
+  <h2 id='technology' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Technology</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          [<a href='zx-calculus.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>ZX calculus</a>]
+        </li>
+      
+    </ul>
+  <h2 id='models' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Models</h2>
+    <p class='mb-3'>
+      These can be thought of as <a href='scientific-model.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkTag'>scientific model</a>s.
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='quantum-particle.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkBranch'>quantum particle</a>
+        </li>
+      
+    </ul>
+  <h2 id='categorical-musings' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Categorical Musings</h2>
+    <p class='mb-3'>
+      There are various ways to consider quantization as a functor…
+    </p>
+  
+    <p class='mb-3'>
+      <span class='math display'>$$
+R \rm{(Classical \ state \ space)} \to (\psi : R \to \mathbb C)
+$$</span>
+    </p>
+  <h2 id='references' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>References</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          <a href='https://arxiv.org/abs/2011.12671' class='text-red-600 hover:underline' target='_blank' rel='noopener'>Sidney Coleman’s Dirac Lecture “Quantum Mechanics in Your Face”</a>
+        </li>
+      
+    </ul>
+  <h2 id='footnotes' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Footnotes</h2>
+    <div title='Footnotes' class='pt-2 mt-8 space-y-1 text-gray-500 transform scale-x-90 border-t-2'>
+      <header class='font-semibold'>Footnotes</header>
+      
+        <div id='fn1'>
+          <header class='italic'>
+            1.
+          </header>
+          <div class='inline-block mb-2 ml-4'>
+            This is a so-called <a href='pure-state.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>pure state</a>
+          </div>
+        </div>
+      
+    </div>
+  
+  <!-- What goes in this file will appear below the note body-->
+</article>
+              <div class='flex flex-col lg:flex-row lg:space-x-2'>
+                
+                
+  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
+    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
+    <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='variance.html'>
+            variance
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><h2 id='in-'>In <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a></h2></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='unitary-evolution.html'>
+            unitary evolution
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The unitary operator ( <span class='math inline'>\(U^\dagger U = \mathbb{I}\)</span>) that evolves <a href='time.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>time</a> in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> is the one generated by the <span title='Link is broken'><s>[[Hamiltonian]]</s>❌</span>.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Unitary evolution is defines how a <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum</a> system evolves in <a href='time.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>time</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='unification.html'>
+            unification
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><span title='Link is broken'><s>[particles](particle)</s>❌</span> are unified waves in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, and with <span title='Link is broken'><s>[fields](field)</s>❌</span> in <a href='qft.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum field theory</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='tensor-product.html'>
+            tensor product
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, and in the <a href='category.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>category</a> of hilbert spaces, the tensor product is in particlar the <a href='kronecker-product.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Kronecker product</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='spin.html'>
+            spin
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>For <a href='fundamental-physics.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>fundamental physics</a> this is the most important way to classify elementary particles, relating to their transformation properties under the <a href='Lorentz-group.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Lorentz-group</a>. The combined implications of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> and <a href='relativity.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>relativity</a> restrict to a certain narrow menu of particle types in terms of spin. For example, unless we allow an infinite number of particle species or other exotic conditions, there cannot be a massless quantum particle of spin <span class='math inline'>\(\ge2\)</span>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='framework.html'>
+            scientific framework
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Similarly <a href='classical.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>classical mechanics</a> and <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> are frameworks.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='rig-category.html'>
+            rig category
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In both <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> (described by <a href='categories/Hilb.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Hilb</a>), and <a href='categories/Set.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Set</a> – which models programming, and also theorem-proving via the <a href='curry-howard.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Curry-Howard correspondence</a> –</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='quantum-particle.html'>
+            quantum particle
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The <a href='framework.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>scientific framework</a> of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum mechanics</a> can be applied to a wide range of dynamical systems, of finite or infinite dimension, but the simple quantum particle moving in <span class='math inline'>\(D\)</span> dimensions is the prototypical example of a continuous degree of freedom under quantization. And it is the one of most practical relevance, at least until we start describing processes involving relativistic speeds or particle creation/destruction.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='qg.html'>
+            quantum gravity
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The project to come up with a unified <a href='framework.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>scientific framework</a> that combines <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> with <a href='gr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>general relativity</a>, while being consistent with observed facts about the universe. In other words a framework that is viable for a theory <a href='fundamental-physics.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>fundamental physics</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='qft.html'>
+            quantum field theory
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>By quantum field theory, I usually mean <em><strong>relativistic quantum field theory</strong></em>. This a nonstandard, yet practical, convention. QFT does not require <a href='relativity.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>relativity</a> (as I can hear the condensed matter physicists protest), however: Its major significance is that it allows us to combine relativity with <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> into a <a href='framework.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>scientific framework</a> that can describe all phenomena in the universe besides <a href='gravity.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>gravity</a>, to the best of our knowledge.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>It is both the foundation our our best theories of <a href='fundamental-physics.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>fundamental physics</a> and one of the only known ways to <span title='Link is broken'><s>[unify](unification)</s>❌</span> <a href='relativity.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>relativity</a> and <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Then <em>quantum field theory</em> (without any indefinite article) is the framework of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> models constructed in this way. A sub-framework if you will.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p><strong>Definition.</strong> <em><strong>A</strong></em> <strong>quantum field theory</strong> is a <a href='scientific-model.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>scientific model</a> within the <a href='framework.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>scientific framework</a> of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, where the corresponding “classical” system to be quantized is a <a href='field.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>field</a>. Namely a function from some <a href='space.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>space</a>.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>QFT is <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum mechanics</a> applied to <span title='Link is broken'><s>[fields](field)</s>❌</span>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='probability.html'>
+            probability
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In the context of <a href='physics.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>physics</a>, probabilities are the primary output of modern theories in the form of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> <strong>amplitudes</strong>. By preparing quantum systems in particular ways, we can obtain pristine sources of randomness that closely match any given probability value.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='potential.html'>
+            potential energy function
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>A function characterizing the potential <a href='energy.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>energy</a> of a system, in <a href='classical.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>classical mechanics</a> or <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='physics.html'>
+            physics
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>At the small scales, like around <span class='math inline'>\(10^{-10}\)</span> meters, matter acts as a kind of wave. A <a href='wavefunction.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>wavefunction</a>, whose values encode probabilities of outcomes of possible measurement. This is [<a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>]. Some of these wavefunctions are valued in countable, finite sets such as spin up and spin down <span class='math inline'>\(\{  \left \lvert \uparrow \right \rangle , \left \lvert \downarrow \right \rangle \}\)</span> while others are valued continuous sets, like <a href='space.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>space</a>. The fact that the theory outputs predictions in the form of <span title='Link is broken'><s>[probabilities](probability)</s>❌</span> was a major development.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Both major revolutions of the 20th century, [<a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>] and [<a href='gr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>general relativity</a>], force us to depart from this basic picture in highly consequential ways.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Both of these two pillars, which utilize radically different fundamental concepts, have the beginnings of a convergence in [<a href='qft.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum field theory</a>]. Namely it combines [<a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>] with [<a href='sr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>special relativity</a>].</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Even with current knowledge, there is a rich interconnection between ideas of <a href='qft.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum field theory</a> and <a href='gr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>general relativity</a>. For example, starting with basic ideas of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> and <a href='sr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>special relativity</a>, with certain conditions we can derive that a massless spin-2 field requires the diffeomorphism symmetry of <a href='gr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>general relativity</a> as is required to decouple timelike modes of the field, in the similar way to how a massless spin-1 field requires the gauge symmetry of [<a href='em.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>electromagnetism</a>] or [<a href='ym.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Yang-Mills theory</a>] to decouple its timelike mode. Furthermore, <a href='gr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>general relativity</a> has no trouble to be treated in low-energy regimes as an [<a href='eft.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>effective field theory</a>], with the limits of this approach manifesting as the non-renormalizability of the field theory.</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>We have achieved a robust and versitile unification of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> and <a href='sr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>special relativity</a> in the form of [<a href='qft.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum field theory</a>], with its concrete implementation in the [<a href='sm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Standard Model</a>] currently the best match for experimental data. That leaves [<a href='gravity.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>gravity</a>], as described by [<a href='gr.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>general relativity</a>] as the last holdout. In particular, this means we need a theory of [<a href='qg.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum gravity</a>].</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='particle.html'>
+            particle
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In less extreme environments, where the <span title='Link is broken'><s>[[kinetic-energy]]</s>❌</span> of the particles is much less than their <span class='math inline'>\(m_{\mathrm{particle}}c^2\)</span>, particles can be described in the framework of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='observable.html'>
+            observable
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, an <strong>observable</strong> is a measurable quantity represented by a <a href='hermitian-op.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Hermitian operator</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='no-cloning-theorem.html'>
+            no cloning theorem
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum mechanics</a>…</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='locality.html'>
+            locality
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>When combined with <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, in <a href='qft.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum field theory</a> …</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='qm-interpretation.html'>
+            interpretation of quantum mechanics
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The question of how to interpret <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> is a highly consequential open question in <a href='fundamental-physics.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>fundamental physics</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='fundamental-physics.html'>
+            fundamental physics
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>At the present time, the frontier of knowledge on fundamental laws chiefly pertains to the [<a href='unification.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>unification</a>] of <a href='gravity.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>gravity</a> and <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, while the overall configuration and history of our universe is the subject of <a href='cosmology.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>cosmology</a>. In general, unification is necessarily a major theme of fundamental physics as, unlike other areas of physics, it does not suffice to have a theory with a limited domain of applicability.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='expectation-value.html'>
+            expectation value
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><h2 id='in-'>In <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a></h2></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='duality.html'>
+            duality
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Duality in physics means a relationship between physical theories. It consists of an isomorphism between the kinematical state spaces of the theories, such that the dynamical evolutions are preserved. In particular, since duality is mainly a feature of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum</a> theories, it means that the amplitudes of the time evolutions, the correlation functions, are the same.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='direct-sum.html'>
+            direct sum
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>This is one of the operations making vector spaces, including Hilbert spaces in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>, into a <a href='monoidal.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>monoidal category</a>, the other being the <a href='kronecker-product.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Kronecker product</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='determinism.html'>
+            determinism
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>This was famously the case for all theories forumlated within the framework of <a href='classical.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>classical mechanics</a> but no longer seemed to be true for theories that incorporated <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='causality.html'>
+            causality
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The postulates of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> introduce a new possibility that, at least at face-value, is distinct.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='braket.html'>
+            bra-ket notation
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Notation, invented by Paul Dirac, to guide the handling of of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> Hilbert space vectors, covectors and operators.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='angular-momentum.html'>
+            angular momentum
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In <a href='classical.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>classical mechanics</a> and <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum mechanics</a> the (3-dimensional) orbital angular momentum can be defined as the cross product of position and momentum</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='schwarz-inequality.html'>
+            Schwarz inequality
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Used in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> for <a href='uncertainty-principle.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>Heisenberg uncertainty principle</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='Schr%C3%B6dinger-equation.html'>
+            Schrödinger equation
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Describes <a href='unitary-evolution.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>unitary evolution</a> in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum mechanics</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='natures-rng.html'>
+            Nature’s random number generator
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Refers to the way in which <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> entails seemingly fundamental probabilistic indeterminism. When a quantum measurement is made, something – <em>Natures random number generator</em> – is responsible for sampling the probability described by the quantum state.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='kronecker-product.html'>
+            Kronecker product
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>It is significant in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> for representing the combined states (vectors) or processes (operators) of compound physical systems.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='Kochen-Specker.html'>
+            Kochen Specker theorem
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The Kochen Specker theorem demonstrates <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> cannot be described by <strong>non-contextual</strong> <a href='hidden-variables.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>hidden variables</a>.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='Heisenberg-picture.html'>
+            Heisenberg picture
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>In the Heisenberg picture of <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkTag'>quantum mechanics</a>, <a href='time.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>time</a> dependence is attached to quantum operators rather than states, as in the more common <strong>Schödinger picture.</strong></p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='fundamental-physics-cosmology-and-the-landscape.html'>
+            Fundamental Physics, Cosmology and the Landscape
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>The prediction bears out. In fact, even before this distance scale we get the <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum-mechanical</a> appearance of anti-electrons…</p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>This is why heating up a lump of coal can be a unitary process in <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> and yet appear as a thermal process.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='dlqe.html'>
+            Delayed-choice quantum eraser
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>An experiment that demonstrates how <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum</a> experiemnts can have non-intuitive consequences when one inadvertently smuggles in <a href='classical.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>classical</a> assumptions.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='bks.html'>
+            Bell-Kochen-Specker theorem
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Abandoning the <a href='hidden-variables.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>hidden variables</a> hypothesis and adopting the account based on <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> does not have superluminal influences, but only superluminal <em>correlations.</em></p></div>
+    </div>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><p>Any attempt to interpret <a href='qm.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>quantum mechanics</a> as a <a href='hidden-variables.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>hidden variable theory</a> requires faster-than-light influences.</p></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+    </ul>
+  </div>
+
+              </div>
+              
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+      <a title='Tag' class='px-1 bg-gray-100 rounded hover:bg-gray-50 hover:text-red-500' href='-/tags/physics.html'>
+        <!-- DoNotFormat -->
+        #physics
+        <!-- DoNotFormat -->
+      </a>
+    
+  </section>
+
+              <!-- What goes in this file will at the very end of the main div -->
+            </main>
+          </div>
+        </div>
+        <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+  
+  <div>
+    <a href='' title='Go to Home page'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/all.html' title='View Index'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.4.2.0'>
+      <img class='w-6 h-6 hover:text-red-700' src='_emanote-static/emanote-logo.svg' />
+    </a>
+  </div>
+  <div>
+    <a href='-/tags.html' title='View tags'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/tasks.html' title='View tasks'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+      </div>
+    </div>
+  
+</body>
+
+</html>

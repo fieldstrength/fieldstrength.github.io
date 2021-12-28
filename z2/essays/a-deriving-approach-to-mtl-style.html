@@ -1,0 +1,651 @@
+<!-- TODO: Main navigation links (Home, index, tags, ...) --><!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>
+    A deriving approach to MTL style Haskell – Fieldstrength Lab Notebook
+  </title>
+  
+    
+      <meta property='og:description' content />
+      <meta property='og:site_name' content='Fieldstrength Lab Notebook' />
+      <meta property='og:type' content='website' />
+      <meta property='og:title' content='A deriving approach to MTL style Haskell' />
+    
+    
+      <base href='/z2/' />
+      <link href='static/favicon.ico' rel='icon' />
+    
+    <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
+<script async id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script>
+
+  
+  <!-- CSSSTART -->
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/combine/npm/twind/twind.umd.min.js,npm/twind/observe/observe.umd.min.js'></script><script type='text/javascript'>// Be silent to avoid complaining about non-tailwind classes
+// https://github.com/tw-in-js/twind/discussions/180#discussioncomment-678272
+console.log("ema: Twind: setup & observe")
+twind.setup({mode: 'silent'})
+window.emaTwindObs = twindObserve.observe(document.documentElement);</script>
+  <!-- CSSEND -->
+
+  <!-- Heist error element -->
+  <style type='text/css'>
+    strong.error {
+      color: lightcoral;
+      font-size: 90%;
+      font-family: monospace;
+    }
+  </style>
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='static/fonts/IBMPlexSans-Regular.ttf' as='font' type='font/ttf' crossorigin />
+
+<style>
+  @font-face {
+    font-family: 'Plex';
+    src: url('static/fonts/IBMPlexSans-Regular.ttf') format("truetype");
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'Plex', sans-serif;
+  }
+
+  a.mavenLinkBold {
+    font-variation-settings: 'wght'500;
+  }
+
+  a,
+  a:link {
+	color: #614d9c;
+    text-decoration: none;
+    border-bottom: 1px solid #3994fa
+  }
+
+  a:visited {
+    color: #614d9c;
+    text-decoration: none;
+    border-bottom: 1px solid #3994fa
+  }
+
+  a:hover {
+    color: #3e5eb0;
+    text-decoration: none;
+    border-bottom: 1px solid #b6384f
+  }
+
+  .bgclass {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    color: black;
+    font-size: 15px;
+    font-family: Plex;
+    background: linear-gradient(0deg, rgb(190, 200, 222), rgb(217, 241, 233)) no-repeat;
+    background-color: #331A20;
+    background-attachment: fixed
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  header,
+  .header-font {
+    font-family: 'Plex', sans-serif;
+  }
+
+  h1 a {
+    color: black;
+  }
+
+  div#header {
+    border-bottom: 2px solid black;
+    margin-bottom: 25px;
+    padding: 12px;
+    background-color: #331A20;
+    color: #FFF;
+    font-family: 'Plex', sans-serif;
+  }
+
+  div#header a {
+    color: rgb(249, 242, 218);
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 12px;
+    text-decoration: none;
+  }
+
+  .pathlike {
+    color: rgb(141,142,127);
+    text-decoration: italic;
+  }
+
+  .uptree-node {
+    background-color: #331A20;
+  }
+
+  .uptree-node a {
+    color: rgb(141,142,127);
+  }
+</style>
+
+
+  
+    <link rel='stylesheet' href='_emanote-static/inverted-tree.css' />
+  
+</head>
+
+<!-- DoNotFormat -->
+
+
+
+<!-- DoNotFormat -->
+
+<body class='bgclass'>
+  
+
+    <div id='header'>
+      <a href='./' class='mx-0 p-0'>Fieldstrength</a>
+      <span class='mx-2 p-0'>/</span>
+      <a href='./essays' class='mx-0 p-0'>essays</a>
+      <span class='mx-2 p-0'>/</span>
+      <span class='pathlike'>A <code>deriving</code> approach to MTL style Haskell</span>
+    </div>
+
+    <div class='container mx-auto max-w-screen-md'>
+      <div class='mt-2 md:mt-4'>
+        <!-- DoNotFormat -->
+<!-- DoNotFormat -->
+
+<nav id='uptree' class='flipped tree' style='transform-origin: 50%;'>
+  <ul class='root'>
+    <li>
+      
+        <ul>
+          
+            <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='essays.html'>
+      essays
+    </a>
+  </div>
+
+  
+    <ul>
+      
+        <li>
+
+  <div class='uptree-node forest-link'>
+    <a href='index.html'>
+      zettelkasten
+    </a>
+  </div>
+
+  
+</li>
+      
+    </ul>
+  
+</li>
+          
+        </ul>
+      
+    </li>
+  </ul>
+</nav>
+        <div class='md:shadow-2xl md:mb-8'>
+          <div class='flex-1 w-full overflow-x-auto bg-white'>
+            <main class='px-4 py-4'>
+              <h1 class='flex items-end justify-center mb-4 p-3 bg-red-100 text-5xl font-extrabold text-black rounded'>
+  <a class='z-40 tracking-tighter '>
+    A <code>deriving</code> approach to MTL style Haskell
+  </a>
+</h1>
+              <article class='overflow-auto'>
+  <!-- What goes in this file will appear on top of note body-->
+  
+    <p class='mb-3'>
+      <em>See the related <a href='https://gist.github.com/fieldstrength/8d53858264bc8af59d2d2690b425b538' class='text-red-600 hover:underline' target='_blank' rel='noopener'>gist</a></em>
+    </p>
+  <h2 id='introduction' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Introduction</h2>
+    <p class='mb-3'>
+      <em>MTL style</em> is an approach to modeling effects in <a href='haskell.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>Haskell</a> that was popularized by Edward Kmett’s <a href='https://hackage.haskell.org/package/mtl' class='text-red-600 hover:underline' target='_blank' rel='noopener'>mtl library</a>. What started as a very general technique turns out to be highly useful as a primary overall structure for your application. And while this technique has competitors, like libraries for algebraic effects such as Polysemy or Fused Effects, this style remains extremely compelling on the merits, and is also especially easy to understand as it uses only well-established Haskell concepts.
+    </p>
+  
+    <p class='mb-3'>
+      I want to lay out my approach for the benefit of anyone who needs such a template, and to show just how powerful it can be. A new variation I’ve developed during my work at Klarna seems to me to be the best iteration yet. So let me make the case for this “MTL-style application structure”.
+    </p>
+  
+    <p class='mb-3'>
+      In order to motivate this style, I’ll describe two of the other approaches we went through to arrive here before getting to the preferred solution.
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          First, the tried-and-true <em>low-tech</em> approach. Works well and easy to learn, but at the expense of repetition and lack of code re-use.
+        </li>
+      
+        <li>
+          Next the <em>transformer stack</em> approach, which achieves nice separation of concerns and code reuse at the expense of high incidental complexity, high barrier-to-entry, and some extra risk of bugs.
+        </li>
+      
+        <li>
+          Finally, a <em>deriving-based</em> approach that pretty much has all of the advantages and none of the disadvantages of the above.
+        </li>
+      
+    </ul>
+  <h2 id='goals-and-motivation' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Goals and motivation</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          As a group of multiple Haskell teams in a monorepo, we want an efficient way for each team to re-use the work of the others. A new integration library should easily “plug in” to any other team’s code. We want composable “lego pieces”.
+        </li>
+      
+        <li>
+          We need to be able to onboard new engineers to our repo without unreasonable intimidation or learning requirements.
+        </li>
+      
+        <li>
+          Adding a new feature in a fully idiomatic and tested way should not bottleneck on involvement of senior Haskell engineers.
+        </li>
+      
+        <li>
+          Even so, we also don’t want to lose out on the great properties of haskell, which do give us huge value in terms of safety and developer efficiency. In other words, we don’t believe insisting on “boring Haskell” is always the right tradeoff, but we do insist that advanced features are used with great care and consideration, consistent with the above goals.
+        </li>
+      
+    </ul>
+  <h2 id='what-is-mtl-style' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>What is MTL style</h2>
+    <p class='mb-3'>
+      The essence of MTL style for applications is:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Every business logic function has a typeclass constraint for each <em>effect</em> that it needs to perform to do its job, like sending an event or checking a database. The signature of these functions furthermore do not allow unrestricted <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>IO</code>.
+        </li>
+      
+        <li>
+          These typeclass constraints are discharged at, or close to, the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>main</code> entrypoint for the application where you specify which <a href='monad.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>monad</a>, i.e. which <a href='computational-context.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>computational context</a> should be used to describe your app. Usually you enter this monad from your <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>main</code> as soon as all the resources needed for its environment have been set up. The monad should pretty much always be something <em>equivalent</em> to <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>ReaderT env IO</code>. See <a href='https://www.fpcomplete.com/blog/2017/06/readert-design-pattern/' class='text-red-600 hover:underline' target='_blank' rel='noopener'>Michael Snoyman’s explanation</a> as to why sticking with this form is desirable.
+        </li>
+      
+        <li>
+          These same business logic functions are then also tested within a different monad that achieves mocking by using a different instance of those type classes.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      Every structure I’ll describe here fits this general mold. They only differ in the way they define data types and type class instances to do so.
+    </p>
+  <h2 id='cataloging-the-variations-of-the-style' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Cataloging the variations of the style</h2>
+    <p class='mb-3'>
+      Lets start by laying out an example typeclass interface. We’ll implement this interface with each of the methods we discussion.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>data Document
+data DocId
+
+class Monad m =&gt; MonadPersistDocument m where
+  persistDocument :: DocId -&gt; Document -&gt; m ()
+  getDocument :: DocId -&gt; m (Maybe Document)</code></pre></div><h3 id='the-basic-low-tech-approach' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>The basic low-tech approach</h3>
+    <p class='mb-3'>
+      This first solution is the absolute simplest approach to this style that is worth considering.
+    </p>
+  
+    <p class='mb-3'>
+      I mention it first not only because it forms the bases for our preferred solution, but you should understand how this simple approach works before trying anything else. For that reason, this may be the right fit for i.e. a team completely new to Haskell.
+    </p>
+  
+    <p class='mb-3'>
+      In essence, with this approach you:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Define a <strong>concrete, named</strong> monad for your application, with shape <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Env -&gt; IO a</code>.
+        </li>
+      
+        <li>
+          Define a <strong>concrete, named</strong> monad for your tests.
+        </li>
+      
+        <li>
+          You manually provide the instances for those monads.
+        </li>
+      
+    </ul>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>newtype RealApp a  -- instance Monad RealApp
+newtype Test a     -- instance Monad Test
+
+runRealApp :: AppConfig -&gt; RealApp a -&gt; IO a
+runTest :: TestConfig -&gt; Test a -&gt; a
+
+instance MonadPersistDocument RealApp where
+  persistDocument docId doc = ...
+  getDocument docId = ...
+
+instance MonadPersistDocument Test where
+  persistDocument docId doc = ...
+  getDocument docId = ...</code></pre></div>
+    <p class='mb-3'>
+      BENEFITS
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Simple, easy, lowest-barrier to entry
+        </li>
+      
+        <li>
+          You can step up to our better solution bit-by-bit as you get comfortable with it
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      DRAWBACKS
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Write much more instance code; repeat yourself a lot. Especially if you are multiple Haskell teams.
+        </li>
+      
+    </ul>
+  <h3 id='a-disfavored-approach-run-everything-in-a-big-trasformer-stack' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>A disfavored approach: Run everything in a big trasformer stack</h3>
+    <p class='mb-3'>
+      This method introduces some very desirable properties that are worth preserving, in terms of decoupling and compositionality. But in the end, it also introduces a lot of costs and difficulties. And as we’ll show in the next section, those costs are not actually needed to get the same benefits.
+    </p>
+  
+    <p class='mb-3'>
+      The defining properties of this approach are:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Each effect typeclass gets
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          A monad transformer that carries the production implementation
+        </li>
+      
+        <li>
+          A monad transformer that carries the test implementation
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+        <li>
+          Instead of working in an explicitly defined monad, the application and the tests each run in a large stack of many monad transformers.
+        </li>
+      
+    </ul>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>newtype RealPersistDocumentT m a :: RealPersitDocumentT (ReaderT ConnectionPool (m a))
+
+runRealPersistDocumentT :: ConnectionPool -&gt; RealPersistDocumentT m a -&gt; m a
+
+instance MonadIO m =&gt; MonadPersistDocument (RealPersistDocumentT m a) where
+  ...
+
+instance {-# OVERLAPPABLE #-} (MonadTrans t, Monad (t m), MonadPersistDocument m) =&gt; MonadPersistDocument (t m) where
+  getDocument docId = lift $ getDocument docId
+  persistDocument docId doc = lift $ persistDocument docId doc</code></pre></div>
+    <p class='mb-3'>
+      The whole approach works because that last “pass through instance” ensures that when a new transformer is added to your stack, the whole stack will still have an instance as long as the transformers all implement <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadTrans</code>.
+    </p>
+  
+    <p class='mb-3'>
+      What is shown here is actually the ideal case. In some cases (when any of the type class methods take a monadic computation in negaitve position) you need to use <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadTransControl</code>, instead of the much simpler <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadTrans</code>. And this requirement is not associated with any practical benefit in our style of use.
+    </p>
+  
+    <p class='mb-3'>
+      BENEFITS
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Separation of concerns. The “library author” defining the interface for the effect can also describe the anticipated real/test implementations in a generic way. This means that one dev from one team can implement a library to interface with a particular system, and any other team can easily plug it in to their application. If you want to swap out one implementation in their monad for another one it can be quite easy, you just switch out the corresponding <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>run</code> natural transformation function at the point where you enter your monad.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      DOWNSIDES
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Mess. The fact that there is no named monad, and no single <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>run</code> function, means that over time these run functions tend to get spread out over different regions of code. This makes it difficult at any one place to see which monad you may be in. It leads to an explosion of different variations of different monads that may be active at different points.
+        </li>
+      
+        <li>
+          Loss of easy control over a critical piece of code; the function that takes your transformer stack to <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>IO</code>. This is a function its extremely important to see clearly, because it affects how your entire application runs. Certain things just do not belong in it; they should be <a href='natural-transformation.html' class='text-red-600 mavenLinkBold hover:underline' data-wikilink-type='WikiLinkNormal'>natural transformation</a>s only. Yet because in the transformer approach this function is the composition of a large number of individual functions that are defined in individual libraries, its far too easy for undesirable behavior to sneak in unnoticed. And in fact we have encountered one such example of this, where a broken library implementation took down an important endpoint that <em>did not even use the library in question</em>.
+        </li>
+      
+        <li>
+          Too complicated & too high barrier-to-entry. Because of the way the different transformers interact under the type class resolution mechanism, you need to deal with a very complicated instance structure. You often need to rely on <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadTransControl</code>. You need to have overlapping “pass through” instances. While we have several advanced haskellers who are comfortable with these subjects in principle, in practice the way it fits together can still be quite unintuitive and many modifications have a “trial and error” character. After trying this out for a couple years, we have not seen a sufficient growth in people comfortable with this approach to give us confidence in its long-term viability.
+        </li>
+      
+        <li>
+          Difficult to see your entire static (Reader) environment. While this way is harmonious with the recommended practice of running in a monad isomorphic to <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>ReaderT r IO</code>, that correspondence can be difficult to see because that reader environment is spread out over many different transformers. Specifically one needs to <span title='Link is broken'><s>[uncurry](currying)</s>❌</span> the composition of all the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>run</code> functions to see this environment.
+        </li>
+      
+    </ul>
+  <h3 id='the-deriving-based-approach' class='mt-6 mb-2 text-3xl font-bold text-gray-700'>The <em>deriving</em>-based approach</h3>
+    <p class='mb-3'>
+      Now we’re ready to improve on the two approaches described so far.
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Each type class still gets a trasformer to carry the implementation, but that transformer now <em>only</em> carries the implementation. Each such transformers is <em>nothing but a trivial wrapper</em> – isomorphic to <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>IdentityT</code>. The implementation only gets its resources from the reader environment. This means that the there is no longer any need for the transformers to come with their own natural transformations.
+        </li>
+      
+        <li>
+          You once again define a <em>concrete, explicitly named</em> monad for your application and your tests. You write its natural transformation to <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>IO</code>.
+        </li>
+      
+        <li>
+          You can still mix and match transformers however you see fit, but now you do that by changing which transformer you derive <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>via</code>.
+        </li>
+      
+    </ul>
+  
+    <p class='mb-3'>
+      I view this approach as essentially taking all the advantages of both the low-tech MTL approach as well as the transformer stack approach. In fact, you might even say this <em>is</em> still the low-tech approach, except now with a very smooth way to plug predefined implementations into your monad!
+    </p>
+  
+    <p class='mb-3'>
+      To start lets look at the “library code” that provides this default real/test functionality via two trivial transformers:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>---------------- Real Implementation Transformer  ----------------
+newtype RealPersistDocumentT m a = RealPersistDocumentT { runRealPersistDocument :: m a }
+  deriving (Functor, Applicative, Monad) via m
+  deriving (MonadTrans) via IdentityT
+
+data ConnPool = ConnPool
+
+instance (MonadIO m, MonadReader env m, HasType ConnPool env) =&gt; MonadPersistDocument (RealPersistDocumentT m) where
+  persistDocument docId doc = lift $ asks (view typed) &gt;&gt;= \ConnPool -&gt; pure ()
+  getDocument docId = lift $ asks (view typed) &gt;&gt;= \ConnPool -&gt; pure Nothing
+  -- predent we really did stuff here
+
+---------------- Mock Implementation Transformer  ----------------
+newtype MockPersistDocumentT m a = MockPersistDocumentT { runMockPersistDocumentT :: m a }
+  deriving (Functor, Applicative, Monad) via m
+  deriving (MonadTrans) via IdentityT
+
+instance (Monad m, HasType (Map DocumentId Document) env, MonadState env m) =&gt; MonadPersistDocument (MockPersistDocumentT m) where
+  persistDocument docId doc = lift $ modify $ over typed $ Map.insert docId doc
+  getDocument     docId     = lift $ gets $ Map.lookup docId . view typed</code></pre></div>
+    <p class='mb-3'>
+      Now that these are implemented, I can easily plug them into my application monad. Best of all somebody else from my company can do this just as easily! Both of us need only add one line to the definition of our monad:
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>newtype MyApp a = MyApp (AppContext -&gt; IO a)
+  deriving (Functor, Applicative, Monad, MonadIO, MonadReader AppContext) via ReaderT AppContext IO
+  deriving MonadPersistDocument via RealPersistDocumentT MyApp</code></pre></div>
+    <p class='mb-3'>
+      You can see we are leaning heavily on <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>DerivingVia</code> here. Besides the usual incantation to get all the standard monadic classes, including <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadIO</code> and <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadReader</code>, we also invoke the trivial transformer defined above to claim the desired instance behavior that allows us to work with our database.
+    </p>
+  
+    <p class='mb-3'>
+      The only requirement for this to work is that our <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>AppContext</code> data type has the required resource, namely in this case a connection pool. This <a href='https://www.youtube.com/watch?v=idU7GdlfP9Q' class='text-red-600 hover:underline' target='_blank' rel='noopener'>principled magic</a> is provided by the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>HasType</code> class from <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>generic-lens</code>.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>data AppContext = AppContext
+  { connection :: ConnPool
+  }
+  deriving (Show, Eq, Generic)</code></pre></div>
+    <p class='mb-3'>
+      This encoding achieves many of the advantages of the transformers approach, by making each individual monadic effect pluggable, but it does so without the host of challenges that come with that approach.
+    </p>
+  
+    <p class='mb-3'>
+      Similarly we effortlessly plug in the official test implementation to our test monad, with one line.
+    </p>
+  <div class='py-0.5 mb-3 text-sm'><pre><code class='haskell language-haskell'>newtype TestMonad a = TestMonad (State MyMockDatabase a)
+  deriving (Functor, Applicative, Monad, MonadState MyMockDatabase) via State MyMockDatabase
+  deriving MonadPersistDocument via MockPersistDocumentT TestMonad
+</code></pre></div>
+    <p class='mb-3'>
+      Now this addressses all the issues we have with the transformer stack way:
+    </p>
+  
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Because we have a named monad with a dedicated <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>run</code> function, its trivial to see what monad we’re running in. There is no undue invitation to scatter different pieces of this transformation into different locations. And the visibility of this <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>run</code> function makes it much easier to see and understand what this monad’s behavior will be. We can be sure that it is indeed <span title='Link is broken'><s>[natural](natural-transformation)</s>❌</span>.
+        </li>
+      
+        <li>
+          Newcomers to Haskell or our repo don’t have to worry as much about understanding transformers. They have enough to worry about in understanding monads, and the kind <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Type -&gt; Type</code>. Of course this new approach is not completely without transformers; they are used to carry instances, but all the transformers are trivial, and there are no transformer <em>stacks</em>. Transformers only ever add one single layer to a concrete monad to control the type class instance, which even if you are advanced is much easier to grasp.
+        </li>
+      
+        <li>
+          We don’t have to deal with the complications of <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadTransControl</code>, we can use the much simpler interface of <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadUnliftIO</code>.
+        </li>
+      
+    </ul>
+  <h2 id='stylistic-questions' class='inline-block mt-6 mb-4 text-4xl font-bold text-gray-700 border-b-2'>Stylistic questions</h2>
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          Derive <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>MonadTrans</code> or just use the constructor?
+        </li>
+      
+        <li>
+          <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>Has</code> or <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>HasType</code>? Since <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>generic-lens</code> is a godsend, we opt for the latter.
+        </li>
+      
+        <li>
+          Use <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>newtype</code> deriving strategy or just opt for <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>DerivingVia</code> for everything? I vote for the latter.
+        </li>
+      
+    </ul>
+  
+  <!-- What goes in this file will appear below the note body-->
+</article>
+              <div class='flex flex-col lg:flex-row lg:space-x-2'>
+                
+                
+  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
+    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
+    <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-red-600 mavenLinkBold hover:bg-red-50' href='index.html'>
+            zettelkasten
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-red-200 hover:border-red-500'>
+      <div><a href='essays/a-deriving-approach-to-mtl-style.html' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>A <code>deriving</code> approach to MTL style Haskell</a></div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+    </ul>
+  </div>
+
+              </div>
+              
+  <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
+    
+      <a title='Tag' class='px-1 bg-gray-100 rounded hover:bg-gray-50 hover:text-red-500' href='-/tags/draft.html'>
+        <!-- DoNotFormat -->
+        #draft
+        <!-- DoNotFormat -->
+      </a>
+    
+  </section>
+
+              <!-- What goes in this file will at the very end of the main div -->
+            </main>
+          </div>
+        </div>
+        <footer class='flex items-center justify-center mt-2 mb-8 space-x-4 text-center text-gray-800'>
+  
+  <div>
+    <a href='' title='Go to Home page'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/all.html' title='View Index'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.4.2.0'>
+      <img class='w-6 h-6 hover:text-red-700' src='_emanote-static/emanote-logo.svg' />
+    </a>
+  </div>
+  <div>
+    <a href='-/tags.html' title='View tags'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
+        </path>
+      </svg>
+    </a>
+  </div>
+  <div>
+    <a href='-/tasks.html' title='View tasks'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+      </div>
+    </div>
+  
+</body>
+
+</html>
