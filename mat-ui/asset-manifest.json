@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mat-ui/static/css/main.7a1acff7.css",
+    "main.js": "/mat-ui/static/js/main.cfdfef23.js",
+    "static/js/787.cf58b385.chunk.js": "/mat-ui/static/js/787.cf58b385.chunk.js",
+    "index.html": "/mat-ui/index.html",
+    "main.7a1acff7.css.map": "/mat-ui/static/css/main.7a1acff7.css.map",
+    "main.cfdfef23.js.map": "/mat-ui/static/js/main.cfdfef23.js.map",
+    "787.cf58b385.chunk.js.map": "/mat-ui/static/js/787.cf58b385.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a1acff7.css",
+    "static/js/main.cfdfef23.js"
+  ]
+}
