@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/gamma/static/css/main.7a1acff7.css",
+    "main.js": "/gamma/static/js/main.ffaa9f6c.js",
+    "static/js/787.cf58b385.chunk.js": "/gamma/static/js/787.cf58b385.chunk.js",
+    "index.html": "/gamma/index.html",
+    "main.7a1acff7.css.map": "/gamma/static/css/main.7a1acff7.css.map",
+    "main.ffaa9f6c.js.map": "/gamma/static/js/main.ffaa9f6c.js.map",
+    "787.cf58b385.chunk.js.map": "/gamma/static/js/787.cf58b385.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a1acff7.css",
+    "static/js/main.ffaa9f6c.js"
+  ]
+}
