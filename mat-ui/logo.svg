@@ -1,0 +1,56 @@
+<?xml version="1.0" standalone="no"?>
+<svg viewBox="0 -20 350 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<!-- viewbox takes min-x, min-y, width and height -->
+
+
+  <!-- FFFF -->
+  <!-- F main -->
+  <polygon points="20,10  10,20  10,60  20,60  20,20  90,20  90,10"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- F triangle upper left -->
+  <polygon points="90,10  100,20  100,10"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- F middle bar -->
+  <polygon points="30,30  30,40  70,40  70,30"  fill="#e6eddd" stroke-width="5"/>
+
+
+  <!-- iiii -->
+  <!-- i red dot -->
+  <polygon points="80,30  80,40  90,40  90,30"  fill="#b1638e" stroke-width="5"/>
+  <!-- i dark dot -->
+  <polygon points="80,50  80,60  90,60  90,50"  fill="#e6eddd" stroke-width="5"/>
+
+
+  <!-- E negative -->
+  <!-- upper dot -->
+  <polygon points="110,10  110,20  120,20  120,10"  fill="#e6eddd" stroke-width="5"/>
+  <polygon points="110,30  110,40  120,40  120,30"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- S previous version guide
+  <polygon points="100,50  100,60  150,60  160, 50  160,60  210,60  210,30
+    180,30  180,20  170,30  170,40  200,40  200,50
+    160,50  160,10  150,20  150,10  130,10  130,20  150,20  150,30  130,30  130,40  150,40 150,50"  fill="#F00" stroke-width="5"/>
+-->
+
+  <!-- E body -->
+  <polygon points="100,50  100,60  150,60  160, 50  160,10  150,20  150,10  130,10  130,20  150,20  150,30  130,30  130,40  150,40 150,50"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- S / D / T -->
+  <!-- S lower hook -->
+  <polygon points="160,50  160,60  220,60  220,30  200,30  200,40  210,40  210,50"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- D -->
+  <!-- D lower base -->
+  <polygon points="170,30  170,40  190,40  200,30  200,20  190,30  180,30  180,20"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- S upper line / D middle -->
+  <polygon points="170,10  170,20  240,20  240,10  200,10  200,0  190,10  180,10  180,0"  fill="#e6eddd" stroke-width="5"/>
+  <!-- D top -->
+  <polygon points="170,-10  170,0  200,0  190,-10"  fill="#e6eddd" stroke-width="5"/>
+  <!-- D top left accent-->
+  <polygon points="160,-10  160,0  150,-10"  fill="#e6eddd" stroke-width="5"/>
+
+  <!-- rrrr -->
+  <!-- r body left -->
+  <polygon points="230,30  230,60  240,60  240,40  340,40  350,30  250,30  240,40  240,30"  fill="#e6eddd" stroke-width="5"/>
+</svg>
